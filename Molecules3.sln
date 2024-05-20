@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Molecules.Core", "Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Molecules.Logger", "Molecules.Logger\Molecules.Logger.csproj", "{8BCBED59-269E-4105-B554-4BD4EBF588CC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Molecules.Core.Data", "Molecules.Core.Data\Molecules.Core.Data.csproj", "{019B8DE4-0B7C-4F49-A1D9-3D3A7938CA05}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{8BCBED59-269E-4105-B554-4BD4EBF588CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8BCBED59-269E-4105-B554-4BD4EBF588CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8BCBED59-269E-4105-B554-4BD4EBF588CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{019B8DE4-0B7C-4F49-A1D9-3D3A7938CA05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{019B8DE4-0B7C-4F49-A1D9-3D3A7938CA05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{019B8DE4-0B7C-4F49-A1D9-3D3A7938CA05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{019B8DE4-0B7C-4F49-A1D9-3D3A7938CA05}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
