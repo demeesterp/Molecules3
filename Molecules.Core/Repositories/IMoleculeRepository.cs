@@ -1,17 +1,19 @@
-﻿namespace Molecules.Core.Repositories
+﻿using Molecules.Core.Domain.Entities;
+
+namespace Molecules.Core.Repositories
 {
     public interface IMoleculeRepository
     {
-        //Task<MoleculeDbEntity> CreateAsync(MoleculeDbEntity entity);
+        Task<CalcMolecule> CreateAsync(CalcMolecule entity);
 
-        //Task<MoleculeDbEntity> UpdateAsync(int id, string moleculeName, string molecule);
+        Task<CalcMolecule> UpdateAsync(int id, string moleculeName, string molecule);
 
-        //Task DeleteAsync(int id);
+        Task DeleteAsync(int id);
 
-        //Task<MoleculeDbEntity> GetByIdAsync(int id);
+        Task<CalcMolecule> GetByIdAsync(int id);
 
-        //Task<MoleculeDbEntity?> FindAsync(string orderName, string basisSet, string moleculeName);
+        Task<CalcMolecule?> FindAsync(string orderName, string basisSet, string moleculeName);
 
-        //Task<List<MoleculeNameInfoDbEntity>> FindAllByNameAsync(string moleculeName);
+        Task<List<CalcMolecule>> FindAllByNameAsync(string moleculeName);
     }
 }
