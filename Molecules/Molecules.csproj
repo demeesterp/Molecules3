@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Molecules.Core.Data\Molecules.Core.Data.csproj" />
+    <ProjectReference Include="..\Molecules.Core.Validation\Molecules.Core.Validation.csproj" />
+    <ProjectReference Include="..\Molecules.Core\Molecules.Core.csproj" />
+    <ProjectReference Include="..\Molecules.Logger\Molecules.Logger.csproj" />
+    <ProjectReference Include="..\Molecules.Shared\Molecules.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

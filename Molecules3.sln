@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Molecules.Core.Data", "Mole
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Molecules.Core.Validation", "Molecules.Core.Validation\Molecules.Core.Validation.csproj", "{29D7AED7-5FFC-4E49-8D86-22656D3CC948}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Molecules", "Molecules\Molecules.csproj", "{13862206-4838-4FF6-9050-1B5A386EAED5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{29D7AED7-5FFC-4E49-8D86-22656D3CC948}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29D7AED7-5FFC-4E49-8D86-22656D3CC948}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29D7AED7-5FFC-4E49-8D86-22656D3CC948}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13862206-4838-4FF6-9050-1B5A386EAED5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13862206-4838-4FF6-9050-1B5A386EAED5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13862206-4838-4FF6-9050-1B5A386EAED5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13862206-4838-4FF6-9050-1B5A386EAED5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
