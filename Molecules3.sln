@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34902.65
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Molecules.Core", "Molecules.Core\Molecules.Core.csproj", "{F3241EC8-1F2E-4F04-B15F-34AAAC2A65C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Molecules.Core", "Molecules.Core\Molecules.Core.csproj", "{F3241EC8-1F2E-4F04-B15F-34AAAC2A65C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Molecules.Shared", "Molecules.Shared\Molecules.Shared.csproj", "{AB7434DA-2457-4AE4-AFED-80BC0D7069EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Molecules.Shared", "Molecules.Shared\Molecules.Shared.csproj", "{AB7434DA-2457-4AE4-AFED-80BC0D7069EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Molecules.Core", "Test.Molecules.Core\Test.Molecules.Core.csproj", "{B59EEC33-48F7-4E9D-97A5-FC5BCDBAFC15}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.Molecules.Core", "Test.Molecules.Core\Test.Molecules.Core.csproj", "{B59EEC33-48F7-4E9D-97A5-FC5BCDBAFC15}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Molecules.Logger", "Molecules.Logger\Molecules.Logger.csproj", "{8BCBED59-269E-4105-B554-4BD4EBF588CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Molecules.Logger", "Molecules.Logger\Molecules.Logger.csproj", "{8BCBED59-269E-4105-B554-4BD4EBF588CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Molecules.Core.Data", "Molecules.Core.Data\Molecules.Core.Data.csproj", "{019B8DE4-0B7C-4F49-A1D9-3D3A7938CA05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Molecules.Core.Data", "Molecules.Core.Data\Molecules.Core.Data.csproj", "{019B8DE4-0B7C-4F49-A1D9-3D3A7938CA05}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Molecules.Core.Validation", "Molecules.Core.Validation\Molecules.Core.Validation.csproj", "{29D7AED7-5FFC-4E49-8D86-22656D3CC948}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{019B8DE4-0B7C-4F49-A1D9-3D3A7938CA05}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{019B8DE4-0B7C-4F49-A1D9-3D3A7938CA05}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{019B8DE4-0B7C-4F49-A1D9-3D3A7938CA05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29D7AED7-5FFC-4E49-8D86-22656D3CC948}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29D7AED7-5FFC-4E49-8D86-22656D3CC948}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29D7AED7-5FFC-4E49-8D86-22656D3CC948}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29D7AED7-5FFC-4E49-8D86-22656D3CC948}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

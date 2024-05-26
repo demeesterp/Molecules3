@@ -19,8 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Repositories\" />
-    <Folder Include="Services\" />
+    <Folder Include="Factories\CalcOrders\" />
   </ItemGroup>
 
 </Project>
