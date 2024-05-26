@@ -11,10 +11,11 @@ namespace Molecules.Core.Services.CalcOrders
     /// Construct the CalcOrderService
     /// </summary>
     /// <param name="validations">The validation service helper</param>
+    /// <param name="calcOrderRepository">The calcOrder repository</param>
     /// <param name="logger">The logger</param>
     public class CalcOrderService(ICalcOrderServiceValidations validations,
-                                ICalcOrderRepository calcOrderRepository,
-                                IMoleculesLogger logger) : ICalcOrderService
+                                    ICalcOrderRepository calcOrderRepository,
+                                        IMoleculesLogger logger) : ICalcOrderService
     {
         #region dependencies
 
@@ -34,7 +35,6 @@ namespace Molecules.Core.Services.CalcOrders
                                     $"{createCalcOrder.Name} and description {createCalcOrder.Description}");
             _validations.Validate(createCalcOrder);
             var result = await _calcOrderRepository.CreateAsync(createCalcOrder.Name, createCalcOrder.Description);
-            await _calcOrderRepository.SaveChangesAsync();
             return result;
         }
 
@@ -46,7 +46,6 @@ namespace Molecules.Core.Services.CalcOrders
             _logger.LogInformation($"Update CalcOrder with id: {id} set Name: {updateCalcOrder.Name} and set Description: {updateCalcOrder.Description}");
             _validations.Validate(updateCalcOrder);
             var result = await _calcOrderRepository.UpdateAsync(id, updateCalcOrder.Name, updateCalcOrder.Description);
-            await _calcOrderRepository.SaveChangesAsync();
             return result;
         }
 
@@ -56,8 +55,6 @@ namespace Molecules.Core.Services.CalcOrders
             _logger.LogInformation($"DeleteAsync with id {id}");
 
             await _calcOrderRepository.DeleteAsync(id);
-
-            await _calcOrderRepository.SaveChangesAsync();
         }
 
         /// <inheritdoc/>

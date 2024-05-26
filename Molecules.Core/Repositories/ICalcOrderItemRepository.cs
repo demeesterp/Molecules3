@@ -2,7 +2,7 @@
 
 namespace Molecules.Core.Repositories
 {
-    public interface ICalcOrderItemRepository : IRepository
+    public interface ICalcOrderItemRepository
     {
         Task<CalcOrderItem> CreateAsync(int calcOrderId, int charge, string moleculeName, string calcType, string basisSetCode, string xyz);
 

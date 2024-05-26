@@ -1,6 +1,6 @@
 ﻿namespace Molecules.Core.Data.DbEntities
 {
-    internal class CalcOrderItemDbEntity
+    public class CalcOrderItemDbEntity
     {
         public int Id { get; set; }
 

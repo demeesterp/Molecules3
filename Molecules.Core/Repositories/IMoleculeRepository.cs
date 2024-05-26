@@ -1,6 +1,6 @@
 ﻿namespace Molecules.Core.Repositories
 {
-    public interface IMoleculeRepository : IRepository
+    public interface IMoleculeRepository
     {
         //Task<MoleculeDbEntity> CreateAsync(MoleculeDbEntity entity);
 
