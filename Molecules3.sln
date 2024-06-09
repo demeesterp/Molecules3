@@ -17,9 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Molecules.Core.Validation",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Molecules", "Molecules\Molecules.csproj", "{13862206-4838-4FF6-9050-1B5A386EAED5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoleculesWebApp", "MoleculesWebApp\MoleculesWebApp\MoleculesWebApp.csproj", "{5CD74D58-1BF0-4C4B-AB3A-5EC30970B103}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoleculesWebApp", "MoleculesWebApp\MoleculesWebApp\MoleculesWebApp.csproj", "{5CD74D58-1BF0-4C4B-AB3A-5EC30970B103}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoleculesWebApp.Client", "MoleculesWebApp\MoleculesWebApp.Client\MoleculesWebApp.Client.csproj", "{699A0366-B5CB-4A6E-92FE-CBE5FF844D64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoleculesWebApp.Client", "MoleculesWebApp\MoleculesWebApp.Client\MoleculesWebApp.Client.csproj", "{699A0366-B5CB-4A6E-92FE-CBE5FF844D64}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

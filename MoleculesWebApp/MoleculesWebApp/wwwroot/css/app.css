@@ -1,0 +1,15 @@
+html, body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+div.logo-positioning {
+    text-align: left;
+}
+
+h1.olive, h2.olive, h3.olive, h4.olive, h5.olive {
+    color: olive;
+}
+
+h1.red, h2.red, h3.red, h4.red, h5.red {
+    color: #800000;
+}

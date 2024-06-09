@@ -1,8 +1,18 @@
+using Molecules.Core.Data;
 using MoleculesWebApp.Components;
+using MoleculesWebApp.Services;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var configuration = builder.Configuration!;
+
 // Add services to the container.
+builder.Services.AddDbContext<MoleculesDbContext>(options =>
+                  options.UseNpgsql(configuration.GetConnectionString("ConnectionString")));
+
+builder.Services.AddMoleculesServices(configuration);
+
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();

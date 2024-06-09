@@ -1,9 +1,27 @@
 ﻿@inherits LayoutComponentBase
+<div class="container">
+    <header class="row mb-3">
+        <div class="col logo-positioning">
+            <img class="image-fluid"
+                 src=".\images\1-Logo-Quantum-Biochemistry.png"
+                 alt="quantumbiochemistry.org">
+        </div>
 
-@Body
-
-<div id="blazor-error-ui">
-    An unhandled error has occurred.
-    <a href="" class="reload">Reload</a>
-    <a class="dismiss">🗙</a>
+        <div class="col-9 align-self-center">
+            <h1 class="text-break olive">Quantumbiochemistry.org </h1>
+            <h2 class="red">Molecules Application</h2>
+        </div>
+    </header>
+    <section class="row mb-3">
+        <div class="col">
+            @Body
+        </div>
+    </section>
+    <footer>
+        <hr />
+        <p class='text-end'>
+            <small>Copyright&copy; 2023 Demeester Piet</small>
+        </p>
+    </footer>
 </div>
+
