@@ -3,7 +3,7 @@ using Molecules.Core.Data;
 using Molecules.Logger;
 using Molecules.Core.Validation;
 
-namespace MoleculesWebApp.Services
+namespace MoleculesWebApp.Extensions
 {
     public static class MoleculesServiceExtensions
     {
