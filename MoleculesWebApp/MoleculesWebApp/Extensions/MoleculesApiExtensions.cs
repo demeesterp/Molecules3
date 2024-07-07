@@ -39,6 +39,12 @@ namespace MoleculesWebApp.Extensions
             moleculeEndPoint.MapGet("{moleculeid:int}/moleculepopulationreport", () => TypedResults.Ok());
             moleculeEndPoint.MapGet("{moleculeid:int}/generalmoleculereport", () => TypedResults.Ok());
             moleculeEndPoint.MapGet("{moleculeid:int}/moleculeatompositionreport", () => TypedResults.Ok());
+
+
+            //app.MapGet("/example", () => Results.Ok(new { Message = "Hello, World!" }))
+            //.ProducesResponseType(typeof(MyResponseType), StatusCodes.Status200OK)
+            //.ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError);
+
         }
     }
 }
