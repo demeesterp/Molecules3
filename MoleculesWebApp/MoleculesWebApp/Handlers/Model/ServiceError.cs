@@ -12,6 +12,15 @@
 
 
         /// <summary>
+        ///Contructor with a given message
+        /// </summary>
+        public ServiceError(string message) 
+        {
+            DisplayMessage = message;
+        }
+
+
+        /// <summary>
         /// Message to display to the user
         /// </summary>
         public string DisplayMessage { get; set; } = "An unexpected error happend please contact support";

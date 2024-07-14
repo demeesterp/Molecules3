@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
 using Molecules.Core.Domain.Aggregates;
 using Molecules.Core.Domain.ValueObjects.Calc.Order.Info;
 using Molecules.Core.Services.CalcOrders;
@@ -49,12 +48,5 @@ namespace MoleculesWebApp.Handlers
            await calcOrderService.DeleteAsync(id);
            return TypedResults.NoContent();
         }
-
-        //app.MapGet("/example", () => Results.Ok(new { Message = "Hello, World!" }))
-        //.ProducesResponseType(typeof(MyResponseType), StatusCodes.Status200OK)
-        //.ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError);
-
-
-
-}
+    }
 }

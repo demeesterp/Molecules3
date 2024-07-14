@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Molecules.Shared.Exceptions;
 using Molecules.Shared.Logger;
 using MoleculesWebApp.Handlers.Model;
 
@@ -24,6 +25,13 @@ namespace MoleculesWebApp.Handlers
                 httpContext.Response.ContentType = "application/json";
                 httpContext.Response.StatusCode = StatusCodes.Status422UnprocessableEntity;
                 await httpContext.Response.WriteAsJsonAsync(validationError);
+            }
+            else if (exception is DbResourceNotFoundException notFoundException)
+            {
+                GetLogger(httpContext).LogFatal(exception, "An unhandled excpetion ");
+                httpContext.Response.ContentType = "application/json";
+                httpContext.Response.StatusCode = StatusCodes.Status404NotFound;
+                await httpContext.Response.WriteAsJsonAsync(new ServiceError(notFoundException.Message));
             }
             else
             {

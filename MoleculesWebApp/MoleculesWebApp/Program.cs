@@ -21,7 +21,6 @@ builder.Services.AddDbContext<MoleculesDbContext>(options =>
 
 builder.Services.AddMoleculesServices(configuration);
 
-
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();
