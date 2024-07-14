@@ -7,6 +7,7 @@ using Polly;
 using Polly.Extensions.Http;
 using Polly.Retry;
 using System.Net;
+using MoleculesWebApp.Client.Services;
 
 namespace MoleculesWebApp.Client.Common
 {
@@ -24,21 +25,21 @@ namespace MoleculesWebApp.Client.Common
             // Molecule orders service agent
             services.AddHttpClient<ICalcOrderServiceAgent, CalcOrderServiceAgent>(client =>
             {
-                client.BaseAddress = new Uri(environment.BaseAddress);
+                client.BaseAddress = new Uri(environment.GetApiBasePath());
             })
             .AddPolicyHandler(GetRetryPolicy());
 
             // Molecule service agents
             services.AddHttpClient<IMoleculesServiceAgent, MoleculesServiceAgent>(client =>
             {
-                client.BaseAddress = new Uri(environment.BaseAddress);
+                client.BaseAddress = new Uri(environment.GetApiBasePath());
             })
            .AddPolicyHandler(GetRetryPolicy());
 
             // Molecule report service agents
             services.AddHttpClient<IMoleculesReportServiceAgent, MoleculesReportServiceAgent>(client =>
             {
-                client.BaseAddress = new Uri(environment.BaseAddress);
+                client.BaseAddress = new Uri(environment.GetApiBasePath());
             })
            .AddPolicyHandler(GetRetryPolicy());
 
