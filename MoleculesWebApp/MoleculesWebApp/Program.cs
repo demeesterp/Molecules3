@@ -31,6 +31,9 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Molecules API", Version = "v1" });
 });
 
+
+builder.Services.AddBlazorBootstrap();
+
 var app = builder.Build();
 
 app.UseAuthentication();

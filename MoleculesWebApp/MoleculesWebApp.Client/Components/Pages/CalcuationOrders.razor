@@ -1,9 +1,80 @@
 ﻿@page "/calculationorders";
 
-<h3>CalcuationOrders</h3>
-
-<p>Hello calc Orders</p>
-
-@code {
-
-}
+<div class="row mb-3">
+    <div class="col-3">
+        <div class="d-flex flex-row">
+            <div class="pt-1">Orders</div>
+            <Button Color="ButtonColor.Primary" 
+                    Class="ms-auto" 
+                    Size="ButtonSize.Small" 
+                    Outline="true">
+                New Order
+            </Button>
+        </div>
+    </div>
+    <div class="col-9">
+        <div class="d-flex flex-row">
+            <div class="pt-1">
+                Order Items for order <b>Selected Order</b>
+            </div>
+            <Button Color="ButtonColor.Primary"
+                    Class="ms-auto me-2"
+                    Size="ButtonSize.Small"
+                    Outline="true">
+                Add Order Item
+            </Button>
+            <Button Color="ButtonColor.Primary"
+                    Class="ms-auto me-2"
+                    Size="ButtonSize.Small"
+                    Outline="true">
+                Update Order
+            </Button>
+            <Button Color="ButtonColor.Primary"
+                    Class="ms-auto me-2"
+                    Size="ButtonSize.Small"
+                    Outline="true">
+                Delete Order
+            </Button>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-3">
+        <div class="list-group">
+            <a class="list-group-item list-group-item-action">
+                Order Name
+            </a>
+        </div>
+    </div>
+    <div class="col-9">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Item Id</th>
+                    <th scope="col">Molecule</th>
+                    <th scope="col">Basisset</th>
+                    <th scope="col">Charge</th>
+                    <th scope="col">CalculationType</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{orderItem.Id}}</td>
+                    <td>{{orderItem.MoleculeName}}</td>
+                    <td>{{orderItem.Details.BasisSet.Name}}</td>
+                    <td>{{orderItem.Details.Charge}}</td>
+                    <td>{{orderItem.Details.Type}}</td>
+                    <td>
+                         <Button Color="ButtonColor.Primary"
+                                    Class="ms-auto me-2"
+                                    Size="ButtonSize.Small"
+                                    Outline="true">
+                             Delete
+                        </Button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
