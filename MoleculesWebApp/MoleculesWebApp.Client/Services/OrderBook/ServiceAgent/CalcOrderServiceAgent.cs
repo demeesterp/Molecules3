@@ -2,7 +2,7 @@
 using MoleculesWebApp.Client.Shared.HttpClientHelper;
 using System.Reactive;
 
-namespace MoleculesWebApp.Client.Services.OrderBook
+namespace MoleculesWebApp.Client.Services.OrderBook.ServiceAgent
 {
     public class CalcOrderServiceAgent : ICalcOrderServiceAgent
     {

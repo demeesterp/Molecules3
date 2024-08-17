@@ -1,6 +1,6 @@
 ﻿using MoleculesWebApp.Client.Data.ServiceAgents.Molecules.Report;
 
-namespace MoleculesWebApp.Client.Data.Model
+namespace MoleculesWebApp.Client.Data.Model.Molecule
 {
     public class MoleculeBondsReportItemModel
     {

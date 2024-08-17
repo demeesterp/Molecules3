@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace MoleculesWebApp.Client.Data.Model
+namespace MoleculesWebApp.Client.Data.Model.Molecule
 {
     public class MoleculeReportModel
     {

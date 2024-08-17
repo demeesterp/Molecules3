@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using MoleculesWebApp.Client.Services.Molecules;
-using MoleculesWebApp.Client.Services.OrderBook;
 using MoleculesWebApp.Client.Shared.Error;
 using MoleculesWebApp.Client.Shared.HttpClientHelper;
 using Polly;
@@ -8,6 +7,9 @@ using Polly.Extensions.Http;
 using Polly.Retry;
 using System.Net;
 using MoleculesWebApp.Client.Services;
+using MoleculesWebApp.Client.Services.OrderBook.ServiceAgent;
+using MoleculesWebApp.Client.Factory;
+using MoleculesWebApp.Client.Services.OrderBook;
 
 namespace MoleculesWebApp.Client.Common
 {
@@ -16,7 +18,7 @@ namespace MoleculesWebApp.Client.Common
         public static IServiceCollection RegisterServices(this IServiceCollection services,
                                                                     IWebAssemblyHostEnvironment environment)
         {
-            return services.RegisterServices().RegisterHttpClient(environment);
+            return services.RegisterServices().RegisterFactory().RegisterHttpClient(environment);
         }
 
         private static IServiceCollection RegisterHttpClient(this IServiceCollection services,
@@ -52,9 +54,19 @@ namespace MoleculesWebApp.Client.Common
             services.AddSingleton<MoleculesHttpClient>();
             services.AddSingleton<ErrorHandlingService>();
             services.AddSingleton<ICalcOrderServiceAgent, CalcOrderServiceAgent>();
+
             services.AddSingleton<IMoleculesServiceAgent, MoleculesServiceAgent>();
             services.AddSingleton<IMoleculesAnalysisService, MoleculesAnalysisService>();
             services.AddSingleton<IMoleculesReportServiceAgent, MoleculesReportServiceAgent>();
+            return services;
+        }
+
+
+        private static IServiceCollection RegisterFactory(this IServiceCollection services)
+        {
+            services.AddSingleton<ICalcOrderFactory, CalcOrderFactory>();
+
+
             return services;
         }
 

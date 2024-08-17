@@ -1,4 +1,4 @@
-﻿using MoleculesWebApp.Client.Data.Model;
+﻿using MoleculesWebApp.Client.Data.Model.Molecule;
 
 namespace MoleculesWebApp.Client.Services.Molecules
 {

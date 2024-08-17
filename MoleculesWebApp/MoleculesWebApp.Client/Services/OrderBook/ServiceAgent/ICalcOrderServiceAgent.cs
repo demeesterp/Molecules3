@@ -1,7 +1,7 @@
 ﻿using MoleculesWebApp.Client.Data.ServiceAgents.OrderBook;
 using System.Reactive;
 
-namespace MoleculesWebApp.Client.Services.OrderBook
+namespace MoleculesWebApp.Client.Services.OrderBook.ServiceAgent
 {
     public interface ICalcOrderServiceAgent
     {

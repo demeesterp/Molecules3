@@ -1,6 +1,6 @@
 ﻿using MoleculesWebApp.Client.Data.ServiceAgents.Molecules;
 
-namespace MoleculesWebApp.Client.Data.Model
+namespace MoleculesWebApp.Client.Data.Model.Molecule
 {
     public class MoleculesOverviewItemModel
     {

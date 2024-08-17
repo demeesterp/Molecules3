@@ -1,8 +1,8 @@
-﻿using MoleculesWebApp.Client.Data.Model;
-using System.Reactive.Linq;
+﻿using System.Reactive.Linq;
 using MoleculesWebApp.Client.Shared.Error;
 using MoleculesWebApp.Client.Data.ServiceAgents.Molecules.Report;
 using MoleculesWebApp.Client.Data.ServiceAgents.Molecules;
+using MoleculesWebApp.Client.Data.Model.Molecule;
 
 
 namespace MoleculesWebApp.Client.Services.Molecules
