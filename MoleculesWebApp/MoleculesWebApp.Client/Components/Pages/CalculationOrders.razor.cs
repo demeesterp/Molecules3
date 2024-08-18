@@ -27,6 +27,11 @@ namespace MoleculesWebApp.Client.Components.Pages
             });
         }
 
+        private void OnOrderClick(CalcOrderModel order)
+        {
+            Selected = order;
+        }
+
         public void Dispose()
         {
             _destroy.OnNext(Unit.Default);
