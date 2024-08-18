@@ -15,7 +15,7 @@ namespace MoleculesWebApp.Client.Common
 {
     public static class ServiceExtensions
     {
-        public static IServiceCollection RegisterServices(this IServiceCollection services,
+        public static IServiceCollection RegisterClientServices(this IServiceCollection services,
                                                                     IWebAssemblyHostEnvironment environment)
         {
             return services.RegisterServices().RegisterFactory().RegisterHttpClient(environment);
@@ -54,7 +54,8 @@ namespace MoleculesWebApp.Client.Common
             services.AddSingleton<MoleculesHttpClient>();
             services.AddSingleton<ErrorHandlingService>();
             services.AddSingleton<ICalcOrderServiceAgent, CalcOrderServiceAgent>();
-
+            services.AddSingleton<ICalcOrderService, CalcOrderService>();
+            
             services.AddSingleton<IMoleculesServiceAgent, MoleculesServiceAgent>();
             services.AddSingleton<IMoleculesAnalysisService, MoleculesAnalysisService>();
             services.AddSingleton<IMoleculesReportServiceAgent, MoleculesReportServiceAgent>();

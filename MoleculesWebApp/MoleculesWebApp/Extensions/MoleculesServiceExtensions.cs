@@ -2,6 +2,7 @@
 using Molecules.Core.Data;
 using Molecules.Logger;
 using Molecules.Core.Validation;
+using MoleculesWebApp.Client.Common;
 
 namespace MoleculesWebApp.Extensions
 {

@@ -13,17 +13,13 @@ namespace MoleculesWebApp.Client.Services.OrderBook.ServiceAgent
 
         IObservable<CalcOrder> Create(CreateCalcOrder createCalcOrder);
 
-
         IObservable<CalcOrder> Update(int id, UpdateCalcOrder updateCalcOrder);
 
         IObservable<Unit> Delete(int id);
 
-
         IObservable<CalcOrderItem> CreateCalcOrderItem(int calcOrderId, CreateCalcOrderItem createCalcOrderItem);
 
-
         IObservable<CalcOrderItem> UpdateCalcOrderItem(int calcOrderId, CreateCalcOrderItem createCalcOrderItem);
-
 
         IObservable<Unit> DeleteCalcOrderItem(int calcOrderItemId);
     }

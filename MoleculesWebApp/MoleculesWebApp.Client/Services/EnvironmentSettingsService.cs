@@ -9,7 +9,7 @@ namespace MoleculesWebApp.Client.Services
         {
             if (hostingEnvironment.Environment == Environments.Development.ToString())
             {
-                return "https://localhost:44341/";
+                return "https://localhost:44341/api/";
             }
             throw new NotImplementedException($"Environment {hostingEnvironment.Environment} is not supported");
         }
