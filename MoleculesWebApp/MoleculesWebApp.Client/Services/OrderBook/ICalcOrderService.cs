@@ -7,5 +7,7 @@ namespace MoleculesWebApp.Client.Services.OrderBook
         IObservable<List<CalcOrderModel>> List();
 
         IObservable<List<CalcOrderModel>> GetByName(string name);
+
+        IObservable<CalcOrderModel> Create(string name);
     }
 }

@@ -1,0 +1,72 @@
+﻿<form [ngClass]="formValidated ? 'was-validated' : 'needs-validation' " novalidate>
+    <div class="mb-2">
+        <label for="moleculeName" class="form-label">Molecule Name</label>
+        <input type="text"
+               tabindex="1"
+               class="form-control"
+               id="moleculeName"
+               maxlength="250"
+               aria-describedby="moleculeNameHelp" required>
+        <div class="invalid-feedback">
+            The molecule name is mandatory and must have have less than 250 characters.
+        </div>
+        <div id="moleculeNameHelp" class="form-text">Choose a descriptive name for the molecule.</div>
+    </div>
+    <div class="mb-2">
+        <label for="moleculeCharge" class="form-label">Molecule Charge</label>
+        <input type="number"
+               tabindex="2"
+               value="0"
+               class="form-control w-25"
+               id="moleculeCharge"
+               aria-describedby="moleculeChargeHelp" required>
+        <div class="invalid-feedback">
+            The molecule quantity is mandatory and must be a number.
+        </div>
+        <div id="moleculeChargeHelp" class="form-text">Choose a charge for the molecule.</div>
+    </div>
+    <div class="mb-2">
+        <label for="calcType" class="form-label">Calculation Type</label>
+        <select id="calcType"
+                class="form-select"
+                tabindex="3"
+                aria-describedby="calcTypeHelp">
+            <option selected value="AllKinds">With geometry optimization</option>
+            <option value="AllKindsNoGeoOpt">Without geometry optimization</option>
+        </select>
+        <div id="calcTypeHelp" class="form-text">With geometry optimization or without.</div>
+    </div>
+    <div class="mb-2">
+        <label for="basisSet" class="form-label">Basis Set</label>
+        <select title="list of available bassissets"
+                id="basisSet"
+                class="form-select"
+                tabindex="4"
+                aria-describedby="basisSetHelp">
+            <option [value]="bs.Code"
+                    *ngFor="let bs of CalcBasisSets; index as i">
+                {{bs.Name}}
+            </option>
+        </select>
+        <div id="basisSetHelp" class="form-text">List of available basis sets</div>
+    </div>
+    <div class="mb-3">
+        <label for="xyzFile" class="form-label">Upload molecular structure</label>
+        <input class="form-control"
+               type="file"
+               required
+               accept=".xyz"
+               tabindex="5"
+               (change)="onFileChange($event)"
+               id="xyzFile"
+               aria-describedby="xyzFileHelp">
+        <div class="invalid-feedback">
+            The xyz file is mandatory.
+        </div>
+        <div id="xyzFileHelp" class="form-text">File with molecular structure in XYZ format</div>
+    </div>
+    <div class="d-flex flex-row-reverse">
+        <button tabindex="6" type="button" (click)="OnClickSave()" class="btn btn-primary" aria-label="Save">Save</button>
+    </div>
+</form>
+

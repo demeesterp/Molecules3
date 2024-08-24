@@ -1,4 +1,5 @@
 ﻿using MoleculesWebApp.Client.Data.Model.Order;
+using MoleculesWebApp.Client.Data.ServiceAgents.OrderBook;
 using MoleculesWebApp.Client.Factory;
 using MoleculesWebApp.Client.Services.OrderBook.ServiceAgent;
 using MoleculesWebApp.Client.Shared.Error;
@@ -38,10 +39,19 @@ namespace MoleculesWebApp.Client.Services.OrderBook
                             .Catch<List<CalcOrderModel>, Exception>(HandleError<List<CalcOrderModel>>);
         }
 
+        public IObservable<CalcOrderModel> Create(string name)
+        {
+            return CalcOrderServiceAgent.Create(new CreateCalcOrder()
+            {
+                Name = name
+            })
+            .Select(order => CalcOrderFactory.Build(order))
+            .Catch<CalcOrderModel, Exception>(HandleError<CalcOrderModel>);
+        }
+
 
 
         #region private helpers
-
 
         private IObservable<ReturnType> HandleError<ReturnType>(Exception ex) where ReturnType : new()
         {

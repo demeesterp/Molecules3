@@ -2,6 +2,9 @@
 @rendermode @(new InteractiveWebAssemblyRenderMode(prerender: false))
 
 <Modal @ref="createOrderModal" />
+<Modal @ref="updateOrderModal" />
+<Modal @ref="createOrderItemModal" />
+<ConfirmDialog @ref="confirmDialog" />
 <div class="row mb-3">
     <div class="col-3">
         <div class="d-flex flex-row">
@@ -23,18 +26,21 @@
             <Button Color="ButtonColor.Primary"
                     Class="ms-auto me-2"
                     Size="ButtonSize.Small"
+                    @onclick="OnNewOrderItemClick"
                     Outline="true">
                 Add Order Item
             </Button>
             <Button Color="ButtonColor.Primary"
                     Class="ms-auto me-2"
                     Size="ButtonSize.Small"
+                    @onclick="OnUpdateOrderClick"
                     Outline="true">
                 Update Order
             </Button>
             <Button Color="ButtonColor.Primary"
                     Class="ms-auto me-2"
                     Size="ButtonSize.Small"
+                    @onclick="OnDeleteOrderClick"
                     Outline="true">
                 Delete Order
             </Button>
@@ -77,6 +83,7 @@
                             <Button Color="ButtonColor.Primary"
                                     Class="ms-auto me-2"
                                     Size="ButtonSize.Small"
+                                    @onclick="() => OnDeleteOrderItemClick(item)"
                                     Outline="true">
                                 Delete
                             </Button>
