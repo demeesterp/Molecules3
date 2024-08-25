@@ -2,16 +2,13 @@
 {
     public class CalcOrderModel
     {
-        public CalcOrderModel()
+        public CalcOrderModel(string name)
         {
-            Name = string.Empty;
+            Name = name;
             OrderItems = new List<CalcOrderItemModel>();
         }
 
-        public CalcOrderModel(string name):this()
-        {
-            Name = name;
-        }
+        public int Id { get; set; }
 
         public string Name { get; set; }
 

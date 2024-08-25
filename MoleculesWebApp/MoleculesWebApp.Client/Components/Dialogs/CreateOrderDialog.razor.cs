@@ -8,6 +8,7 @@ namespace MoleculesWebApp.Client.Components.Dialogs
         private bool _isFormValidated = false;
         private string CalcOrderName { get; set; } = string.Empty;
 
+
         private string GetValidationClassName()
         {
             if ( _isFormValidated)

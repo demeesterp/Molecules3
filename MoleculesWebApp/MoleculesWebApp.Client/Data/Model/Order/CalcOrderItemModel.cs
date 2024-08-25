@@ -2,7 +2,6 @@
 {
     public class CalcOrderItemModel
     {
-
         public CalcOrderItemModel(int id, 
                                     string moleculeName, 
                                     string basisSetName, 

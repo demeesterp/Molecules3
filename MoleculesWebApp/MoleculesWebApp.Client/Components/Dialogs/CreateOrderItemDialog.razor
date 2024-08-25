@@ -1,8 +1,9 @@
-﻿<form [ngClass]="formValidated ? 'was-validated' : 'needs-validation' " novalidate>
+﻿<form class="@GetValidationClassName()" novalidate>
     <div class="mb-2">
         <label for="moleculeName" class="form-label">Molecule Name</label>
         <input type="text"
                tabindex="1"
+               @bind-value="MoleculeName"
                class="form-control"
                id="moleculeName"
                maxlength="250"
@@ -16,7 +17,7 @@
         <label for="moleculeCharge" class="form-label">Molecule Charge</label>
         <input type="number"
                tabindex="2"
-               value="0"
+               @bind-value="Charge"
                class="form-control w-25"
                id="moleculeCharge"
                aria-describedby="moleculeChargeHelp" required>
@@ -29,6 +30,7 @@
         <label for="calcType" class="form-label">Calculation Type</label>
         <select id="calcType"
                 class="form-select"
+                @bind="CalcType"
                 tabindex="3"
                 aria-describedby="calcTypeHelp">
             <option selected value="AllKinds">With geometry optimization</option>
@@ -43,30 +45,35 @@
                 class="form-select"
                 tabindex="4"
                 aria-describedby="basisSetHelp">
-            <option [value]="bs.Code"
-                    *ngFor="let bs of CalcBasisSets; index as i">
-                {{bs.Name}}
-            </option>
+            @foreach(var basisSet in BasisSets)
+            {
+                <option value="@basisSet">
+                    @basisSet
+                </option>
+            }
         </select>
         <div id="basisSetHelp" class="form-text">List of available basis sets</div>
     </div>
     <div class="mb-3">
         <label for="xyzFile" class="form-label">Upload molecular structure</label>
-        <input class="form-control"
-               type="file"
-               required
-               accept=".xyz"
-               tabindex="5"
-               (change)="onFileChange($event)"
-               id="xyzFile"
-               aria-describedby="xyzFileHelp">
+        <InputFile OnChange="OnInputFileChange" 
+            id="xyzFile" 
+            aria-describedby="xyzFileHelp" 
+            tabindex="5" 
+            required 
+            class="form-control" 
+            accept=".xyz" />
         <div class="invalid-feedback">
             The xyz file is mandatory.
         </div>
         <div id="xyzFileHelp" class="form-text">File with molecular structure in XYZ format</div>
     </div>
     <div class="d-flex flex-row-reverse">
-        <button tabindex="6" type="button" (click)="OnClickSave()" class="btn btn-primary" aria-label="Save">Save</button>
+        <button tabindex="6"
+            type="button"
+            @onclick="OnClickSave"
+            class="btn btn-primary" 
+            aria-label="Save">Save</button>
     </div>
 </form>
 

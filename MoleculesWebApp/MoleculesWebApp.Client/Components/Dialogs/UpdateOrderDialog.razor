@@ -1,8 +1,12 @@
-﻿<form novalidate>
+﻿<form class="@GetValidationClassName()" novalidate>
     <div>
-        <label for="calcOrderName" class="form-label">Order Name</label>
+        <label for="calcOrderName" 
+                class="form-label">
+                Order Name
+        </label>
         <input type="text"
                tabindex="1"
+               @bind-value="CalcOrder.Name"
                class="form-control"
                id="calcOrderName"
                maxlength="250"
@@ -15,6 +19,7 @@
     <div class="d-flex flex-row-reverse">
         <button type="button"
                 tabindex="2"
+                @onclick="OnClickSave"
                 class="btn btn-primary"
                 aria-label="Save">
             Save

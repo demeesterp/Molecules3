@@ -42,6 +42,7 @@ namespace Molecules.Core.Data.Repositories
             if (result != null)
             {
                 _context.CalcOrderItems.Remove(result);
+                await _context.SaveChangesAsync();
             }
             else
             {

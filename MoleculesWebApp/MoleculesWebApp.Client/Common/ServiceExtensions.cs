@@ -66,8 +66,7 @@ namespace MoleculesWebApp.Client.Common
         private static IServiceCollection RegisterFactory(this IServiceCollection services)
         {
             services.AddSingleton<ICalcOrderFactory, CalcOrderFactory>();
-
-
+            services.AddSingleton<ICalcOrderItemFactory, CalcOrderItemFactory>();
             return services;
         }
 

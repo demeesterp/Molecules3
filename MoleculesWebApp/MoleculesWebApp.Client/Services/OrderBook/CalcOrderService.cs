@@ -3,6 +3,8 @@ using MoleculesWebApp.Client.Data.ServiceAgents.OrderBook;
 using MoleculesWebApp.Client.Factory;
 using MoleculesWebApp.Client.Services.OrderBook.ServiceAgent;
 using MoleculesWebApp.Client.Shared.Error;
+using System;
+using System.Reactive;
 using System.Reactive.Linq;
 
 namespace MoleculesWebApp.Client.Services.OrderBook
@@ -10,6 +12,8 @@ namespace MoleculesWebApp.Client.Services.OrderBook
     public class CalcOrderService : ICalcOrderService
     {
         private ICalcOrderFactory CalcOrderFactory { get; }
+
+        private ICalcOrderItemFactory CalcOrderItemFactory { get; }
 
         private ErrorHandlingService ErrorHandlingService { get; }
 
@@ -49,14 +53,44 @@ namespace MoleculesWebApp.Client.Services.OrderBook
             .Catch<CalcOrderModel, Exception>(HandleError<CalcOrderModel>);
         }
 
+        public IObservable<CalcOrderModel> Update(int id, string name)
+        {
+            return CalcOrderServiceAgent.Update(id, new UpdateCalcOrder()
+            {
+                 Name = name
+            })
+            .Select(order => CalcOrderFactory.Build(order))
+            .Catch<CalcOrderModel, Exception>(HandleError<CalcOrderModel>);
+        }
 
+        public IObservable<CalcOrderItemModel> CreateItem(int calcOrderId, CalcOrderItemModel calcOrderItem)
+        {
+            var itemToSave = CalcOrderItemFactory.Build(calcOrderId, calcOrderItem);
+            return CalcOrderServiceAgent.CreateCalcOrderItem(calcOrderId,
+                                                        new CreateCalcOrderItem(itemToSave.MoleculeName, 
+                                                                                    itemToSave.Details))
+             .Select(order => CalcOrderItemFactory.Build(order))
+             .Catch<CalcOrderItemModel, Exception>(HandleError<CalcOrderItemModel>);
+        }
+
+        public IObservable<Unit> Delete(int calcOrderId)
+        {
+            return CalcOrderServiceAgent.Delete(calcOrderId)
+                        .Catch<Unit, Exception>(HandleError<Unit>); 
+        }
+
+        public IObservable<Unit> DeleteItem(int calcOrderItemId)
+        {
+            return CalcOrderServiceAgent.DeleteCalcOrderItem(calcOrderItemId)
+                        .Catch<Unit, Exception>(HandleError<Unit>);
+        }
 
         #region private helpers
 
-        private IObservable<ReturnType> HandleError<ReturnType>(Exception ex) where ReturnType : new()
+        private IObservable<ReturnType> HandleError<ReturnType>(Exception ex)
         {
             ErrorHandlingService.NotifyHttpError(ex);
-            return Observable.Return(new ReturnType());
+            return Observable.Empty<ReturnType>();
         }
 
         #endregion
