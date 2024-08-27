@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Web;
+using MoleculesWebApp.Client.Data.Model.Order;
 using MoleculesWebApp.Client.Data.ServiceAgents.OrderBook;
 
 namespace MoleculesWebApp.Client.Components.Dialogs
@@ -19,7 +20,12 @@ namespace MoleculesWebApp.Client.Components.Dialogs
 
         private List<string> BasisSets { get; set; } = Enum.GetNames<CalcBasisSetCode>().ToList();
 
-        private string GetValidationClassName()
+        private string Xyz { get; set; } = string.Empty;
+
+
+        [Parameter] public EventCallback<CalcOrderItemModel> OnClickCallback { get; set; }
+
+		private string GetValidationClassName()
         {
             if (_isFormValidated)
             {
@@ -34,14 +40,14 @@ namespace MoleculesWebApp.Client.Components.Dialogs
         private async Task OnInputFileChange(InputFileChangeEventArgs e)
         {
             var uploadedFile = e.File;
-
-            //var buffer = new byte[uploadedFile.Size];
-            //await uploadedFile.OpenReadStream().ReadAsync(buffer);
-            // Process the file (e.g., save it, send it to a server, etc.)
+            await using var stream = uploadedFile.OpenReadStream();
+            using StreamReader rd = new StreamReader(stream);
+            Xyz = await rd.ReadToEndAsync();
         }
         private void OnClickSave(MouseEventArgs e)
         {
-            
+	        _isFormValidated = true;
+	        OnClickCallback.InvokeAsync(new CalcOrderItemModel(0,MoleculeName, BasisSet, Charge, CalcType, Xyz));
         }
     }
 }

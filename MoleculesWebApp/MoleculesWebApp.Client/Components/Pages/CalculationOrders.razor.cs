@@ -6,6 +6,7 @@ using MoleculesWebApp.Client.Services.OrderBook;
 using System.Reactive;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
+using MoleculesWebApp.Client.Data.ServiceAgents.OrderBook;
 
 namespace MoleculesWebApp.Client.Components.Pages
 {
@@ -40,6 +41,8 @@ namespace MoleculesWebApp.Client.Components.Pages
             Selected = order;
         }
 
+        #region new order dialog
+
         private async void OnNewOrderClick()
         {
             var parameters = new Dictionary<string, object>
@@ -61,6 +64,10 @@ namespace MoleculesWebApp.Client.Components.Pages
                 }
             });
         }
+
+        #endregion
+
+        #region update order dialog
 
         private async void OnUpdateOrderClick(MouseEventArgs e)
         {
@@ -88,11 +95,34 @@ namespace MoleculesWebApp.Client.Components.Pages
                 }
             });
         }
-        
+
+        #endregion
+
         private async void OnNewOrderItemClick(MouseEventArgs e)
         {
-            await createOrderItemModal.ShowAsync<CreateOrderItemDialog>(title: "Create Order Item");
+	        var parameters = new Dictionary<string, object>
+	        {
+		        {
+			        "OnclickCallback", 
+			        EventCallback.Factory.Create<CalcOrderItemModel>(this, OnDialogCreateOrderItemSaveClick)
+		        }
+	        };
+			await createOrderItemModal.ShowAsync<CreateOrderItemDialog>(title: "Create Order Item", parameters:parameters);
         }
+
+
+        private async void OnDialogCreateOrderItemSaveClick(CalcOrderItemModel orderItemModel)
+        {
+	        await createOrderItemModal.HideAsync();
+	        if (Selected is null) return;
+	        CalcOrderService.CreateItem(Selected.Id, orderItemModel)
+		        .TakeUntil(_destroy).Subscribe(orderItem =>
+		        {
+                    Selected.OrderItems.Add(orderItem);
+		        });
+        }
+
+
 
         private async void OnDeleteOrderItemClick(CalcOrderItemModel calcOrderItemModel)
         {
@@ -111,7 +141,7 @@ namespace MoleculesWebApp.Client.Components.Pages
                            {
                               changedOrder.OrderItems.RemoveAt(index);
                                StateHasChanged();
-                            }
+	                       }
                        }
                     });
             }
@@ -131,7 +161,7 @@ namespace MoleculesWebApp.Client.Components.Pages
                      {
                         Selected = Orders.FirstOrDefault();
                         StateHasChanged();
-                      };
+                     };
                   });
            }
         }

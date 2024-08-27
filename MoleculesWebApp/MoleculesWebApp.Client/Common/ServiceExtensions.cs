@@ -10,6 +10,7 @@ using MoleculesWebApp.Client.Services;
 using MoleculesWebApp.Client.Services.OrderBook.ServiceAgent;
 using MoleculesWebApp.Client.Factory;
 using MoleculesWebApp.Client.Services.OrderBook;
+using MoleculesWebApp.Client.Services.Calculation;
 
 namespace MoleculesWebApp.Client.Common
 {
@@ -53,12 +54,17 @@ namespace MoleculesWebApp.Client.Common
         {
             services.AddSingleton<MoleculesHttpClient>();
             services.AddSingleton<ErrorHandlingService>();
+
             services.AddSingleton<ICalcOrderServiceAgent, CalcOrderServiceAgent>();
             services.AddSingleton<ICalcOrderService, CalcOrderService>();
+
+            services.AddSingleton<IBasisSetService, BasisSetService>();
+            services.AddSingleton<ICalcOrderItemTypeService, CalcOrderItemTypeService>();
             
             services.AddSingleton<IMoleculesServiceAgent, MoleculesServiceAgent>();
             services.AddSingleton<IMoleculesAnalysisService, MoleculesAnalysisService>();
             services.AddSingleton<IMoleculesReportServiceAgent, MoleculesReportServiceAgent>();
+            
             return services;
         }
 

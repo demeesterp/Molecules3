@@ -11,7 +11,8 @@ namespace MoleculesWebApp.Client.Factory
                                item.MoleculeName,
                                item.Details.BasisSetCode.ToString(),
                                item.Details.Charge.ToString(),
-                               item.Details.Type.ToString());
+                               item.Details.Type.ToString(),
+                               item.Details.XYZ);
         }
 
 
@@ -27,7 +28,8 @@ namespace MoleculesWebApp.Client.Factory
                                                   Charge = int.TryParse(itemModel.Charge, out var charge)? charge: 0,
                                                   Type = Enum.TryParse<CalcOrderItemType>(itemModel.CalculationType, out var calcType) 
                                                                     ? calcType
-                                                                    : CalcOrderItemType.GeoOpt
+                                                                    : CalcOrderItemType.GeoOpt,
+                                                  XYZ = itemModel.Xyz
                                             });
         }
     }

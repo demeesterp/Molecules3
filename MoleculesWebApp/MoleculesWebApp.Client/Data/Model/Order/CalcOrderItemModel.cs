@@ -1,29 +1,23 @@
 ﻿namespace MoleculesWebApp.Client.Data.Model.Order
 {
-    public class CalcOrderItemModel
+    public class CalcOrderItemModel(
+	    int id,
+	    string moleculeName,
+	    string basisSetName,
+	    string charge,
+	    string calculationType,
+	    string xyz)
     {
-        public CalcOrderItemModel(int id, 
-                                    string moleculeName, 
-                                    string basisSetName, 
-                                    string charge, 
-                                    string calculationType)
-        {
-            Id = id;
-            MoleculeName = moleculeName;
-            BasisSetName = basisSetName;
-            Charge = charge;
-            CalculationType = calculationType;
-        }
+	    public int Id { get; set; } = id;
 
-        public int Id { get; set; }
+        public string MoleculeName { get; set; } = moleculeName;
 
-        public string MoleculeName { get; set; }
+        public string BasisSetName { get; set; } = basisSetName;
 
-        public string BasisSetName { get; set; }
+        public string Charge { get; set; } = charge;
 
-        public string Charge { get; set; }
+        public string CalculationType { get; set; } = calculationType;
 
-        public string CalculationType { get; set; }
-
+        public string Xyz { get; set; } = xyz;
     }
 }
