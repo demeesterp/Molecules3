@@ -21,12 +21,14 @@ namespace MoleculesWebApp.Client.Services.OrderBook
 
 
         public CalcOrderService(ICalcOrderFactory calcOrderFactory,
+                                    ICalcOrderItemFactory calcOrderItemFactory,
                                     ICalcOrderServiceAgent calcOrderServiceAgent,
                                         ErrorHandlingService errorHandlingService)
         {
             CalcOrderFactory = calcOrderFactory;
             CalcOrderServiceAgent = calcOrderServiceAgent;
             ErrorHandlingService = errorHandlingService;
+            CalcOrderItemFactory = calcOrderItemFactory;
         }
 
         public IObservable<List<CalcOrderModel>> GetByName(string name)
@@ -66,10 +68,9 @@ namespace MoleculesWebApp.Client.Services.OrderBook
         public IObservable<CalcOrderItemModel> CreateItem(int calcOrderId, CalcOrderItemModel calcOrderItem)
         {
             var itemToSave = CalcOrderItemFactory.Build(calcOrderId, calcOrderItem);
-            return CalcOrderServiceAgent.CreateCalcOrderItem(calcOrderId,
-                                                        new CreateCalcOrderItem(itemToSave.MoleculeName, 
-                                                                                    itemToSave.Details))
-             .Select(order => CalcOrderItemFactory.Build(order))
+            return CalcOrderServiceAgent.CreateCalcOrderItem(calcOrderId, new CreateCalcOrderItem(itemToSave.MoleculeName, 
+                                                                                                    itemToSave.Details))
+             .Select(orderItem => CalcOrderItemFactory.Build(orderItem))
              .Catch<CalcOrderItemModel, Exception>(HandleError<CalcOrderItemModel>);
         }
 
@@ -79,9 +80,9 @@ namespace MoleculesWebApp.Client.Services.OrderBook
                         .Catch<Unit, Exception>(HandleError<Unit>); 
         }
 
-        public IObservable<Unit> DeleteItem(int calcOrderItemId)
+        public IObservable<Unit> DeleteItem(int calcOrderId, int calcOrderItemId)
         {
-            return CalcOrderServiceAgent.DeleteCalcOrderItem(calcOrderItemId)
+            return CalcOrderServiceAgent.DeleteCalcOrderItem(calcOrderId, calcOrderItemId)
                         .Catch<Unit, Exception>(HandleError<Unit>);
         }
 

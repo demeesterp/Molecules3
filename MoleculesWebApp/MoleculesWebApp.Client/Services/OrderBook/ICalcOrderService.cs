@@ -17,6 +17,6 @@ namespace MoleculesWebApp.Client.Services.OrderBook
 
         IObservable<Unit> Delete(int calcOrderId);
 
-        IObservable<Unit> DeleteItem(int calcOrderItemId);
+        IObservable<Unit> DeleteItem(int calcOrderId, int calcOrderItemId);
     }
 }

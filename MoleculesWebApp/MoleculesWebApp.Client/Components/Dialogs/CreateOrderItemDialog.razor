@@ -33,8 +33,12 @@
                 @bind="CalcType"
                 tabindex="3"
                 aria-describedby="calcTypeHelp">
-            <option selected value="AllKinds">With geometry optimization</option>
-            <option value="AllKindsNoGeoOpt">Without geometry optimization</option>
+            @foreach (var calcOrderType in CalcOrderItemTypes)
+            {
+                <option value="@calcOrderType.Code">
+                    @calcOrderType.Name
+                </option>
+            }
         </select>
         <div id="calcTypeHelp" class="form-text">With geometry optimization or without.</div>
     </div>
@@ -47,8 +51,8 @@
                 aria-describedby="basisSetHelp">
             @foreach(var basisSet in BasisSets)
             {
-                <option value="@basisSet">
-                    @basisSet
+                <option value="@basisSet.Code">
+                    @basisSet.Name
                 </option>
             }
         </select>

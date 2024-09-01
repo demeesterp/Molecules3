@@ -1,31 +1,39 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Web;
+using MoleculesWebApp.Client.Data.Model.Calculation;
 using MoleculesWebApp.Client.Data.Model.Order;
 using MoleculesWebApp.Client.Data.ServiceAgents.OrderBook;
+using MoleculesWebApp.Client.Services.Calculation;
 
 namespace MoleculesWebApp.Client.Components.Dialogs
 {
     public partial class CreateOrderItemDialog : ComponentBase
     {
+
+        [Inject]
+        private IBasisSetService BasisSetService { get; init; }
+
+        [Inject]
+        private ICalcOrderItemTypeService CalcOrderItemTypeService { get; init; }
+
         private bool _isFormValidated = false;
 
         private string MoleculeName { get; set; } = string.Empty;
 
         private string Charge { get; set; } = string.Empty;
 
-        private string CalcType { get; set; } = "AllKinds";
+        private string CalcType { get; set; } = CalcOrderItemType.GeoOpt.ToString();
 
         private string BasisSet { get; set; } = CalcBasisSetCode.BSTO3G.ToString();
 
-        private List<string> BasisSets { get; set; } = Enum.GetNames<CalcBasisSetCode>().ToList();
+        private List<CalcBasisSetModel> BasisSets { get;} = new List<CalcBasisSetModel>();
+
+        private List<CalcOrderItemTypeModel> CalcOrderItemTypes { get; } = new List<CalcOrderItemTypeModel>();
 
         private string Xyz { get; set; } = string.Empty;
 
-
-        [Parameter] public EventCallback<CalcOrderItemModel> OnClickCallback { get; set; }
-
-		private string GetValidationClassName()
+        private string GetValidationClassName()
         {
             if (_isFormValidated)
             {
@@ -36,6 +44,17 @@ namespace MoleculesWebApp.Client.Components.Dialogs
                 return "needs-validation";
             }
         }
+
+
+
+        protected override void OnInitialized()
+        {
+            base.OnInitializedAsync();
+            BasisSets.AddRange(BasisSetService.List());
+            CalcOrderItemTypes.AddRange(CalcOrderItemTypeService.List());
+        }
+
+        [Parameter] public EventCallback<CalcOrderItemModel> OnClickCallback { get; set; }
 
         private async Task OnInputFileChange(InputFileChangeEventArgs e)
         {

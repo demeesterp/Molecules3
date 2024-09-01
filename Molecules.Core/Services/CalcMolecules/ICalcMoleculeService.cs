@@ -17,6 +17,5 @@ namespace Molecules.Core.Services.CalcMolecules
 
         Task DeleteAsync(int id);
 
-
     }
 }

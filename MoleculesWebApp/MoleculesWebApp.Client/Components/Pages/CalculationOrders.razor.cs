@@ -110,7 +110,6 @@ namespace MoleculesWebApp.Client.Components.Pages
 			await createOrderItemModal.ShowAsync<CreateOrderItemDialog>(title: "Create Order Item", parameters:parameters);
         }
 
-
         private async void OnDialogCreateOrderItemSaveClick(CalcOrderItemModel orderItemModel)
         {
 	        await createOrderItemModal.HideAsync();
@@ -119,32 +118,32 @@ namespace MoleculesWebApp.Client.Components.Pages
 		        .TakeUntil(_destroy).Subscribe(orderItem =>
 		        {
                     Selected.OrderItems.Add(orderItem);
-		        });
+                    StateHasChanged();
+                });
         }
-
-
 
         private async void OnDeleteOrderItemClick(CalcOrderItemModel calcOrderItemModel)
         {
-           var confirmation = await confirmDialog.ShowAsync<DeleteConfirmDialog>(title:$"Delete Order Item");
-            if (confirmation)
-            {
-                CalcOrderService.DeleteItem(calcOrderItemModel.Id)
+           if (Selected == null) return;
+           var confirmation = await confirmDialog.ShowAsync<DeleteConfirmDialog>(title:$"Delete Order Item {calcOrderItemModel.MoleculeName}");
+           if (confirmation)
+           {
+               CalcOrderService.DeleteItem(Selected.Id, calcOrderItemModel.Id)
                     .TakeUntil(_destroy)
                     .Subscribe(result =>
                     {
-                       var changedOrder = Orders.Find(o => o.Id == calcOrderItemModel.Id);
+                       var changedOrder = Orders.Find(o => o.Id == Selected.Id);
                        if (changedOrder != null)
                        {
                            var index = changedOrder.OrderItems.FindIndex(oi => oi.Id == calcOrderItemModel.Id);
-                           if ( index > 0)
+                           if ( index >= 0)
                            {
                               changedOrder.OrderItems.RemoveAt(index);
-                               StateHasChanged();
+                              StateHasChanged();
 	                       }
                        }
                     });
-            }
+           }
         }
         
         private async void OnDeleteOrderClick(MouseEventArgs e)

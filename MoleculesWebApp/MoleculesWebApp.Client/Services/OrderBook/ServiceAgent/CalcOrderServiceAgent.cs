@@ -36,9 +36,9 @@ namespace MoleculesWebApp.Client.Services.OrderBook.ServiceAgent
             return _moleculesHttpClient.Delete<Unit>(_httpClient, $"calcorders/{id}");
         }
 
-        public IObservable<Unit> DeleteCalcOrderItem(int calcOrderItemId)
+        public IObservable<Unit> DeleteCalcOrderItem(int calcOrderId, int calcOrderItemId)
         {
-            return _moleculesHttpClient.Delete<Unit>(_httpClient, $"calcorders/calcorderitem/{calcOrderItemId}");
+            return _moleculesHttpClient.Delete<Unit>(_httpClient, $"calcorders/{calcOrderId}/calcorderitem/{calcOrderItemId}");
         }
 
         public IObservable<CalcOrder> Get(int id)
