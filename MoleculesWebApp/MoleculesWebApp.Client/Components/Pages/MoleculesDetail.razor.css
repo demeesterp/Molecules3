@@ -1,0 +1,22 @@
+﻿
+.w-15 {
+    width: 10% !important;
+}
+
+.fw-config-red {
+    width: 70px;
+    background-color: rgba(255, 0, 0, var(--fraction)); /* red */
+}
+
+.fw-config-blue {
+    width: 70px;
+    background-color: rgba(0, 0, 255, var(--fraction)); /* blue */
+}
+
+.fw-charge-red {
+    background-color: rgba(255, 0, 0, var(--fraction)); /* red */
+}
+
+.fw-charge-blue {
+    background-color: rgba(0, 0, 255, var(--fraction)); /* blue */
+}

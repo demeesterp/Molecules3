@@ -1,10 +1,47 @@
 ﻿@page "/moleculesoverview"
 @rendermode @(new InteractiveWebAssemblyRenderMode(prerender: false))
-<h3>MoleculesOverview</h3>
-
-<p>Hello World</p>
-
-
-@code {
-
-}
+<section class="mb-2">
+    <div class="d-flex flex-row mb-2">
+        <input autofocus
+               tabindex="1"
+               @bind="searchTerm"
+               placeholder="enter molecule name"
+               title="search by molecule name (wildcards allowed)"
+               type="text" />
+        <button tabindex="-1"
+                type="button"
+                @onclick="OnSearchMoleculeClick"
+                class="btn btn-outline-primary btn-sm ms-1">
+            Search Molecules
+        </button>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Calculation Order</th>
+                <th scope="col">Molecule</th>
+                <th scope="col">Basisset</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var moleculeItem in Molecules)
+            {
+                <tr>
+                    <td>
+                        @moleculeItem.Id
+                    </td>
+                    <td>
+                        @moleculeItem.CalcOrderName
+                    </td>
+                    <td>
+                        <a href="./moleculesdetail/@moleculeItem.Id">@moleculeItem.Name</a>
+                    </td>
+                    <td>
+                        @moleculeItem.BasisSetName
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</section>

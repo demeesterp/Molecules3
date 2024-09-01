@@ -6,7 +6,6 @@ using MoleculesWebApp.Client.Services.OrderBook;
 using System.Reactive;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
-using MoleculesWebApp.Client.Data.ServiceAgents.OrderBook;
 
 namespace MoleculesWebApp.Client.Components.Pages
 {

@@ -1,4 +1,7 @@
-﻿using Molecules.Core.Domain.Aggregates;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Molecules.Core.Domain.Aggregates;
+using Molecules.Core.Domain.Entities;
+using Molecules.Core.Domain.ValueObjects.Reports;
 using MoleculesWebApp.Handlers;
 using MoleculesWebApp.Handlers.Model;
 
@@ -65,32 +68,32 @@ namespace MoleculesWebApp.Extensions
             var moleculeEndPoint = apiEndPointGroup.MapGroup("molecule/");
 
             moleculeEndPoint.MapGet("{moleculeid:int}", MoleculeHandler.HandleGetAsync).WithOpenApi()
-                                                        .Produces<List<CalcOrder>>(StatusCodes.Status200OK)
+                                                        .Produces<List<CalcMolecule>>(StatusCodes.Status200OK)
                                                         .Produces<ServiceError>(StatusCodes.Status500InternalServerError);
-            moleculeEndPoint.MapGet("name/{name}", () => MoleculeHandler.HandleGetByName).WithOpenApi()
-                                                        .Produces<List<CalcOrder>>(StatusCodes.Status200OK)
+            moleculeEndPoint.MapGet("name/{name}", MoleculeHandler.HandleFindByName).WithOpenApi()
+                                                        .Produces<List<CalcMolecule>>(StatusCodes.Status200OK)
                                                         .Produces<ServiceError>(StatusCodes.Status500InternalServerError);
             moleculeEndPoint.MapGet("xyzfile/{moleculeid:int}", MoleculeHandler.HandleGetXyzFile).WithOpenApi()
-                                                        .Produces<List<CalcOrder>>(StatusCodes.Status200OK)
+                                                        .Produces<FileContentHttpResult>(StatusCodes.Status200OK)
                                                         .Produces<ServiceError>(StatusCodes.Status500InternalServerError);
 
             moleculeEndPoint.MapGet("{moleculeid:int}/atomchargereport", MoleculeHandler.HandleAtomsChargeReportAsync).WithOpenApi()
-                                                        .Produces<List<CalcOrder>>(StatusCodes.Status200OK)
+                                                        .Produces<List<MoleculeAtomsChargeReport>>(StatusCodes.Status200OK)
                                                         .Produces<ServiceError>(StatusCodes.Status500InternalServerError);
             moleculeEndPoint.MapGet("{moleculeid:int}/atomorbitalreport", MoleculeHandler.HandleAtomsOrbitalReportAsync).WithOpenApi()
-                                                        .Produces<List<CalcOrder>>(StatusCodes.Status200OK)
+                                                        .Produces<List<MoleculeAtomOrbitalReport>>(StatusCodes.Status200OK)
                                                         .Produces<ServiceError>(StatusCodes.Status500InternalServerError);
             moleculeEndPoint.MapGet("{moleculeid:int}/bondsreport", MoleculeHandler.HandleMoleculeBondsReportAsync).WithOpenApi()
-                                                        .Produces<List<CalcOrder>>(StatusCodes.Status200OK)
+                                                        .Produces<List<MoleculeBondsReport>>(StatusCodes.Status200OK)
                                                         .Produces<ServiceError>(StatusCodes.Status500InternalServerError);
             moleculeEndPoint.MapGet("{moleculeid:int}/moleculepopulationreport", MoleculeHandler.HandleMoleculeAtomsPopulationReportAsync).WithOpenApi()
-                                                        .Produces<List<CalcOrder>>(StatusCodes.Status200OK)
+                                                        .Produces<List<MoleculeAtomsPopulationReport>>(StatusCodes.Status200OK)
                                                         .Produces<ServiceError>(StatusCodes.Status500InternalServerError);
             moleculeEndPoint.MapGet("{moleculeid:int}/generalmoleculereport", MoleculeHandler.HandleGeneralMoleculeReportAsync).WithOpenApi()
-                                                        .Produces<List<CalcOrder>>(StatusCodes.Status200OK)
+                                                        .Produces<List<GeneralMoleculeReport>>(StatusCodes.Status200OK)
                                                         .Produces<ServiceError>(StatusCodes.Status500InternalServerError);
             moleculeEndPoint.MapGet("{moleculeid:int}/moleculeatompositionreport", MoleculeHandler.HandleMoleculeAtomPositionReportAsync).WithOpenApi()
-                                                        .Produces<List<CalcOrder>>(StatusCodes.Status200OK)
+                                                        .Produces<List<MoleculeAtomPositionReport>>(StatusCodes.Status200OK)
                                                         .Produces<ServiceError>(StatusCodes.Status500InternalServerError);
 
 

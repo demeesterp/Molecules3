@@ -1,4 +1,5 @@
 ﻿using MoleculesWebApp.Client.Data.ServiceAgents.Molecules.Report;
+using NCDK;
 
 namespace MoleculesWebApp.Client.Data.Model.Molecule
 {
@@ -27,21 +28,21 @@ namespace MoleculesWebApp.Client.Data.Model.Molecule
         public decimal? OverlapPopulationHOMO { get; set; }
         public decimal? OverlapPopulationLUMO { get; set; }
 
-        //public BondOrder BondOrderEnum()
-        //{
-        //    if (BondOrder >= 0.6m && BondOrder < 1.6m)
-        //    {
-        //        return NCDK.BondOrder.Single;
-        //    }
-        //    else if (BondOrder >= 1.6m && BondOrder < 2.6m)
-        //    {
-        //        return NCDK.BondOrder.Double;
-        //    }
-        //    else if (BondOrder >= 2.6m && BondOrder < 3.6m)
-        //    {
-        //        return NCDK.BondOrder.Triple;
-        //    }
-        //    return NCDK.BondOrder.Unset;
-        //}
+        public BondOrder BondOrderEnum()
+        {
+            if (BondOrder >= 0.6m && BondOrder < 1.6m)
+            {
+                return NCDK.BondOrder.Single;
+            }
+            else if (BondOrder >= 1.6m && BondOrder < 2.6m)
+            {
+                return NCDK.BondOrder.Double;
+            }
+            else if (BondOrder >= 2.6m && BondOrder < 3.6m)
+            {
+                return NCDK.BondOrder.Triple;
+            }
+            return NCDK.BondOrder.Unset;
+        }
     }
 }

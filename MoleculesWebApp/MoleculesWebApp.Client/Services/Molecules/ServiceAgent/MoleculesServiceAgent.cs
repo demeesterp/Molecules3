@@ -1,7 +1,7 @@
 ﻿using MoleculesWebApp.Client.Data.ServiceAgents.Molecules;
 using MoleculesWebApp.Client.Shared.HttpClientHelper;
 
-namespace MoleculesWebApp.Client.Services.Molecules
+namespace MoleculesWebApp.Client.Services.Molecules.ServiceAgent
 {
     public class MoleculesServiceAgent : IMoleculesServiceAgent
     {

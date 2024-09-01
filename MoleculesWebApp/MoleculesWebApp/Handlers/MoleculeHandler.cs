@@ -19,7 +19,7 @@ namespace MoleculesWebApp.Handlers
             return TypedResults.Ok(result);
         }
 
-        public static async Task<Ok<List<CalcMolecule>>> HandleGetByName(IMoleculesLogger logger, ICalcMoleculeService calcMoleculeService, string name)
+        public static async Task<Ok<List<CalcMolecule>>> HandleFindByName(IMoleculesLogger logger, ICalcMoleculeService calcMoleculeService, string name)
         {
             logger.LogInformation($"Get Molecule with name {name}");
             var result = await calcMoleculeService.FindAllByNameAsync(name);

@@ -1,0 +1,196 @@
+﻿@page "/moleculesdetail/{MoleculeId:int}"
+@rendermode @(new InteractiveWebAssemblyRenderMode(prerender: false))
+<section class="mb-2">
+    <h3 class="mb-2">Molecule : @CurrentMoleculeReport.MoleculeName with Id : @CurrentMoleculeReport.MoleculeId</h3>
+    <div class="mb-2 h-25 w-100">
+        <canvas id="moleculedisplay">
+        </canvas>
+    </div>
+    <div class="accordion mb-2" id="accordionExplanation">
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne"
+                        aria-expanded="true"
+                        aria-controls="collapseOne">
+                    Explanation
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse mb-2" data-bs-parent="#accordionExplanation">
+                <div class="accordion-body">
+                    <div class="card">
+                        <div class="card-body">
+                            <h6 class="card-subtitle mb-2 text-body-secondary">
+                                <strong>Lewis Acid</strong>
+                            </h6>
+                            <div class="card-text mb-2">
+                                <div>
+                                    A lewis acid accepts an electron pair.
+                                </div>
+                                <div>
+                                    The molecule has a free orbital i.e. and unfilled orbital
+                                    This orbital is called the <strong>LUMO</strong> and characterizes the molecule as a lewis acid.
+                                </div>
+                            </div>
+                            <h6 class="card-subtitle mb-2 text-body-secondary">
+                                <strong> Lewis base</strong>
+                            </h6>
+                            <div class="card-text">
+                                <div>
+                                    A lewis base donates an electron pair.
+                                </div>
+                                <div>
+                                    The molecule has an available orbital
+                                    This orbital is called the <strong>HOMO</strong> and characterizes the molecule as a lewis base.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ul class="nav nav-tabs mb-2" id="MoleculeReportsTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active"
+                    id="configuration-tab" data-bs-toggle="tab"
+                    data-bs-target="#configuration-tab-pane"
+                    type="button"
+                    role="tab"
+                    aria-controls="configuration-tab-pane"
+                    aria-selected="true">
+                Configuration
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link"
+                    id="charge-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#charge-tab-pane"
+                    type="button"
+                    role="tab"
+                    aria-controls="charge-tab-pane"
+                    aria-selected="false">
+                Charges
+            </button>
+        </li>
+    </ul>
+    <div class="tab-content  mb-2" id="MoleculeReportsTabContent">
+        <div class="tab-pane fade show active"
+             id="configuration-tab-pane"
+             role="tabpanel"
+             aria-labelledby="configuration-tab"
+             tabindex="0">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Atom</th>
+                        <th scope="col">Configuration</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var atomItem in CurrentMoleculeReport.ReportItems)
+                    {
+                        <tr>
+                            <td>
+                                @atomItem.AtomID
+                            </td>
+                            <td>
+                                <div class="d-flex flex-row">
+                                    <div class="w-25">
+                                        <b>Neutral:</b>
+                                    </div>
+                                    @foreach (var configItem in @atomItem.ConfigurationItems)
+                                    {
+                                        <div style="--fraction:@configItem.ColorFraction"
+                                             data-bs-toggle="tooltip"
+                                             title="@configItem.ToString()"
+                                             class="@(configItem.PopulationFraction < 0 ? "fw-config-blue" : "fw-config-red")">
+                                            @configItem.ToString()
+                                        </div>
+
+                                    }
+                                </div>
+                                <div class="d-flex flex-row">
+                                    <div class="w-25">
+                                        <b>Lewis Acid</b> (LUMO):
+                                    </div>
+                                    @foreach (var configItem in @atomItem.ConfigurationItemsLewisAcid)
+                                    {
+                                        <div style="--fraction:@configItem.ColorFraction"
+                                             data-bs-toggle="tooltip"
+                                             title="@configItem.ToString()"
+                                             class="@(configItem.PopulationFraction < 0 ? "fw-config-blue" : "fw-config-red")">
+                                            @configItem.ToString()
+                                        </div>
+
+                                    }
+                                </div>
+                                <div class="d-flex flex-row">
+                                    <div class="w-25">
+                                        <b>Lewis Base</b> (HOMO):
+                                    </div>
+                                    @foreach (var configItem in @atomItem.ConfigurationItemsLewisBase)
+                                    {
+                                        <div style="--fraction:@configItem.ColorFraction"
+                                             data-bs-toggle="tooltip"
+                                             title="@configItem.ToString()"
+                                             class="@(configItem.PopulationFraction < 0 ? "fw-config-blue" : "fw-config-red")">
+                                            @configItem.ToString()
+                                        </div>
+
+                                    }
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="tab-pane fade"
+             id="charge-tab-pane"
+             role="tabpanel"
+             aria-labelledby="charge-tab"
+             tabindex="0">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Atom</th>
+                        <th>Charge</th>
+                        <th>Mulliken</th>
+                        <th>Mulliken Acid</th>
+                        <th>Mulliken Base</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var atomItem in CurrentMoleculeReport.ReportItems)
+                    {
+                        <tr>
+                            <td>
+                                @atomItem.AtomID
+                            </td>
+                            <td style="--fraction:@atomItem.ColorFractionCHelpGCharge"
+                                class="@(atomItem.CHelpGCharge < 0 ? "fw-charge-blue" : "fw-charge-red")">
+                                @atomItem.CHelpGCharge
+                            </td>
+                            <td>
+                                @atomItem.MullNeutral
+                            </td>
+                            <td style="--fraction:@atomItem.ColorFractionMullLewisAcid"
+                                class="@(atomItem.MullLewisAcid < 0 ? "fw-charge-blue" : "fw-charge-red")">
+                                @atomItem.MullLewisAcid
+                            </td>
+                            <td style="--fraction:@atomItem.ColorFractionMullLewisBase"
+                                class="@(atomItem.MullLewisBase < 0 ? "fw-charge-blue" : "fw-charge-red")">
+                                @atomItem.MullLewisBase
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</section>

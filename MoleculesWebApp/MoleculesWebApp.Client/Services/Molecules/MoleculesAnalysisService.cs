@@ -3,6 +3,7 @@ using MoleculesWebApp.Client.Shared.Error;
 using MoleculesWebApp.Client.Data.ServiceAgents.Molecules.Report;
 using MoleculesWebApp.Client.Data.ServiceAgents.Molecules;
 using MoleculesWebApp.Client.Data.Model.Molecule;
+using MoleculesWebApp.Client.Services.Molecules.ServiceAgent;
 
 
 namespace MoleculesWebApp.Client.Services.Molecules

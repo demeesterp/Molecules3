@@ -11,6 +11,7 @@ using MoleculesWebApp.Client.Services.OrderBook.ServiceAgent;
 using MoleculesWebApp.Client.Factory;
 using MoleculesWebApp.Client.Services.OrderBook;
 using MoleculesWebApp.Client.Services.Calculation;
+using MoleculesWebApp.Client.Services.Molecules.ServiceAgent;
 
 namespace MoleculesWebApp.Client.Common
 {

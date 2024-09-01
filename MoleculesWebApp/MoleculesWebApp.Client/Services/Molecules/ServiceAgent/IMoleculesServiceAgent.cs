@@ -1,6 +1,6 @@
 ﻿using MoleculesWebApp.Client.Data.ServiceAgents.Molecules;
 
-namespace MoleculesWebApp.Client.Services.Molecules
+namespace MoleculesWebApp.Client.Services.Molecules.ServiceAgent
 {
     public interface IMoleculesServiceAgent
     {
