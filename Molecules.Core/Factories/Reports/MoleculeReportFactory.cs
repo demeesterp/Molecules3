@@ -41,10 +41,7 @@ namespace Molecules.Core.Factories.Reports
                     MullLewisAcid = atom.MullikenPopulationLUMO.HasValue ? Math.Round(atom.MullikenPopulationLUMO.Value, 6) : null,
                     MullLewisBase = atom.MullikenPopulationHOMO.HasValue ? Math.Round(atom.MullikenPopulationHOMO.Value, 6) : null,
                 };
-                foreach (var orbitalReport in
-                                from item in
-                                        atom.Orbitals
-                                orderby item.Position ascending
+                foreach (var orbitalReport in from item in atom.Orbitals orderby item.Position ascending
                                 select new AtomOrbitalReport()
                                 {
                                     AtomID = $"{atom.Symbol}{atom.Position}",
