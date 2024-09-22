@@ -5,5 +5,6 @@
         Exit = 0,
         CalcDeliveryApp = 1,
         MoleculeReportApp = 2,
+        MoleculeAnalysisApp = 3
     }
 }

@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Hosting;
 using Molecules.constants;
 using Molecules.services;
+using Molecules.settings;
 using Molecules.Shared.Logger;
 
 namespace Molecules
@@ -12,7 +13,7 @@ namespace Molecules
 
         private readonly IMoleculesLogger _logger;
 
-        private readonly IConfiguration _configuration;
+        private readonly IMoleculesSettings _settings;
 
         private readonly IHostApplicationLifetime _hostApplicationLifetime;
 
@@ -20,24 +21,28 @@ namespace Molecules
 
         private readonly MoleculeReportService _moleculeReportApp;
 
+        private readonly MoleculeAnalysisService _moleculeAnalysisService;
+
         #endregion
 
         public MoleculesApp(CalcDeliveryServices calcDeliveryApp,
                                     MoleculeReportService moleculeReportApp,
-                                        IConfiguration configuration,
-                                            IMoleculesLogger logger,
-                                                IHostApplicationLifetime hostApplicationLifetime)
+                                        MoleculeAnalysisService moleculeAnalysisService,
+                                            IMoleculesSettings settings,
+                                                IMoleculesLogger logger,
+                                                    IHostApplicationLifetime hostApplicationLifetime)
         {
             _logger = logger;
-            _configuration = configuration;
+            _settings = settings;
             _calcDeliveryApp = calcDeliveryApp;
             _moleculeReportApp = moleculeReportApp;
             _hostApplicationLifetime = hostApplicationLifetime;
+            _moleculeAnalysisService = moleculeAnalysisService;
         }
 
         private AppName GetApp()
         {
-            if (!Enum.TryParse(_configuration["appName"], true, out AppName result))
+            if (!_settings.App.HasValue)
             {
                 foreach (var enumItem in Enum.GetValues<AppName>())
                 {
@@ -54,14 +59,9 @@ namespace Molecules
                     userInput = Console.ReadLine();
                     invalidInput = !int.TryParse(userInput, out option) || !Enum.IsDefined(typeof(AppName), option);
                 }
-                result = (AppName)option;
+                return (AppName)option;
             }
-            return result;
-        }
-
-        private string GetBasePath()
-        {
-            return _configuration["basePath"] ?? Directory.GetCurrentDirectory();
+            return _settings.App.Value;
         }
 
         protected async override Task ExecuteAsync(CancellationToken stoppingToken)
@@ -77,13 +77,16 @@ namespace Molecules
                     {
                         case AppName.CalcDeliveryApp:
                             // Run Calculation Delivery : Generate molecules in DB
-                            await _calcDeliveryApp.RunAsync(GetBasePath());
+                            await _calcDeliveryApp.RunAsync(_settings.BasePath);
                             continue;
                         case AppName.MoleculeReportApp:
                             // Write reports to consumers
                             await _moleculeReportApp.RunAsync();
                             done = true;
                             return;
+                        case AppName.MoleculeAnalysisApp:
+                            await _moleculeAnalysisService.RunAsync();
+                            continue;
                         case AppName.Exit:
                             done = true;
                             return;

@@ -1,6 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
-using Molecules.constants;
+﻿using Molecules.constants;
 using Molecules.Core.Services.Reports;
+using Molecules.settings;
 using Molecules.Shared;
 using Molecules.Shared.Logger;
 
@@ -15,64 +15,46 @@ namespace Molecules.services
 
         private readonly IMoleculeReportService _moleculeReportService;
 
-        private readonly IConfiguration _configuration;
+        private readonly IMoleculesSettings _settings;
 
         #endregion
 
         public MoleculeReportService(IMoleculeReportService moleculeReportService,
-                                    IConfiguration configuration,
-                                       IMoleculesLogger logger)
+                                        IMoleculesSettings settings,
+                                            IMoleculesLogger logger)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _moleculeReportService = moleculeReportService ?? throw new ArgumentNullException(nameof(moleculeReportService));
-            _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration)); ;
+            _settings = settings ?? throw new ArgumentException(nameof(settings));
         }
 
 
         public async Task RunAsync()
         {
-            switch (GetReportType())
+            int moleculeid = _settings.MoleculeId;
+            if (moleculeid < 0) return;
+            switch (_settings.Report)
             {
                 case ReportName.Population:
-                    var populationReport = await _moleculeReportService.GetMoleculePopulationReportAsync(GetMoleculeId());
+                    var populationReport = await _moleculeReportService.GetMoleculePopulationReportAsync(moleculeid);
                     Console.Write(StringConversion.ToJsonString(populationReport));
                     break;
                 case ReportName.Bonds:
-                    var bondsReport = await _moleculeReportService.GetMoleculeBondsReportsAsync(GetMoleculeId());
+                    var bondsReport = await _moleculeReportService.GetMoleculeBondsReportsAsync(moleculeid);
                     Console.Write(StringConversion.ToJsonString(bondsReport));
                     break;
                 case ReportName.Charge:
-                    var chargeReport = await _moleculeReportService.GetMoleculeAtomsChargeReportAsync(GetMoleculeId());
+                    var chargeReport = await _moleculeReportService.GetMoleculeAtomsChargeReportAsync(moleculeid);
                     Console.Write(StringConversion.ToJsonString(chargeReport));
                     break;
                 case ReportName.AtomOrbital:
-                    var atomOrbitalReport = await _moleculeReportService.GetMoleculeAtomOrbitalReportAsync(GetMoleculeId());
+                    var atomOrbitalReport = await _moleculeReportService.GetMoleculeAtomOrbitalReportAsync(moleculeid);
                     Console.Write(StringConversion.ToJsonString(atomOrbitalReport));
                     break;
                 case ReportName.None:
                 default:
                     break;
             }
-        }
-
-
-        private int GetMoleculeId()
-        {
-            if (!int.TryParse(_configuration["MoleculeId"], out int result))
-            {
-                _logger.LogError("Invalid MoleculeId");
-                return -1;
-            }
-            return result;
-        }
-
-        private ReportName GetReportType()
-        {
-            if (!Enum.TryParse(_configuration["ReportType"], true, out ReportName result))
-            {
-                return ReportName.None;
-            }
-            return result;
         }
 
 

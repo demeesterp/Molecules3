@@ -5,6 +5,7 @@ using Molecules.Core.Data;
 using Molecules.Core.Validation;
 using Molecules.Logger;
 using Molecules.services;
+using Molecules.settings;
 
 namespace Molecules
 {
@@ -28,6 +29,8 @@ namespace Molecules
         {
             services.AddSingleton<CalcDeliveryServices>();
             services.AddSingleton<MoleculeReportService>();
+            services.AddSingleton<MoleculeAnalysisService>();
+            services.AddSingleton<IMoleculesSettings, MoleculesSettings>();
             return services;
         }
 
