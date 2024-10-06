@@ -8,7 +8,7 @@
 <div class="row mb-3">
     <div class="col-3">
         <div class="d-flex flex-row">
-            <div class="pt-1">Orders</div>
+            <h5 class="pt-1 olive">Orders</h5>
             <Button Color="ButtonColor.Primary" 
                     @onclick="OnNewOrderClick"
                     Class="ms-auto" 
@@ -52,7 +52,8 @@
         <div class="list-group">
             @foreach(var order in Orders)
             {
-                <a @onclick="() => OnOrderClick(order)" class="list-group-item list-group-item-action">
+                <a @onclick="() => OnOrderClick(order)"
+                   class="@(IsOrderSelected(order) ? "list-group-item list-group-item-action active":"list-group-item list-group-item-action" )">
                     @order.Name
                 </a>
             }

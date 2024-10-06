@@ -35,6 +35,13 @@ namespace MoleculesWebApp.Client.Components.Pages
             });
         }
 
+        private bool IsOrderSelected(CalcOrderModel order)
+        {
+            if (Selected is null) return false;
+
+            return Selected.Id == order.Id;
+        }
+
         private void OnOrderClick(CalcOrderModel order)
         {
             Selected = order;
