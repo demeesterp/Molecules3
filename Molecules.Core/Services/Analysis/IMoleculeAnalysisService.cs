@@ -5,7 +5,7 @@ namespace Molecules.Core.Services.Analysis
 {
     public interface IMoleculeAnalysisService
     {
-        string CreateDataSet(InputRule rule);
+        string CreateDataSet(AnalysisTypeEnum rule);
 
     }
 }

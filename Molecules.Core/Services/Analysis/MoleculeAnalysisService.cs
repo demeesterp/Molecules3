@@ -23,7 +23,7 @@ namespace Molecules.Core.Services.Analysis
         }
 
 
-        public string CreateDataSet(InputRule rule)
+        public string CreateDataSet(AnalysisTypeEnum rule)
         {
             throw new NotImplementedException();
         }

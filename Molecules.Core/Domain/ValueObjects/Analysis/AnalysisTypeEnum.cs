@@ -1,7 +1,7 @@
 ﻿
 namespace Molecules.Core.Domain.ValueObjects.Analysis
 {
-    public enum InputRule
+    public enum AnalysisTypeEnum
     {
         AtomRules
     }
