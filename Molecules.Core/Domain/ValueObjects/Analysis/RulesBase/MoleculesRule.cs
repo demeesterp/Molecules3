@@ -1,13 +1,13 @@
 ﻿using System.Net.Http.Headers;
 
-namespace Molecules.Core.Domain.ValueObjects.Analysis.RulesBased
+namespace Molecules.Core.Domain.ValueObjects.Analysis.RulesBase
 {
-    public class Rule<T, V> where T : IRuleTag where V : RuleVector
+    public class MoleculesRule<T, V> where T : IRuleTag where V : RuleVector
     {
         private T RuleTag { get; set; }
         private V Vector { get; set; }
 
-        public Rule(T tag, V vector)
+        public MoleculesRule(T tag, V vector)
         {
             RuleTag = tag;
             Vector = vector;

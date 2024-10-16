@@ -1,4 +1,4 @@
-﻿using Molecules.Core.Domain.ValueObjects.Atom;
+﻿using Molecules.Core.Domain.ValueObjects.AtomData;
 using Molecules.Core.Domain.ValueObjects.Molecules;
 using Molecules.Shared;
 

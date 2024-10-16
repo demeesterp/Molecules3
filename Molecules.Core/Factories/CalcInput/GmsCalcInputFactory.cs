@@ -1,5 +1,5 @@
 ﻿using Molecules.Core.Domain.Aggregates;
-using Molecules.Core.Domain.ValueObjects.Atom;
+using Molecules.Core.Domain.ValueObjects.AtomData;
 using Molecules.Core.Domain.ValueObjects.Calc;
 using Molecules.Core.Domain.ValueObjects.Calc.Order;
 using Molecules.Core.Domain.ValueObjects.GmsCalc;

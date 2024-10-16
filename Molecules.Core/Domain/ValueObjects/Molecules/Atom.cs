@@ -1,4 +1,4 @@
-﻿using Molecules.Core.Domain.ValueObjects.Atom;
+﻿using Molecules.Core.Domain.ValueObjects.AtomData;
 using System.Text.Json.Serialization;
 
 namespace Molecules.Core.Domain.ValueObjects.Molecules

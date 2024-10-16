@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 
-namespace Molecules.Core.Domain.ValueObjects.Atom
+namespace Molecules.Core.Domain.ValueObjects.AtomData
 {
     public static class AtomPropertiesTable
     {

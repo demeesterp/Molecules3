@@ -1,4 +1,4 @@
-﻿namespace Molecules.Core.Domain.ValueObjects.Analysis.RulesBased
+﻿namespace Molecules.Core.Domain.ValueObjects.Analysis.RulesBase
 {
     public interface IRuleTag
     {
