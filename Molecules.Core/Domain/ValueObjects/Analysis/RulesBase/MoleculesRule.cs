@@ -1,6 +1,4 @@
-﻿using System.Net.Http.Headers;
-
-namespace Molecules.Core.Domain.ValueObjects.Analysis.RulesBase
+﻿namespace Molecules.Core.Domain.ValueObjects.Analysis.RulesBase
 {
     public class MoleculesRule<T, V> where T : IRuleTag where V : RuleVector
     {
@@ -15,7 +13,7 @@ namespace Molecules.Core.Domain.ValueObjects.Analysis.RulesBase
 
         public override string ToString()
         {
-            return $"{Vector.Vector}->{RuleTag.Tag}";
+            return $"{Vector.Vector()} -> {RuleTag.Tag()}";
         }
 
 

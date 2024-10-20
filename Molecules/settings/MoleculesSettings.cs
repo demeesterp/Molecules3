@@ -15,6 +15,8 @@ namespace Molecules.settings
 
         private const string moleculeid = nameof(MoleculeId);
 
+        private const string analysisoutputpath = nameof(analysisoutputpath);
+
         private const string reporttype = "ReportType";
 
         private const string exportpath = nameof(moleculeid);
@@ -27,6 +29,8 @@ namespace Molecules.settings
         }
 
         public string BasePath => _configuration[basePath] ?? Directory.GetCurrentDirectory();
+
+        public string AnalysisOutputPath => Path.Combine(BasePath, _configuration[analysisoutputpath] ?? string.Empty);
 
         public AppName? App => Enum.TryParse(_configuration[appName], true, out AppName result) ? result : null;
 

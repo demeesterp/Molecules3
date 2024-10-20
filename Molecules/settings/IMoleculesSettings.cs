@@ -6,6 +6,8 @@ namespace Molecules.settings
     {
         string BasePath { get; }
 
+        string AnalysisOutputPath { get; }
+
         string ExportPath { get; }
 
         AppName? App { get; }

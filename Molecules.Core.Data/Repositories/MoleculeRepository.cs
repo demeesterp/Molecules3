@@ -68,7 +68,7 @@ namespace Molecules.Core.Data.Repositories
         {
             return await (from mol in _context.Molecule where
                               EF.Functions.Like(mol.MoleculeName.ToLower(), $"{moleculeName.ToLower()}")
-                          select new CalcMolecule(mol.Id, mol.OrderName, mol.BasisSet, mol.MoleculeName))
+                                    select new CalcMolecule(mol.Id, mol.OrderName, mol.BasisSet, mol.MoleculeName))
                                  .AsNoTracking()
                                  .ToListAsync();
         }

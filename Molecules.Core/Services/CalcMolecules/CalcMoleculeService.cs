@@ -34,7 +34,7 @@ namespace Molecules.Core.Services.CalcMolecules
 
         public async Task<List<CalcMolecule>> FindAllByNameAsync(string moleculeName)
         {
-            _logger.LogInformation($"DeleteAsync with id {moleculeName}");
+            _logger.LogInformation($"FindAllByNameAsync {moleculeName}");
 
             var moleculeDbEntities = await _repository.FindAllByNameAsync(moleculeName);
 
