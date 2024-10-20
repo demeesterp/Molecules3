@@ -35,7 +35,7 @@ namespace Molecules.services
 
         private string WriteResult(string fileContent, AnalysisTypeEnum analysisType)
         {
-            string fileName = Path.Combine(_settings.AnalysisOutputPath, $"{analysisType}_{DateTime.UtcNow:yyyyMMddHHmmssFFF}.txt");
+            string fileName = Path.Combine(_settings.AnalysisOutputPath, $"{analysisType}.txt");
             File.WriteAllText(fileName, fileContent);
             return fileName;
         }

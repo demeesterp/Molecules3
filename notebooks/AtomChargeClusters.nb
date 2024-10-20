@@ -1,0 +1,94 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      3075,         86]
+NotebookOptionsPosition[      2502,         68]
+NotebookOutlinePosition[      2903,         84]
+CellTagsIndexPosition[      2860,         81]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+  "moleculesFileDir", " ", "=", " ", 
+   "\"\<C:\\\\Data\\\\Calculations\\\\Analysis\\\\Output\\\\\>\""}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"moleculeInputFile", " ", "=", " ", 
+  "\"\<AtomChargeRules.txt\>\""}], "\[IndentingNewLine]", 
+ RowBox[{"moleculesOutputFile", " ", "=", " ", 
+  "\"\<AtomChargeClusters.txt\>\""}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"moleculesData", " ", "=", " ", 
+   RowBox[{"Import", "[", 
+    RowBox[{
+     RowBox[{"moleculesFileDir", " ", "<>", " ", "moleculeInputFile"}], ",", 
+     "\"\<Text\>\""}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"moleculesRules", " ", "=", " ", 
+   RowBox[{"ToExpression", "/@", 
+    RowBox[{"StringSplit", "[", 
+     RowBox[{"moleculesdata", ",", "\"\<\\n\>\""}], "]"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"resultData", " ", "=", " ", 
+   RowBox[{"FindClusters", "[", "moleculesRules", "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{
+    RowBox[{"moleculesFileDir", "<>", " ", "moleculesOutputFile"}], ",", 
+    "resultData", ",", "\"\<Text\>\""}], "]"}], 
+  ";"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.93842622459962*^9, 3.9384262413631563`*^9}, {
+  3.938426283043372*^9, 3.9384265517677126`*^9}, {3.93842659537705*^9, 
+  3.9384266507659187`*^9}, {3.9384267846632814`*^9, 3.938426786033818*^9}},
+ CellLabel->"In[18]:=",ExpressionUUID->"f44b35d0-3cc5-47b8-add7-2ac3858cbfad"],
+
+Cell[BoxData["\<\"AtomChargeRules.txt\"\>"], "Output",
+ CellChangeTimes->{3.9384267326390233`*^9, 3.9384267934531493`*^9},
+ CellLabel->"Out[19]=",ExpressionUUID->"7c6bc3a7-f686-4a09-bd88-d23a59c49219"],
+
+Cell[BoxData["\<\"AtomChargeClusters.txt\"\>"], "Output",
+ CellChangeTimes->{3.9384267326390233`*^9, 3.9384267934571476`*^9},
+ CellLabel->"Out[20]=",ExpressionUUID->"36af6fc2-3fbc-413c-9af8-9be9da2ef107"]
+}, Open  ]]
+},
+WindowSize->{1440, 741.75},
+WindowMargins->{{-6, Automatic}, {Automatic, -6}},
+FrontEndVersion->"13.3 for Microsoft Windows (64-bit) (June 3, 2023)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"9e0b37d2-21c1-4cf2-b6dc-7dee8e4e8cd3"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 1495, 35, 162, "Input",ExpressionUUID->"f44b35d0-3cc5-47b8-add7-2ac3858cbfad"],
+Cell[2078, 59, 201, 2, 32, "Output",ExpressionUUID->"7c6bc3a7-f686-4a09-bd88-d23a59c49219"],
+Cell[2282, 63, 204, 2, 32, "Output",ExpressionUUID->"36af6fc2-3fbc-413c-9af8-9be9da2ef107"]
+}, Open  ]]
+}
+]
+*)
+
