@@ -5,6 +5,6 @@ namespace Molecules.Core.Factories.Analysis
 {
     public interface IRulesCollectionFactory
     {
-        AtomChargeRuleCollection BuildAtomChargeRuleCollection(List<Molecule> molecules);
+        AtomPopulationRuleCollection BuildAtomChargeRuleCollection(List<Molecule> molecules);
     }
 }

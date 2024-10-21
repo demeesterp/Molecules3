@@ -5,15 +5,18 @@ namespace Molecules.Core.Factories.Analysis
 {
     public class RulesCollectionFactory : IRulesCollectionFactory
     {
-        public AtomChargeRuleCollection BuildAtomChargeRuleCollection(List<Molecule> molecules)
+        public AtomPopulationRuleCollection BuildAtomChargeRuleCollection(List<Molecule> molecules)
         {
-            AtomChargeRuleCollection result = new AtomChargeRuleCollection();
+            AtomPopulationRuleCollection result = new AtomPopulationRuleCollection();
             foreach (Molecule molecule in molecules)
             {
                 foreach (Atom atom in molecule.Atoms)
                 {
-                    result.Add(new AtomChargeRule(new AtomRuleTag(atom, molecule.Name),
-                                    new AtomChargeRuleVector(atom)));
+                    var tag = new AtomRuleTag(atom, molecule.Name);
+                    var vector = new AtomPopulationRuleVector(atom);
+                    if ( vector.IsValid()) {
+                        result.Add(new AtomPopulationRule(tag, vector));
+                    }
                 }
             }
             return result;

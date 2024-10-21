@@ -2,7 +2,7 @@
 
 namespace Molecules.Core.Domain.ValueObjects.Analysis.AtomRules
 {
-    public class AtomChargeRuleCollection : MoleculesRuleCollection<AtomRuleTag, AtomChargeRuleVector>
+    public class AtomPopulationRuleCollection : MoleculesRuleCollection<AtomRuleTag, AtomPopulationRuleVector>
     {
     }
 }

@@ -10,5 +10,10 @@
         {
             return $"{{{string.Join(',', GetData())}}}";
         }
+
+        public bool IsValid()
+        {
+            return !GetData().Contains(Invalid);
+        }
     }
 }
