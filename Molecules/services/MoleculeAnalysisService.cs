@@ -28,6 +28,14 @@ namespace Molecules.services
         {
             Console.WriteLine($"Base directory is {_settings.BasePath}");
             Console.WriteLine($"Analysis output directory is {_settings.AnalysisOutputPath}");
+
+
+            KMeans.Test();
+
+
+            Console.ReadLine();
+
+
             var result = await _moleculeAnalysisService.CreateDataSetAsync(AnalysisTypeEnum.AtomChargeRules);
             string fileName = WriteResult(result, AnalysisTypeEnum.AtomChargeRules);
             Console.WriteLine($"Output written to {fileName}");
