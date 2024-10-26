@@ -25,8 +25,8 @@ namespace Molecules.Core.Services.Analysis
                 new double[] { 9.0, 3.0 }
            };
 
-            int k = 3;
-            List<int> labels = KMeans.Cluster(data, k);
+            int numberOfClusters = 3;
+            List<int> labels = KMeans.Cluster(data, numberOfClusters);
 
             for (int i = 0; i < data.Length; i++)
             {
@@ -36,18 +36,18 @@ namespace Molecules.Core.Services.Analysis
 
 
 
-        public static List<int> Cluster(double[][] data, int k, int maxIterations = 100)
+        public static List<int> Cluster(double[][] data, int numberOfClusters, int maxIterations = 100)
         {
-            int n = data.Length;
-            int m = data[0].Length;
+            int numberOfVectors = data.Length;
+            int vectorDimensions = data[0].Length;
             Random random = new Random();
-            double[][] centroids = new double[k][];
-            for (int i = 0; i < k; i++)
+            double[][] centroids = new double[numberOfClusters][];
+            for (int i = 0; i < numberOfClusters; i++)
             {
-                centroids[i] = data[random.Next(n)];
+                centroids[i] = data[random.Next(numberOfVectors)];
             }
 
-            int[] labels = new int[n];
+            int[] labels = new int[numberOfVectors];
             bool changed = true;
             int iterations = 0;
 
@@ -57,7 +57,7 @@ namespace Molecules.Core.Services.Analysis
                 iterations++;
 
                 // Assign labels
-                for (int i = 0; i < n; i++)
+                for (int i = 0; i < numberOfVectors; i++)
                 {
                     int newLabel = GetNearestCentroid(data[i], centroids);
                     if (newLabel != labels[i])
@@ -68,15 +68,15 @@ namespace Molecules.Core.Services.Analysis
                 }
 
                 // Update centroids
-                for (int i = 0; i < k; i++)
+                for (int i = 0; i < numberOfClusters; i++)
                 {
-                    double[] newCentroid = new double[m];
+                    double[] newCentroid = new double[vectorDimensions];
                     int count = 0;
-                    for (int j = 0; j < n; j++)
+                    for (int j = 0; j < numberOfVectors; j++)
                     {
                         if (labels[j] == i)
                         {
-                            for (int l = 0; l < m; l++)
+                            for (int l = 0; l < vectorDimensions; l++)
                             {
                                 newCentroid[l] += data[j][l];
                             }
@@ -85,7 +85,7 @@ namespace Molecules.Core.Services.Analysis
                     }
                     if (count > 0)
                     {
-                        for (int l = 0; l < m; l++)
+                        for (int l = 0; l < vectorDimensions; l++)
                         {
                             newCentroid[l] /= count;
                         }
