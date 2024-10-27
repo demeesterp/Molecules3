@@ -27,6 +27,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Molecules.Libraries", "Molecules.Libraries\Molecules.Libraries.csproj", "{B8A29D2E-27AD-48EA-934C-7E6D907E24D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{699A0366-B5CB-4A6E-92FE-CBE5FF844D64}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{699A0366-B5CB-4A6E-92FE-CBE5FF844D64}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{699A0366-B5CB-4A6E-92FE-CBE5FF844D64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8A29D2E-27AD-48EA-934C-7E6D907E24D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8A29D2E-27AD-48EA-934C-7E6D907E24D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8A29D2E-27AD-48EA-934C-7E6D907E24D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8A29D2E-27AD-48EA-934C-7E6D907E24D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

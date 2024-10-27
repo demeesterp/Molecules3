@@ -1,5 +1,4 @@
-﻿using Molecules.Core.Domain.ValueObjects.Analysis;
-using Molecules.Core.Services.Analysis;
+﻿using Molecules.Core.Services.Analysis;
 using Molecules.settings;
 
 namespace Molecules.services
@@ -23,30 +22,14 @@ namespace Molecules.services
             _settings = settings;
         }
 
-
         public async Task RunAsync()
         {
             Console.WriteLine($"Base directory is {_settings.BasePath}");
             Console.WriteLine($"Analysis output directory is {_settings.AnalysisOutputPath}");
 
-
-            KMeans.Test();
-
-
-            Console.ReadLine();
-
-
-            var result = await _moleculeAnalysisService.CreateDataSetAsync(AnalysisTypeEnum.AtomChargeRules);
-            string fileName = WriteResult(result, AnalysisTypeEnum.AtomChargeRules);
-            Console.WriteLine($"Output written to {fileName}");
+            await Task.CompletedTask;
+           
+            Console.WriteLine($"Output written");
         }
-
-        private string WriteResult(string fileContent, AnalysisTypeEnum analysisType)
-        {
-            string fileName = Path.Combine(_settings.AnalysisOutputPath, $"{analysisType}.txt");
-            File.WriteAllText(fileName, fileContent);
-            return fileName;
-        }
-
     }
 }

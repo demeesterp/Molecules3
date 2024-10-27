@@ -1,4 +1,4 @@
-﻿namespace Molecules.Core.Domain.ValueObjects.Analysis.RulesBase
+﻿ namespace Molecules.Core.Domain.ValueObjects.Analysis.RulesBase
 {
     public abstract class RuleVector
     {

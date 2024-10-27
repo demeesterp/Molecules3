@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Molecules.Core.Factories.Analysis;
 using Molecules.Core.Factories.CalcInput;
 using Molecules.Core.Factories.Molecules;
 using Molecules.Core.Services.Analysis;
@@ -27,7 +26,6 @@ namespace Molecules.Core
 
                     services.AddSingleton<IGmsCalcInputFactory, GmsCalcInputFactory>();
                     services.AddSingleton<IMoleculeFromGmsFactory, MoleculeFromGmsFactory>();
-                    services.AddSingleton<IRulesCollectionFactory, RulesCollectionFactory>();
 
 
                     break;
@@ -41,7 +39,6 @@ namespace Molecules.Core
 
                     services.AddScoped<IGmsCalcInputFactory, GmsCalcInputFactory>();
                     services.AddScoped<IMoleculeFromGmsFactory, MoleculeFromGmsFactory>();
-                    services.AddScoped<IRulesCollectionFactory, RulesCollectionFactory>();
 
 
                     break;
@@ -55,7 +52,6 @@ namespace Molecules.Core
 
                     services.AddTransient<IGmsCalcInputFactory, GmsCalcInputFactory>();
                     services.AddTransient<IMoleculeFromGmsFactory, MoleculeFromGmsFactory>();
-                    services.AddTransient<IRulesCollectionFactory, RulesCollectionFactory>();
                     break;
             }
 
