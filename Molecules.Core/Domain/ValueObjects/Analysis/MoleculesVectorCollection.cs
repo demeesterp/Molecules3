@@ -40,7 +40,7 @@
             Vectors.AddRange(vectorList);
         }
 
-        public List<MoleculesCluster> Cluster(int numberOfClusters)
+        public List<MoleculesCluster> KMeansCluster(int numberOfClusters)
         {
             List<MoleculesVector> centroids = GetRandomVectors(numberOfClusters);
             int vectorDimension = Dimension;
