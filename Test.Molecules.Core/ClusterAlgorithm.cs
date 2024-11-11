@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using Molecules.Core.Domain.ValueObjects.Analysis;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Test.Molecules.Core
 {
@@ -47,6 +49,7 @@ namespace Test.Molecules.Core
 
 
         public delegate double DistanceFunction<T>(T point1, T point2);
+
 
         public static List<int> Cluster<T>(List<T> inputData, int numberOfClusters, DistanceFunction<T> distanceFunc, int maxIterations = 100) where T : IEnumerable<double>
         {

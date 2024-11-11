@@ -1,6 +1,4 @@
-﻿
-
-using Molecules.Core.Domain.ValueObjects.Analysis;
+﻿using Molecules.Core.Domain.ValueObjects.Analysis;
 
 namespace Molecules.Core.Factories.Analysis
 {

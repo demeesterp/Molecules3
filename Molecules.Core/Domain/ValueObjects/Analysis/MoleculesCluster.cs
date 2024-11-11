@@ -1,10 +1,11 @@
 ﻿namespace Molecules.Core.Domain.ValueObjects.Analysis
 {
-    public class MoleculesCluster : MoleculesVectorCollection
+    public class MoleculesCluster 
     {
-        public MoleculesCluster(int label) : base()
+        public MoleculesCluster(int label)
         {
             Label = label;
+            Vectors = new List<MoleculesVector>();
         }
 
         public int Label
@@ -13,5 +14,10 @@
             set;
         }
 
+        public List<MoleculesVector> Vectors
+        {
+            get;
+            set;
+        }
     }
 }
