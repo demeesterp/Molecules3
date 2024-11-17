@@ -8,30 +8,30 @@ namespace Molecules.Core.Domain.ValueObjects.Molecules
 
         public int Atom2Position { get; set; }
 
-        public decimal? Distance { get; set; }
+        public double? Distance { get; set; }
 
-        public decimal? BondOrder { get; set; }
+        public double? BondOrder { get; set; }
 
-        public decimal? BondOrderMinus1 { get; set; }
+        public double? BondOrderMinus1 { get; set; }
 
-        public decimal? BondOrderPlus1 { get; set; }
+        public double? BondOrderPlus1 { get; set; }
 
-        public decimal? OverlapPopulation { get; set; }
+        public double? OverlapPopulation { get; set; }
 
-        public decimal? OverlapPopulationMinus1 { get; set; }
+        public double? OverlapPopulationMinus1 { get; set; }
 
-        public decimal? OverlapPopulationPlus1 { get; set; }
-
-        [JsonIgnore]
-        public decimal? BondOrderHOMO => BondOrder - BondOrderMinus1;
+        public double? OverlapPopulationPlus1 { get; set; }
 
         [JsonIgnore]
-        public decimal? BondOrderLUMO => BondOrderPlus1 - BondOrder;
+        public double? BondOrderHOMO => BondOrder - BondOrderMinus1;
 
         [JsonIgnore]
-        public decimal? OverlapPopulationHOMO => OverlapPopulation - OverlapPopulationMinus1;
+        public double? BondOrderLUMO => BondOrderPlus1 - BondOrder;
 
         [JsonIgnore]
-        public decimal? OverlapPopulationLUMO => OverlapPopulationPlus1 - OverlapPopulation;
+        public double? OverlapPopulationHOMO => OverlapPopulation - OverlapPopulationMinus1;
+
+        [JsonIgnore]
+        public double? OverlapPopulationLUMO => OverlapPopulationPlus1 - OverlapPopulation;
     }
 }

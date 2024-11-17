@@ -105,8 +105,8 @@ namespace Molecules.Core.Factories.CalcParsers
                             Atom? atom = molecule.Atoms.Find(i => i.Position == atomPosition && i.Symbol == atomSymbol);
                             if (atom != null)
                             {
-                                decimal mulliken = StringConversion.ToDecimal(items[4].Trim());
-                                decimal lowdin = StringConversion.ToDecimal(items[5].Trim());
+                                var mulliken = StringConversion.ToDouble(items[4].Trim());
+                                var lowdin = StringConversion.ToDouble(items[5].Trim());
                                 AtomOrbital? orbital = atom.Orbitals.Find(i => i.Position == orbitalpos && i.Symbol == orbitalSymbol);
                                 if (orbital != null)
                                 {
@@ -228,7 +228,7 @@ namespace Molecules.Core.Factories.CalcParsers
                                                 {
                                                     Atom1Position = int.Parse(data[0]),
                                                     Atom2Position = blockCount * 5 + pos,
-                                                    OverlapPopulation = StringConversion.ToDecimal(data[pos].Trim())
+                                                    OverlapPopulation = StringConversion.ToDouble(data[pos].Trim())
                                                 };
                                                 break;
                                             }
@@ -238,7 +238,7 @@ namespace Molecules.Core.Factories.CalcParsers
                                                 {
                                                     Atom1Position = int.Parse(data[0]),
                                                     Atom2Position = blockCount * 5 + pos,
-                                                    OverlapPopulationPlus1 = StringConversion.ToDecimal(data[pos].Trim())
+                                                    OverlapPopulationPlus1 = StringConversion.ToDouble(data[pos].Trim())
                                                 };
 
 
@@ -250,7 +250,7 @@ namespace Molecules.Core.Factories.CalcParsers
                                                 {
                                                     Atom1Position = int.Parse(data[0]),
                                                     Atom2Position = blockCount * 5 + pos,
-                                                    OverlapPopulationMinus1 = StringConversion.ToDecimal(data[pos].Trim())
+                                                    OverlapPopulationMinus1 = StringConversion.ToDouble(data[pos].Trim())
                                                 };
                                                 break;
                                             }
@@ -345,8 +345,8 @@ namespace Molecules.Core.Factories.CalcParsers
                         {
                             int atompos1 = int.Parse(result[outerc * 4]);
                             int atompos2 = int.Parse(result[1 + outerc * 4]);
-                            decimal dist = StringConversion.ToDecimal(result[2 + outerc * 4].Trim());
-                            decimal bondorder = StringConversion.ToDecimal(result[3 + outerc * 4].Trim());
+                            var dist = StringConversion.ToDouble(result[2 + outerc * 4].Trim());
+                            var bondorder = StringConversion.ToDouble(result[3 + outerc * 4].Trim());
 
                             switch (GetPopulationStatus())
                             {
@@ -410,8 +410,8 @@ namespace Molecules.Core.Factories.CalcParsers
                         {
                             int position = int.Parse(result[0].Trim());
                             string symbol = result[1].Trim();
-                            decimal mullpop = StringConversion.ToDecimal(result[2].Trim());
-                            decimal lowdinpop = StringConversion.ToDecimal(result[4].Trim());
+                            var mullpop = StringConversion.ToDouble(result[2].Trim());
+                            var lowdinpop = StringConversion.ToDouble(result[4].Trim());
 
 
                             switch (GetPopulationStatus())

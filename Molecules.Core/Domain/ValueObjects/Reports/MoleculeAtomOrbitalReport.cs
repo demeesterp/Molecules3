@@ -10,7 +10,7 @@ namespace Molecules.Core.Domain.ValueObjects.Reports
 
         public string AtomID { get; set; } = "";
 
-        public decimal? MullikenPopulation { get; set; }
+        public double? MullikenPopulation { get; set; }
 
         public string ElectronConfiguration
         {

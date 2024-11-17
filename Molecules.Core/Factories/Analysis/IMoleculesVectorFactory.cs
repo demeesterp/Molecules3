@@ -1,10 +1,11 @@
-﻿using Molecules.Core.Domain.ValueObjects.Analysis;
+﻿using Molecules.Core.Domain.ValueObjects.Analysis.Population;
+using Molecules.Core.Domain.ValueObjects.Molecules;
 
 namespace Molecules.Core.Factories.Analysis
 {
     public interface IMoleculesVectorFactory
     {
-        MoleculesVector CreateDefaultInstance();
+        MoleculeAtomPopulationVector CreateMoleculeAtomPopulationVector(Atom atom, string moleculeName);
 
     }
 }

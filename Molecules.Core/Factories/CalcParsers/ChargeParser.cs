@@ -61,12 +61,12 @@ namespace Molecules.Core.Factories.CalcParsers
                     {
                         ElectronicPotential item = new()
                         {
-                            PosX = StringConversion.ToDecimal(data[1]),
-                            PosY = StringConversion.ToDecimal(data[2]),
-                            PosZ = StringConversion.ToDecimal(data[3]),
-                            Electronic = StringConversion.ToDecimal(data[4]),
-                            Nuclear = StringConversion.ToDecimal(data[5]),
-                            Total = StringConversion.ToDecimal(data[6]),
+                            PosX = StringConversion.ToDouble(data[1]),
+                            PosY = StringConversion.ToDouble(data[2]),
+                            PosZ = StringConversion.ToDouble(data[3]),
+                            Electronic = StringConversion.ToDouble(data[4]),
+                            Nuclear = StringConversion.ToDouble(data[5]),
+                            Total = StringConversion.ToDouble(data[6]),
                             Type = isGeoDisc ? ElectronicPotentialType.GeoDisc.ToString() : ElectronicPotentialType.CHelgG.ToString()
                         };
                         molecule.ElPot.Add(item);
@@ -84,7 +84,7 @@ namespace Molecules.Core.Factories.CalcParsers
                     if (data.Length > 2)
                     {
                         string symbol = data[0];
-                        decimal charge = StringConversion.ToDecimal(data[1].Trim());
+                        double charge = StringConversion.ToDouble(data[1].Trim());
                         var atom = molecule.Atoms.Find(i => i.Position == currentAtomPos && i.Symbol == symbol);
                         if (atom != null)
                         {

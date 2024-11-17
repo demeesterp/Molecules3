@@ -3,21 +3,21 @@
     public class AtomOrbitalReport
     {
 
-        private decimal? _populationFraction;
-        private decimal? _populationFractionHOMO;
-        private decimal? _populationFractionLUMO;
+        private double? _populationFraction;
+        private double? _populationFractionHOMO;
+        private double? _populationFractionLUMO;
 
 
-        private decimal? _population;
-        private decimal? _populationHOMO;
-        private decimal? _populationLUMO;
+        private double? _population;
+        private double? _populationHOMO;
+        private double? _populationLUMO;
 
 
         public string MoleculeName { get; set; } = "";
         public string AtomID { get; set; } = "";
         public int OrbitalPosition { get; set; } = 0;
         public string OrbitalSymbol { get; set; } = "";
-        public decimal? PopulationFraction
+        public double? PopulationFraction
         {
             get
             {
@@ -28,7 +28,7 @@
                 _populationFraction = value.HasValue ? Math.Round(value.Value, 6) : null;
             }
         }
-        public decimal? PopulationFractionHOMO
+        public double? PopulationFractionHOMO
         {
             get
             {
@@ -39,7 +39,7 @@
                 _populationFractionHOMO = value.HasValue ? Math.Round(value.Value, 6) : null;
             }
         }
-        public decimal? PopulationFractionLUMO
+        public double? PopulationFractionLUMO
         {
             get
             {
@@ -50,7 +50,7 @@
                 _populationFractionLUMO = value.HasValue ? Math.Round(value.Value, 6) : null;
             }
         }
-        public decimal? Population
+        public double? Population
         {
             get
             {
@@ -61,7 +61,7 @@
                 _population = value.HasValue ? Math.Round(value.Value, 6) : null;
             }
         }
-        public decimal? PopulationHOMO
+        public double? PopulationHOMO
         {
             get
             {
@@ -72,7 +72,7 @@
                 _populationHOMO = value.HasValue ? Math.Round(value.Value, 6) : null;
             }
         }
-        public decimal? PopulationLUMO
+        public double? PopulationLUMO
         {
             get
             {

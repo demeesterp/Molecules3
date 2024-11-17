@@ -43,25 +43,25 @@ namespace Molecules.Core.Domain.ValueObjects.Molecules
 
         public int? Charge { get; set; }
 
-        public decimal? DftEnergy { get; set; }
+        public double? DftEnergy { get; set; }
 
-        public decimal? HFEnergy { get; set; }
+        public double? HFEnergy { get; set; }
 
-        public decimal? HFEnergyHOMO { get; set; }
+        public double? HFEnergyHOMO { get; set; }
 
-        public decimal? HFEnergyLUMO { get; set; }
-
-        [JsonIgnore]
-        public decimal? IonisationEnergy => HFEnergyHOMO - HFEnergy;
+        public double? HFEnergyLUMO { get; set; }
 
         [JsonIgnore]
-        public decimal? ElectronAffinitiy => HFEnergy - HFEnergyLUMO;
+        public double? IonisationEnergy => HFEnergyHOMO - HFEnergy;
 
         [JsonIgnore]
-        public decimal? ChemicalPotential => 0.5M * (IonisationEnergy + ElectronAffinitiy);
+        public double? ElectronAffinitiy => HFEnergy - HFEnergyLUMO;
 
         [JsonIgnore]
-        public decimal? Hardness => 0.5M * (IonisationEnergy - ElectronAffinitiy);
+        public double? ChemicalPotential => 0.5 * (IonisationEnergy + ElectronAffinitiy);
+
+        [JsonIgnore]
+        public double? Hardness => 0.5 * (IonisationEnergy - ElectronAffinitiy);
 
 
         public static string GetXyzFileData(Molecule? molecule)

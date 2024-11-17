@@ -6,12 +6,12 @@
 
         public string AtomID { get; set; } = "";
 
-        public decimal? MullikenCharge { get; set; }
+        public double? MullikenCharge { get; set; }
 
-        public decimal? LowdinCharge { get; set; }
+        public double? LowdinCharge { get; set; }
 
-        public decimal? CHelpGHCharge { get; set; }
+        public double? CHelpGHCharge { get; set; }
 
-        public decimal? GeoDiscCharge { get; set; }
+        public double? GeoDiscCharge { get; set; }
     }
 }

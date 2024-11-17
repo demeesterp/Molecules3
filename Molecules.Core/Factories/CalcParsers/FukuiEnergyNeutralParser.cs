@@ -24,7 +24,7 @@
         }
 
 
-        internal static decimal GetEnergy(List<string> fileLines)
+        internal static double GetEnergy(List<string> fileLines)
         {
             FukuiEnergyNeutralParser parser = new();
             return parser.Parse(fileLines);

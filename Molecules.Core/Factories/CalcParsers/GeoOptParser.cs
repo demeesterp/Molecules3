@@ -81,10 +81,10 @@ namespace Molecules.Core.Factories.CalcParsers
             string posz = line.Substring(current.Item2 + 30, 15);
 
             retval.Symbol = atomsymbol;
-            retval.AtomicWeight = (int)StringConversion.ToDecimal(charge);
-            retval.PosX = StringConversion.ToDecimal(posx);
-            retval.PosY = StringConversion.ToDecimal(posy);
-            retval.PosZ = StringConversion.ToDecimal(posz);
+            retval.AtomicWeight = (int)StringConversion.ToDouble(charge);
+            retval.PosX = StringConversion.ToDouble(posx);
+            retval.PosY = StringConversion.ToDouble(posy);
+            retval.PosZ = StringConversion.ToDouble(posz);
 
             return retval;
         }

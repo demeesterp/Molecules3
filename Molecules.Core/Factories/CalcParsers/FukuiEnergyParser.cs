@@ -12,9 +12,9 @@ namespace Molecules.Core.Factories.CalcParsers
 
         #endregion
 
-        public decimal Parse(List<string> input)
+        public double Parse(List<string> input)
         {
-            decimal retval = decimal.Zero;
+            var retval = 0.0;
             bool startProcessing = false;
             for (int c = 0; c < input.Count; ++c)
             {
@@ -30,7 +30,7 @@ namespace Molecules.Core.Factories.CalcParsers
                     var results = line.Split(new string[] { "=" }, StringSplitOptions.RemoveEmptyEntries);
                     if (results.Length == 2)
                     {
-                        retval = StringConversion.ToDecimal(results[1].Trim());
+                        retval = StringConversion.ToDouble(results[1].Trim());
                     }
                 }
             }

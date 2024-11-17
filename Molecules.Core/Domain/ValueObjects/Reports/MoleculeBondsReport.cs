@@ -9,10 +9,10 @@
         public int Atom2Pos { get; set; }
 
         public string BondID { get; set; } = "";
-        public decimal? Distance { get; set; }
-        public decimal? BondOrder { get; set; }
-        public decimal? OverlapPopulation { get; set; }
-        public decimal? OverlapPopulationHOMO { get; set; }
-        public decimal? OverlapPopulationLUMO { get; set; }
+        public double? Distance { get; set; }
+        public double? BondOrder { get; set; }
+        public double? OverlapPopulation { get; set; }
+        public double? OverlapPopulationHOMO { get; set; }
+        public double? OverlapPopulationLUMO { get; set; }
     }
 }

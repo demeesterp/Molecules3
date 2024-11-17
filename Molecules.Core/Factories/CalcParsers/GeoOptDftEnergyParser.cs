@@ -31,7 +31,7 @@ namespace Molecules.Core.Factories.CalcParsers
                     var data = line.Split(new string[] { "=" }, StringSplitOptions.RemoveEmptyEntries);
                     if (data.Length > 1)
                     {
-                        molecule.DftEnergy = StringConversion.ToDecimal(data[1].Trim());
+                        molecule.DftEnergy = StringConversion.ToDouble(data[1].Trim());
 
                         break;
                     }

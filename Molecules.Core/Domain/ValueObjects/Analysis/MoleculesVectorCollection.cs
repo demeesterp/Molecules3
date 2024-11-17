@@ -18,24 +18,24 @@
             AddVectors(vectorList);
         }
 
-        public int Dimension => Vectors.Any() ? Vectors.First().Dimension : 0;
+        public int Dimensions => Vectors.Any() ? Vectors.First().Dimensions : 0;
 
-        public MoleculesVector AddVector(MoleculesVector vector)
+        protected MoleculesVector AddVector(MoleculesVector vector)
         {
             ArgumentNullException.ThrowIfNull(vector);
-            if (Dimension > 0 && vector.Dimension != Dimension)
+            if (Dimensions > 0 && vector.Dimensions != Dimensions)
             {
-                throw new ArgumentOutOfRangeException($"Vector {vector.Name} has invalid dimension {vector.Dimension} allowed value {Dimension}!");
+                throw new ArgumentOutOfRangeException($"Vector {vector.Name} has invalid dimension {vector.Dimensions} allowed value {Dimensions}!");
             }
             Vectors.Add(vector);
             return vector;
         }
 
-        public void AddVectors(IList<MoleculesVector> vectorList)
+        protected void AddVectors(IList<MoleculesVector> vectorList)
         {
-            if (Dimension > 0 && vectorList.Any(x => x.Dimension != Dimension))
+            if (Dimensions > 0 && vectorList.Any(x => x.Dimensions != Dimensions))
             {
-                throw new ArgumentOutOfRangeException($"Some vectors has invalid dimension allowed value {Dimension}!");
+                throw new ArgumentOutOfRangeException($"Some vectors has invalid dimension allowed value {Dimensions}!");
             }
             Vectors.AddRange(vectorList);
         }
@@ -43,7 +43,7 @@
         public List<MoleculesCluster> KMeansCluster(int numberOfClusters)
         {
             List<MoleculesVector> centroids = GetRandomVectors(numberOfClusters);
-            int vectorDimension = Dimension;
+            int vectorDimension = Dimensions;
             bool changed = true;
             int iterations = 0;
             int[] labels = new int[Vectors.Count];
@@ -61,7 +61,7 @@
                             clusterPoints.Add(Vectors.ElementAt(vectorIndex));
                         }
                     }
-                    MoleculesVector newcentroid = CreateVector();
+                    MoleculesVector newcentroid = CreateEmptyCentroid();
                     foreach (var vector in clusterPoints)
                     {
                         for (int i = 0; i > vectorDimension; ++i)
@@ -93,7 +93,7 @@
             return result;
         }
 
-        protected abstract MoleculesVector CreateVector();
+        protected abstract MoleculesVector CreateEmptyCentroid();
 
         private List<MoleculesVector> GetRandomVectors(int nbrOfVectors)
         {
@@ -125,10 +125,10 @@
         private int GetNearestCentroid(int vectorPos, List<MoleculesVector> centroids)
         {
             int nearest = 0;
-            decimal minDistance = Vectors.ElementAt(vectorPos).GetDistance(centroids.First());
+            double minDistance = Vectors.ElementAt(vectorPos).GetDistance(centroids.First());
             for (int i = 1; i < centroids.Count; i++)
             {
-                decimal distance = Vectors.ElementAt(vectorPos).GetDistance(centroids.ElementAt(i));
+                double distance = Vectors.ElementAt(vectorPos).GetDistance(centroids.ElementAt(i));
                 if (distance < minDistance)
                 {
                     minDistance = distance;
@@ -137,11 +137,6 @@
             }
             return nearest;
         }
-
-
-
-
-
        
     }
 }

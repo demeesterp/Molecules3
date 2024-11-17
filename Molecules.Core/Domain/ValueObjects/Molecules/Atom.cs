@@ -15,44 +15,44 @@ namespace Molecules.Core.Domain.ValueObjects.Molecules
 
         public AtomProperties? Info { get; set; }
 
-        public decimal? PosX { get; set; }
+        public double? PosX { get; set; }
 
-        public decimal? PosY { get; set; }
+        public double? PosY { get; set; }
 
-        public decimal? PosZ { get; set; }
+        public double? PosZ { get; set; }
 
-        public decimal? Radius { get; set; }
+        public double? Radius { get; set; }
 
-        public decimal? MullikenPopulation { get; set; }
+        public double? MullikenPopulation { get; set; }
 
-        public decimal? MullikenPopulationMinus1 { get; set; }
+        public double? MullikenPopulationMinus1 { get; set; }
 
-        public decimal? MullikenPopulationPlus1 { get; set; }
-
-        [JsonIgnore]
-        public decimal? MullikenPopulationLUMO => MullikenPopulationPlus1 - MullikenPopulation;
+        public double? MullikenPopulationPlus1 { get; set; }
 
         [JsonIgnore]
-        public decimal? MullikenPopulationHOMO => MullikenPopulation - MullikenPopulationMinus1;
-
-
-        public decimal? LowdinPopulation { get; set; }
-
-        public decimal? LowdinPopulationMinus1 { get; set; }
-
-        public decimal? LowdinPopulationPlus1 { get; set; }
+        public double? MullikenPopulationLUMO => MullikenPopulationPlus1 - MullikenPopulation;
 
         [JsonIgnore]
-        public decimal? LowdinPopulationLUMO => LowdinPopulationPlus1 - LowdinPopulation;
+        public double? MullikenPopulationHOMO => MullikenPopulation - MullikenPopulationMinus1;
+
+
+        public double? LowdinPopulation { get; set; }
+
+        public double? LowdinPopulationMinus1 { get; set; }
+
+        public double? LowdinPopulationPlus1 { get; set; }
 
         [JsonIgnore]
-        public decimal? LowdinPopulationHOMO => LowdinPopulation - LowdinPopulationMinus1;
+        public double? LowdinPopulationLUMO => LowdinPopulationPlus1 - LowdinPopulation;
 
-        public decimal? CHelpGCharge { get; set; }
+        [JsonIgnore]
+        public double? LowdinPopulationHOMO => LowdinPopulation - LowdinPopulationMinus1;
 
-        public decimal? ConnollyCharge { get; set; }
+        public double? CHelpGCharge { get; set; }
 
-        public decimal? GeoDiscCharge { get; set; }
+        public double? ConnollyCharge { get; set; }
+
+        public double? GeoDiscCharge { get; set; }
 
         public List<AtomOrbital> Orbitals { get; set; } = [];
 
