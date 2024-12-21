@@ -40,7 +40,6 @@ namespace Molecules.Core.Services.Analysis
         public async Task<MoleculeAtomPopulationAnalysisResult> DoAtomPopulationAnalysisAsync(int numberOfClusters)
         {
             MoleculeAtomPopulationAnalysisResult result = new MoleculeAtomPopulationAnalysisResult();
-
             List<MoleculeAtomPopulationVector> allVectors = new List<MoleculeAtomPopulationVector>();
             foreach (Molecule molecule in await GetAllMoleculesAsync())
             {
@@ -61,7 +60,8 @@ namespace Molecules.Core.Services.Analysis
 
             foreach(var atomCollection in subCollections)
             {
-                foreach(var cluster in atomCollection.KMeansCluster(numberOfClusters))
+                var clusters = atomCollection.KMeansCluster(numberOfClusters);
+                foreach (var cluster in clusters)
                 {
                     var atomKind = AtomPropertiesTable.GetAtomProperties(atomCollection.AtomNumber);
                     if (atomKind is not null)
@@ -75,23 +75,6 @@ namespace Molecules.Core.Services.Analysis
             }
             return result;
         }
-
-
-
-        
-        
-        
-        
-        
-        
-        
-        // Tasks of this service 
-        // Task 1 Get the molecules from DataBase
-        // Task 2 Build a vector collections
-        // Task 3 Cluster the vectors around centroids
-        // Task 4 Build a clustering report
-
-
 
     }
 }

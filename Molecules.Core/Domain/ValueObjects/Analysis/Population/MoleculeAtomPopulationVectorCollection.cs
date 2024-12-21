@@ -27,5 +27,9 @@ namespace Molecules.Core.Domain.ValueObjects.Analysis.Population
             AddVectors(vectorsToAdd.Cast<MoleculesVector>().ToList());
         }
 
+        protected override void Normalize()
+        {
+           
+        }
     }
 }

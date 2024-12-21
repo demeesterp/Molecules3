@@ -47,6 +47,13 @@
             bool changed = true;
             int iterations = 0;
             int[] labels = new int[Vectors.Count];
+
+            Normalize();
+
+            if ( labels.Length <= numberOfClusters)
+            {
+                return new List<MoleculesCluster>();
+            }
             while (changed && iterations < int.MaxValue)
             {
                 iterations++;
@@ -56,15 +63,21 @@
                     List<MoleculesVector> clusterPoints = new List<MoleculesVector>();
                     for (int vectorIndex = 0; vectorIndex < Vectors.Count; vectorIndex++)
                     {
-                        if (labels[vectorIndex] == labels[centroidIndex])
+                        if (labels[vectorIndex] == centroidIndex)
                         {
                             clusterPoints.Add(Vectors.ElementAt(vectorIndex));
                         }
                     }
+
+                    if (clusterPoints.Count == 0)
+                    {
+                        continue; // Skip empty clusters
+                    }
+
                     MoleculesVector newcentroid = CreateEmptyCentroid();
                     foreach (var vector in clusterPoints)
                     {
-                        for (int i = 0; i > vectorDimension; ++i)
+                        for (int i = 0; i < vectorDimension; ++i)
                         {
                             newcentroid.AddToValue(i, vector.GetValue(i));
                         }
@@ -72,7 +85,7 @@
 
                     for (int i = 0; i < vectorDimension; ++i)
                     {
-                        newcentroid.MultiplyValueWith(i, 1 / clusterPoints.Count);
+                        newcentroid.MultiplyValueWith(i, 1.0 / clusterPoints.Count);
                     }
 
                     centroids[centroidIndex] = newcentroid;
@@ -137,6 +150,9 @@
             }
             return nearest;
         }
+
+
+        protected abstract void Normalize();
        
     }
 }
