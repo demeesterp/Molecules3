@@ -1,24 +1,31 @@
 ﻿using Molecules.Core.Domain.Entities;
 using Molecules.Core.Domain.ValueObjects.Analysis.Population;
 using Molecules.Core.Domain.ValueObjects.AtomData;
+using Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Base;
 using Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Population;
 using Molecules.Core.Domain.ValueObjects.Molecules;
 using Molecules.Core.Factories.Analysis;
+using Molecules.Core.Services.Analysis.Clustering;
 using Molecules.Core.Services.CalcMolecules;
 using Molecules.Shared.Logger;
+using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.Metrics;
 using System.Linq;
 
 namespace Molecules.Core.Services.Analysis
 {
-    public class MoleculeAnalysisService(ICalcMoleculeService calcMoleculeService, 
-                                            IMoleculesVectorFactory moleculesVectorFactory,
+    public class MoleculeAnalysisService(ICalcMoleculeService calcMoleculeService,
+                                            IMoleculeVectorCollectionFactory moleculesVectorCollectionFactory,
+                                            IMoleculeClusterService moleculeClusterService,
                                                 IMoleculesLogger logger) : IMoleculeAnalysisService
     {
         #region dependencies
 
         private readonly ICalcMoleculeService _calcMoleculeService = calcMoleculeService;
 
-        private readonly IMoleculesVectorFactory _moleculesVectorFactor = moleculesVectorFactory;
+        private readonly IMoleculeVectorCollectionFactory _moleculesVectorCollectionFactory = moleculesVectorCollectionFactory;
+
+        private readonly IMoleculeClusterService _moleculeClusterService = moleculeClusterService;
 
         private readonly IMoleculesLogger _logger = logger;
 
@@ -27,37 +34,18 @@ namespace Molecules.Core.Services.Analysis
         public async Task<MoleculeAtomPopulationAnalysisResult> DoAtomPopulationAnalysisAsync(int numberOfClusters)
         {
             MoleculeAtomPopulationAnalysisResult result = new MoleculeAtomPopulationAnalysisResult();
-            List<MoleculeAtomPopulationVector> allVectors = new List<MoleculeAtomPopulationVector>();
-            foreach (var molecule in (await _calcMoleculeService.GetAllByNameAsync("%")).Where(m => m.Molecule is not null))
+            foreach (var vectorsToCluster in _moleculesVectorCollectionFactory.CreateMoleculeAtomPopulationVectorCollection(await _calcMoleculeService.GetAllByNameAsync("%")))
             {
-                allVectors.AddRange(from Atom atom in molecule.Molecule!.Atoms
-                                    select _moleculesVectorFactor.CreateMoleculeAtomPopulationVector(atom, molecule.MoleculeName));
-            }
 
-            List<MoleculeAtomPopulationVectorCollection> subCollections = new List<MoleculeAtomPopulationVectorCollection>();
-            foreach(var collection in allVectors.GroupBy(x => x.AtomNumber))
-            {
-                MoleculeAtomPopulationVectorCollection newCollections =
-                    new MoleculeAtomPopulationVectorCollection(collection.Key);
-                newCollections.AddVectors(collection.ToList());
-                subCollections.Add(newCollections);
-            }
-
-            foreach(var atomCollection in subCollections)
-            {
-                var clusters = atomCollection.KMeansCluster(numberOfClusters);
-                foreach (var cluster in clusters)
+                var categories = _moleculeClusterService.KMeansCluster<MoleculeAtomPopulationVector>(vectorsToCluster, numberOfClusters);
+                foreach (MoleculesCluster<MoleculeAtomPopulationVector> category in categories)
                 {
-                    var atomKind = AtomPropertiesTable.GetAtomProperties(atomCollection.AtomNumber);
-                    if (atomKind is not null)
+                    var atomKind = AtomPropertiesTable.GetAtomProperties(vectorsToCluster.AtomNumber);
+                    if (atomKind != null)
                     {
-                        result.Results.Add(
-                            new MoleculeAtomPopulationCategory(atomKind.Symbol,
-                                                                cluster.Label,
-                                                                    cluster.Vectors.Cast<MoleculeAtomPopulationVector>()
-                            .ToList()));
+                        result.Categories.Add(new MoleculeAtomPopulationCategory(atomKind.Symbol, category));
                     }
-                };
+                }
             }
             return result;
         }

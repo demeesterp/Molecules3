@@ -6,35 +6,35 @@ namespace Molecules.Core.Domain.ValueObjects.AtomData
     {
         private static readonly ReadOnlyCollection<AtomProperties> _atomProperties =
             new([
-                   new (Atoms.H,"Hydrogen",1),
-                   new (Atoms.He,"Helium",2),
-                   new (Atoms.Li,"Lithium", 3),
-                   new (Atoms.Be,"Beryllium",4),
-                   new (Atoms.B,"Boron",5),
-                   new (Atoms.C,"Carbon",6),
-                   new (Atoms.N,"Nitrogen",7),
-                   new (Atoms.O,"Oxygen",8),
-                   new (Atoms.F,"Fluorine",9),
-                   new (Atoms.Ne,"Neon",10),
-                   new (Atoms.Na,"Sodium",11),
-                   new (Atoms.Mg,"Magnesium",12),
-                   new (Atoms.Al,"Aluminium",13),
-                   new (Atoms.Si,"Silicon",14),
-                   new (Atoms.P,"Phosphorus",15),
-                   new (Atoms.S,"Sulfur",16),
-                   new (Atoms.Cl,"Chlorine", 17),
-                   new (Atoms.Ar,"Argon", 18),
-                   new (Atoms.K,"Potassium",19),
-                   new (Atoms.Ca,"Calcium", 20),
-                   new (Atoms.Fe,"Iron",21)
+                   new (AtomsEnum.H,"Hydrogen",1),
+                   new (AtomsEnum.He,"Helium",2),
+                   new (AtomsEnum.Li,"Lithium", 3),
+                   new (AtomsEnum.Be,"Beryllium",4),
+                   new (AtomsEnum.B,"Boron",5),
+                   new (AtomsEnum.C,"Carbon",6),
+                   new (AtomsEnum.N,"Nitrogen",7),
+                   new (AtomsEnum.O,"Oxygen",8),
+                   new (AtomsEnum.F,"Fluorine",9),
+                   new (AtomsEnum.Ne,"Neon",10),
+                   new (AtomsEnum.Na,"Sodium",11),
+                   new (AtomsEnum.Mg,"Magnesium",12),
+                   new (AtomsEnum.Al,"Aluminium",13),
+                   new (AtomsEnum.Si,"Silicon",14),
+                   new (AtomsEnum.P,"Phosphorus",15),
+                   new (AtomsEnum.S,"Sulfur",16),
+                   new (AtomsEnum.Cl,"Chlorine", 17),
+                   new (AtomsEnum.Ar,"Argon", 18),
+                   new (AtomsEnum.K,"Potassium",19),
+                   new (AtomsEnum.Ca,"Calcium", 20),
+                   new (AtomsEnum.Fe,"Iron",21)
             ]);
 
         public static AtomProperties? GetAtomProperties(string symbol)
         {
-            return _atomProperties.FirstOrDefault(x => x.Symbol == Enum.Parse<Atoms>(symbol));
+            return _atomProperties.FirstOrDefault(x => x.Symbol == Enum.Parse<AtomsEnum>(symbol));
         }
 
-        public static AtomProperties? GetAtomProperties(Atoms symbol)
+        public static AtomProperties? GetAtomProperties(AtomsEnum symbol)
         {
             return _atomProperties.FirstOrDefault(x => x.Symbol == symbol);
         }

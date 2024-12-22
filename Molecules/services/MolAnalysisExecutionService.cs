@@ -31,7 +31,7 @@ namespace Molecules.services
             var numberOfCentersAnswer = Console.ReadLine();
             if (int.TryParse(numberOfCentersAnswer, out int numberOfCenters))
             {
-                MoleculeAtomPopulationAnalysisResult result = await _moleculeAnalysisService.DoAtomPopulationAnalysisAsync(numberOfCenters);
+                var result = await _moleculeAnalysisService.DoAtomPopulationAnalysisAsync(numberOfCenters);
                 var resultsFile = Path.Combine(_settings.AnalysisOutputPath, "result.csv");
                 File.WriteAllText(resultsFile, result.GetReport());
                 Console.WriteLine($"Output written to {resultsFile}");

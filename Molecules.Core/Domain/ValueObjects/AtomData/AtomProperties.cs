@@ -1,4 +1,4 @@
 ﻿namespace Molecules.Core.Domain.ValueObjects.AtomData
 {
-    public record AtomProperties(Atoms Symbol, string Name, int AtomNumber);
+    public record AtomProperties(AtomsEnum Symbol, string Name, int AtomNumber);
 }

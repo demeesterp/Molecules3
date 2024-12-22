@@ -4,7 +4,7 @@ namespace Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Population
 {
     public class MoleculeAtomPopulationVectorCollection : MoleculesVectorCollection
     {
-        protected override MoleculesVector CreateEmptyCentroid()
+        public override MoleculesVector CreateEmptyCentroid()
         {
             return new MoleculeAtomPopulationVector(string.Empty);
         }
@@ -25,11 +25,6 @@ namespace Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Population
         public void AddVectors(IList<MoleculeAtomPopulationVector> vectorsToAdd)
         {
             AddVectors(vectorsToAdd.Cast<MoleculesVector>().ToList());
-        }
-
-        protected override void Normalize()
-        {
-
         }
     }
 }

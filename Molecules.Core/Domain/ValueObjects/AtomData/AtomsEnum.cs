@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Molecules.Core.Domain.ValueObjects.AtomData
 {
-    public enum Atoms
+    public enum AtomsEnum
     {
         H,
         He,
