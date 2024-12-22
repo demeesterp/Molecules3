@@ -91,6 +91,11 @@ namespace Molecules.Core.Data.Repositories
             }
         }
 
-
+        public async Task<List<CalcMolecule>> GetAllByNameAsync(string moleculeName)
+        {
+            return await(from mol in _context.Molecule where
+                               EF.Functions.Like(mol.MoleculeName.ToLower(), $"{moleculeName.ToLower()}")
+                                    select _calcMoleculeFactory.BuildMolecule(mol)).AsNoTracking().ToListAsync();
+        }
     }
 }

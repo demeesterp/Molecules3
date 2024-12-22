@@ -43,6 +43,17 @@ namespace Molecules.Core.Services.CalcMolecules
                                     .ThenByDescending(i => i.Id).ToList();
         }
 
+        public async Task<List<CalcMolecule>> GetAllByNameAsync(string moleculeName)
+        {
+            _logger.LogInformation($"GetAllByNameAsync {moleculeName}");
+            
+            var moleculeDbEntities = await _repository.GetAllByNameAsync(moleculeName);
+
+            return moleculeDbEntities.OrderByDescending(i => i.OrderName)
+                                    .ThenByDescending(i => i.MoleculeName)
+                                    .ThenByDescending(i => i.Id).ToList();
+        }
+
         public async Task<CalcMolecule> CreateAsync(CalcMolecule molecule)
         {
             _logger.LogInformation("CreateAsync");

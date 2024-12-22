@@ -6,6 +6,7 @@ using Molecules.Core.Domain.ValueObjects.Molecules;
 using Molecules.Core.Factories.Analysis;
 using Molecules.Core.Services.CalcMolecules;
 using Molecules.Shared.Logger;
+using System.Linq;
 
 namespace Molecules.Core.Services.Analysis
 {
@@ -23,31 +24,14 @@ namespace Molecules.Core.Services.Analysis
 
         #endregion
 
-        private async Task<List<Molecule>> GetAllMoleculesAsync()
-        {
-            List<Molecule> moleculeList = new List<Molecule>();
-            var molecules = await _calcMoleculeService.FindAllByNameAsync("%");
-            foreach (CalcMolecule mol in molecules)
-            {
-                CalcMolecule fullResult = await _calcMoleculeService.GetAsync(mol.Id);
-                if (fullResult.Molecule is not null)
-                {
-                    moleculeList.Add(fullResult.Molecule);
-                }
-            }
-            return moleculeList;
-        }
-
         public async Task<MoleculeAtomPopulationAnalysisResult> DoAtomPopulationAnalysisAsync(int numberOfClusters)
         {
             MoleculeAtomPopulationAnalysisResult result = new MoleculeAtomPopulationAnalysisResult();
             List<MoleculeAtomPopulationVector> allVectors = new List<MoleculeAtomPopulationVector>();
-            foreach (Molecule molecule in await GetAllMoleculesAsync())
+            foreach (var molecule in (await _calcMoleculeService.GetAllByNameAsync("%")).Where(m => m.Molecule is not null))
             {
-                foreach(Atom atom in molecule.Atoms)
-                {
-                    allVectors.Add(_moleculesVectorFactor.CreateMoleculeAtomPopulationVector(atom, molecule.Name));
-                }
+                allVectors.AddRange(from Atom atom in molecule.Molecule!.Atoms
+                                    select _moleculesVectorFactor.CreateMoleculeAtomPopulationVector(atom, molecule.MoleculeName));
             }
 
             List<MoleculeAtomPopulationVectorCollection> subCollections = new List<MoleculeAtomPopulationVectorCollection>();

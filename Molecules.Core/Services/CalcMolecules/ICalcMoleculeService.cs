@@ -11,6 +11,8 @@ namespace Molecules.Core.Services.CalcMolecules
 
         Task<List<CalcMolecule>> FindAllByNameAsync(string moleculeName);
 
+        Task<List<CalcMolecule>> GetAllByNameAsync(string moleculeName);
+
         Task<CalcMolecule> CreateAsync(CalcMolecule molecule);
 
         Task<CalcMolecule> UpdateAsync(int id, Molecule? molecule);
