@@ -1,4 +1,4 @@
-﻿using Molecules.Core.Domain.ValueObjects.Analysis.Population;
+﻿using Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Population;
 using Molecules.Core.Domain.ValueObjects.Molecules;
 
 namespace Molecules.Core.Factories.Analysis

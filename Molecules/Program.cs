@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Molecules.Core.Data;
+using Molecules.extensions;
 
 namespace Molecules
 {
@@ -16,8 +17,10 @@ namespace Molecules
                         services.AddMoleculesServices(hostContext.Configuration);
                         services.AddDbContext<MoleculesDbContext>(
                                      options => options.UseNpgsql(hostContext.Configuration.GetConnectionString("ConnectionString")),
-                                                                             ServiceLifetime.Transient,
-                                                                                 ServiceLifetime.Transient);
+                                                                    ServiceLifetime.Transient,
+                                                                      ServiceLifetime.Transient);
+
+                        // Start the main application
                         services.AddHostedService<MoleculesApp>();
                     });
 

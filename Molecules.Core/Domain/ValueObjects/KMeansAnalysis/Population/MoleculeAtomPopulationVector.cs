@@ -1,9 +1,9 @@
-﻿
+﻿using Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Base;
 
-namespace Molecules.Core.Domain.ValueObjects.Analysis.Population
+namespace Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Population
 {
     public class MoleculeAtomPopulationVector : MoleculesVector
-    {        
+    {
         public double MullikenPopulation { get; set; }
 
         public double LowdinPopulation { get; set; }
@@ -37,7 +37,7 @@ namespace Molecules.Core.Domain.ValueObjects.Analysis.Population
 
                 default:
                     {
-                       throw ThrowInvalidDimensionError(dimension);
+                        throw ThrowInvalidDimensionError(dimension);
                     }
             }
 

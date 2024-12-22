@@ -7,7 +7,7 @@ using Molecules.Logger;
 using Molecules.services;
 using Molecules.settings;
 
-namespace Molecules
+namespace Molecules.extensions
 {
     public static class ServiceExtensions
     {
@@ -28,8 +28,8 @@ namespace Molecules
         internal static IServiceCollection AddApps(this IServiceCollection services)
         {
             services.AddSingleton<CalcDeliveryServices>();
-            services.AddSingleton<MoleculeReportService>();
-            services.AddSingleton<MoleculeAnalysisService>();
+            services.AddSingleton<MolReportExecutionService>();
+            services.AddSingleton<MolAnalysisExecutionService>();
             services.AddSingleton<IMoleculesSettings, MoleculesSettings>();
             return services;
         }

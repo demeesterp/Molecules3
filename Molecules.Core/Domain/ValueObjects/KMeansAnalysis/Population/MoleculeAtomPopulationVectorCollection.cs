@@ -1,6 +1,6 @@
-﻿
+﻿using Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Base;
 
-namespace Molecules.Core.Domain.ValueObjects.Analysis.Population
+namespace Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Population
 {
     public class MoleculeAtomPopulationVectorCollection : MoleculesVectorCollection
     {
@@ -29,7 +29,7 @@ namespace Molecules.Core.Domain.ValueObjects.Analysis.Population
 
         protected override void Normalize()
         {
-           
+
         }
     }
 }

@@ -18,15 +18,15 @@ namespace Molecules
 
         private readonly CalcDeliveryServices _calcDeliveryApp;
 
-        private readonly MoleculeReportService _moleculeReportApp;
+        private readonly MolReportExecutionService _moleculeReportApp;
 
-        private readonly MoleculeAnalysisService _moleculeAnalysisService;
+        private readonly MolAnalysisExecutionService _molAnalysisExecutionService;
 
         #endregion
 
         public MoleculesApp(CalcDeliveryServices calcDeliveryApp,
-                                    MoleculeReportService moleculeReportApp,
-                                        MoleculeAnalysisService moleculeAnalysisService,
+                                    MolReportExecutionService moleculeReportApp,
+                                        MolAnalysisExecutionService molAnalysisExecutionService,
                                             IMoleculesSettings settings,
                                                 IMoleculesLogger logger,
                                                     IHostApplicationLifetime hostApplicationLifetime)
@@ -36,7 +36,7 @@ namespace Molecules
             _calcDeliveryApp = calcDeliveryApp;
             _moleculeReportApp = moleculeReportApp;
             _hostApplicationLifetime = hostApplicationLifetime;
-            _moleculeAnalysisService = moleculeAnalysisService;
+            _molAnalysisExecutionService = molAnalysisExecutionService;
         }
 
         private AppName GetApp()
@@ -84,7 +84,8 @@ namespace Molecules
                             done = true;
                             return;
                         case AppName.MoleculeAnalysisApp:
-                            await _moleculeAnalysisService.RunAsync();
+                            // Carry out molecule analysis
+                            await _molAnalysisExecutionService.RunAsync();
                             continue;
                         case AppName.Exit:
                             done = true;

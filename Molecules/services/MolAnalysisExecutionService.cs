@@ -4,7 +4,7 @@ using Molecules.settings;
 
 namespace Molecules.services
 {
-    public class MoleculeAnalysisService
+    public class MolAnalysisExecutionService
     {
 
         #region dependencies
@@ -16,7 +16,7 @@ namespace Molecules.services
         #endregion
 
 
-        public MoleculeAnalysisService(IMoleculeAnalysisService moleculeAnalysisService,
+        public MolAnalysisExecutionService(IMoleculeAnalysisService moleculeAnalysisService,
                                                 IMoleculesSettings settings)
         {
             _moleculeAnalysisService = moleculeAnalysisService;

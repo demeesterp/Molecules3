@@ -1,4 +1,4 @@
-﻿namespace Molecules.Core.Domain.ValueObjects.Analysis
+﻿namespace Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Base
 {
     public abstract class MoleculesVectorCollection
     {
@@ -50,7 +50,7 @@
 
             Normalize();
 
-            if ( labels.Length <= numberOfClusters)
+            if (labels.Length <= numberOfClusters)
             {
                 return new List<MoleculesCluster>();
             }
@@ -153,6 +153,6 @@
 
 
         protected abstract void Normalize();
-       
+
     }
 }

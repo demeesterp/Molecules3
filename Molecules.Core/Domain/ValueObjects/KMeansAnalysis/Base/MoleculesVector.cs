@@ -1,4 +1,4 @@
-﻿namespace Molecules.Core.Domain.ValueObjects.Analysis
+﻿namespace Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Base
 {
     public abstract class MoleculesVector
     {
@@ -8,13 +8,12 @@
             return new ArgumentOutOfRangeException($"Dimension {usedDimension} is higher then dimensions of the vector {Dimensions}");
         }
 
-
         protected double CalculateEuclidianDistance(MoleculesVector moleculesVector)
         {
             double sum = 0;
             for (int dimension = 0; dimension < Dimensions; dimension++)
             {
-               sum += Math.Pow(GetValue(dimension) - moleculesVector.GetValue(dimension),2);
+                sum += Math.Pow(GetValue(dimension) - moleculesVector.GetValue(dimension), 2);
             }
             return Math.Sqrt(sum);
         }

@@ -1,12 +1,11 @@
-﻿
-
+﻿using Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Population;
 using System.Text;
 
 namespace Molecules.Core.Domain.ValueObjects.Analysis.Population
 {
     public class MoleculeAtomPopulationAnalysisResult
     {
-        public List<MoleculeAtomPopulationCluster> Results = new List<MoleculeAtomPopulationCluster>();
+        public List<MoleculeAtomPopulationCategory> Results = new List<MoleculeAtomPopulationCategory>();
 
         public string GetReport()
         {

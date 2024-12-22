@@ -6,7 +6,7 @@ using Molecules.Shared.Logger;
 
 namespace Molecules.services
 {
-    public class MoleculeReportService
+    public class MolReportExecutionService
     {
 
         #region dependencies
@@ -19,7 +19,7 @@ namespace Molecules.services
 
         #endregion
 
-        public MoleculeReportService(IMoleculeReportService moleculeReportService,
+        public MolReportExecutionService(IMoleculeReportService moleculeReportService,
                                         IMoleculesSettings settings,
                                             IMoleculesLogger logger)
         {

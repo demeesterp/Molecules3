@@ -1,6 +1,7 @@
 ﻿using Molecules.Core.Domain.Entities;
 using Molecules.Core.Domain.ValueObjects.Analysis.Population;
 using Molecules.Core.Domain.ValueObjects.AtomData;
+using Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Population;
 using Molecules.Core.Domain.ValueObjects.Molecules;
 using Molecules.Core.Factories.Analysis;
 using Molecules.Core.Services.CalcMolecules;
@@ -66,10 +67,11 @@ namespace Molecules.Core.Services.Analysis
                     var atomKind = AtomPropertiesTable.GetAtomProperties(atomCollection.AtomNumber);
                     if (atomKind is not null)
                     {
-                        result.Results.Add(new MoleculeAtomPopulationCluster(atomKind.Symbol,
-                                                    cluster.Label,
-                                                    cluster.Vectors.Cast<MoleculeAtomPopulationVector>()
-                                                      .ToList()));
+                        result.Results.Add(
+                            new MoleculeAtomPopulationCategory(atomKind.Symbol,
+                                                                cluster.Label,
+                                                                    cluster.Vectors.Cast<MoleculeAtomPopulationVector>()
+                            .ToList()));
                     }
                 };
             }
