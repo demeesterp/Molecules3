@@ -7,12 +7,17 @@ namespace Molecules.Core.Factories.Analysis
     {                
         public MoleculeAtomPopulationVector CreateMoleculeAtomPopulationVector(Atom atom, string moleculeName)
         {
-            return new MoleculeAtomPopulationVector($"{moleculeName}:{atom.Symbol}{atom.Position}")
-            {
-                AtomNumber = atom.Number,
-                LowdinPopulation = atom.LowdinPopulation.GetValueOrDefault(),
-                MullikenPopulation = atom.MullikenPopulation.GetValueOrDefault()
-            };
+            var retval = new MoleculeAtomPopulationVector($"{moleculeName}:{atom.Symbol}{atom.Position}");
+
+            retval.Values.LowdinPopulation = atom.LowdinPopulation.GetValueOrDefault();
+            retval.Values.MullikenPopulation = atom.MullikenPopulation.GetValueOrDefault();
+            retval.Values.AtomNumber = atom.Number;
+
+            retval.Data.LowdinPopulation = atom.LowdinPopulation.GetValueOrDefault();
+            retval.Data.MullikenPopulation = atom.MullikenPopulation.GetValueOrDefault();
+            retval.Data.AtomNumber = atom.Number;
+
+            return retval;
         }
     }
 }

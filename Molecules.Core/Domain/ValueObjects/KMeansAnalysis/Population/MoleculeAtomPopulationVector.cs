@@ -4,16 +4,14 @@ namespace Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Population
 {
     public class MoleculeAtomPopulationVector : MoleculesVector
     {
-        public double MullikenPopulation { get; set; }
 
-        public double LowdinPopulation { get; set; }
+        public MoleculeAtomPopulationValues Values { get; set; } = new MoleculeAtomPopulationValues();
 
-        public double AtomNumber { get; set; }
+        public MoleculeAtomPopulationData Data { get; set; } = new MoleculeAtomPopulationData();
 
 
-        public MoleculeAtomPopulationVector(string name) : base(name, 3)
-        {
-        }
+        public MoleculeAtomPopulationVector(string name) 
+            : base(name, 3) { }
 
         public override void AddToValue(int dimension, double valueToAdd)
         {
@@ -21,17 +19,17 @@ namespace Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Population
             {
                 case 0:
                     {
-                        MullikenPopulation += valueToAdd;
+                        Values.MullikenPopulation += valueToAdd;
                         break;
                     }
                 case 1:
                     {
-                        LowdinPopulation += valueToAdd;
+                        Values.LowdinPopulation += valueToAdd;
                         break;
                     }
                 case 2:
                     {
-                        AtomNumber += valueToAdd;
+                        Values.AtomNumber += valueToAdd;
                         break;
                     }
 
@@ -54,15 +52,15 @@ namespace Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Population
             {
                 case 0:
                     {
-                        return MullikenPopulation;
+                        return Values.MullikenPopulation;
                     }
                 case 1:
                     {
-                        return LowdinPopulation;
+                        return Values.LowdinPopulation;
                     }
                 case 2:
                     {
-                        return AtomNumber;
+                        return Values.AtomNumber;
                     }
                 default:
                     {
@@ -78,17 +76,17 @@ namespace Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Population
             {
                 case 0:
                     {
-                        MullikenPopulation *= multiplier;
+                        Values.MullikenPopulation *= multiplier;
                         break;
                     }
                 case 1:
                     {
-                        LowdinPopulation *= multiplier;
+                        Values.LowdinPopulation *= multiplier;
                         break;
                     }
                 case 2:
                     {
-                        AtomNumber *= multiplier;
+                        Values.AtomNumber *= multiplier;
                         break;
                     }
 
@@ -106,17 +104,17 @@ namespace Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Population
             {
                 case 0:
                     {
-                        MullikenPopulation = value;
+                        Values.MullikenPopulation = value;
                         break;
                     }
                 case 1:
                     {
-                        LowdinPopulation = value;
+                        Values.LowdinPopulation = value;
                         break;
                     }
                 case 2:
                     {
-                        AtomNumber = value;
+                        Values.AtomNumber = value;
                         break;
                     }
                 default:

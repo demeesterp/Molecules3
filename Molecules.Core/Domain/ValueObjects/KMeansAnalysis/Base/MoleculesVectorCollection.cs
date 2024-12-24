@@ -24,6 +24,8 @@
 
         public abstract MoleculesVector CreateEmptyCentroid();
 
+        public abstract void Normalize();
+
         public MoleculesVector At(int position) => Vectors.ElementAt(position);
 
         protected MoleculesVector AddVector(MoleculesVector vector)

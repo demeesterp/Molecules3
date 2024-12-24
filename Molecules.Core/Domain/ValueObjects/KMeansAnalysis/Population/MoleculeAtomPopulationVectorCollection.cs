@@ -26,5 +26,17 @@ namespace Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Population
         {
             AddVectors(vectorsToAdd.Cast<MoleculesVector>().ToList());
         }
+
+        public override void Normalize()
+        {
+            MoleculeAtomPopulationValues values = new MoleculeAtomPopulationValues();
+            foreach(MoleculeAtomPopulationVector v in Vectors)
+            {
+                values.MullikenPopulation += v.Values.MullikenPopulation;
+                values.LowdinPopulation += v.Values.LowdinPopulation;
+            }
+            values.MullikenPopulation /= Vectors.Count;
+            values.LowdinPopulation /= Vectors.Count;
+        }
     }
 }

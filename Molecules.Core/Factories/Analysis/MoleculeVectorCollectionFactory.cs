@@ -28,12 +28,17 @@ namespace Molecules.Core.Factories.Analysis
                                         _moleculesVectorFactory.CreateMoleculeAtomPopulationVector(atom, molecule.MoleculeName));
             }
 
-            foreach (var collection in allVectors.GroupBy(x => x.AtomNumber))
+            foreach (var collection in allVectors.GroupBy(x => x.Values.AtomNumber))
             {
                 MoleculeAtomPopulationVectorCollection newCollections =
                     new MoleculeAtomPopulationVectorCollection(collection.Key);
                 newCollections.AddVectors(collection.ToList());
                 retval.Add(newCollections);
+            }
+
+            foreach (var item in retval)
+            {
+                item.Normalize();
             }
 
             return retval;

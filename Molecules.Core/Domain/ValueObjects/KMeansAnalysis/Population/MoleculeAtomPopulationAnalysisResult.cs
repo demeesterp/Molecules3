@@ -15,7 +15,7 @@ namespace Molecules.Core.Domain.ValueObjects.Analysis.Population
             {
                 foreach(var v in category)
                 {
-                    result.AppendLine($"{category.Label};{category.Atom}{v.AtomNumber};{v.Name};{v.LowdinPopulation};{v.MullikenPopulation};");
+                    result.AppendLine($"{category.Label};{category.Atom}{v.Data.AtomNumber};{v.Name};{v.Data.LowdinPopulation};{v.Data.MullikenPopulation};");
                 }
             }
             return result.ToString();
