@@ -8,5 +8,7 @@ namespace Molecules.Core.Services.Analysis
     {
         Task<MoleculeAtomPopulationAnalysisResult> DoAtomPopulationAnalysisAsync(int numberOfClusters);
 
+        Task<string> EvaluateNumberOfClusters();
+
     }
 }

@@ -4,6 +4,16 @@ namespace Molecules.Core.Services.Analysis.Clustering
 {
     public class MoleculeClusterService : IMoleculeClusterService
     {
+        private double CalculateWCSS(MoleculesVectorCollection moleculesVectorCollection, List<MoleculesVector> centroids, int[] labels)
+        {
+            double wcss = 0.0;
+            for (int i = 0; i < moleculesVectorCollection.Count; i++)
+            {
+                wcss += moleculesVectorCollection.At(i).GetDistance(centroids[labels[i]]);
+            }
+            return wcss;
+        }
+
         private static List<MoleculesVector> GetRandomVectors(MoleculesVectorCollection moleculesVectorCollection, int nbrOfVectors)
         {
             int numberOfVectors = moleculesVectorCollection.Count;
@@ -45,6 +55,29 @@ namespace Molecules.Core.Services.Analysis.Clustering
                 }
             }
             return nearest;
+        }
+
+        public List<(double,string)> CalculateWCSSForRange<ClusterType>(MoleculesVectorCollection moleculesVectorCollection, int minClusters, int maxClusters)
+        {
+            List<(double,string)> wcssValues = new ();
+            for (int k = minClusters; k <= maxClusters; k++)
+            {
+                var clusters = KMeansCluster<ClusterType>(moleculesVectorCollection, k);
+                
+                var centroids = clusters.Select(c => c.Centroid).ToList();
+                
+                
+                
+                var labels = clusters.SelectMany(c => Enumerable.Repeat(c.Label, c.Count())).ToArray();
+                
+                
+                
+                
+                double wcss = CalculateWCSS(moleculesVectorCollection, centroids, labels);
+                
+                wcssValues.Add((wcss, $"Clusters {k}"));
+            }
+            return wcssValues;
         }
 
         public List<MoleculesCluster<ClusterType>> KMeansCluster<ClusterType>(MoleculesVectorCollection moleculesVectorCollection, int numberOfClusters)
@@ -104,8 +137,8 @@ namespace Molecules.Core.Services.Analysis.Clustering
             for (int i = 0; i < labels.Length; ++i)
             {
                 MoleculesCluster<ClusterType> cl = result.First(x => x.Label == labels[i]);
-
                 cl.Add(moleculesVectorCollection.At(i));
+                cl.SetCentroid(centroids[labels[i]]);
             }
             return result;
         }

@@ -6,6 +6,7 @@ using Molecules.Core.Factories.Analysis;
 using Molecules.Core.Services.Analysis.Clustering;
 using Molecules.Core.Services.CalcMolecules;
 using Molecules.Shared.Logger;
+using System.Text;
 
 namespace Molecules.Core.Services.Analysis
 {
@@ -44,6 +45,35 @@ namespace Molecules.Core.Services.Analysis
             }
             return result;
         }
+
+        public async Task<string> EvaluateNumberOfClusters()
+        {
+            StringBuilder result = new StringBuilder();
+            foreach (var vectorsToCluster in 
+                            _moleculesVectorCollectionFactory.
+                                    CreateMoleculeAtomPopulationVectorCollection(await _calcMoleculeService.GetAllByNameAsync("%")))
+            {
+
+                if (vectorsToCluster.Count > 2)
+                {
+                    var displayResult = _moleculeClusterService.CalculateWCSSForRange<MoleculeAtomPopulationVector>(vectorsToCluster,
+                                                                                                                    2,
+                                                                                                                    Math.Min(vectorsToCluster.Count, 10));
+                    foreach (var item in displayResult)
+                    {
+                        result.AppendLine($"AtomNumber {vectorsToCluster.AtomNumber} : Value {item.Item1} Cluster {item.Item2}");
+                    }
+                }
+                else
+                {
+                    result.AppendLine($"AtomNumber {vectorsToCluster.AtomNumber} : 2 clusters max");
+                }
+
+                
+            }
+            return result.ToString();
+        }
+
 
     }
 }

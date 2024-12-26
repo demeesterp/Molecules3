@@ -27,6 +27,7 @@ namespace Molecules.services
         {
             Console.WriteLine($"Base directory is {_settings.BasePath}");
             Console.WriteLine($"Analysis output directory is {_settings.AnalysisOutputPath}");
+            Console.WriteLine(await _moleculeAnalysisService.EvaluateNumberOfClusters());
             Console.Write("Number of centers : ");
             var numberOfCentersAnswer = Console.ReadLine();
             if (int.TryParse(numberOfCentersAnswer, out int numberOfCenters))

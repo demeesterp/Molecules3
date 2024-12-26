@@ -8,12 +8,19 @@ public class MoleculesCluster<ClusterType>(int label, List<MoleculesVector> mole
 {
     protected List<MoleculesVector> Vectors { get; set; } = moleculesVectors;
 
+    public MoleculesVector Centroid { get; set; }
+
     public MoleculesCluster(int label): this(label, new List<MoleculesVector>()) { }
 
     public MoleculesCluster(MoleculesCluster<ClusterType> toCopy): this(toCopy.Label, toCopy.Vectors) { }
 
 
     public int Label { get; set; } = label;
+
+    public void SetCentroid(MoleculesVector centroid)
+    {
+        Centroid = centroid;
+    }
 
 
     public virtual MoleculesVector Add(MoleculesVector toAdd)
