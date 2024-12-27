@@ -22,16 +22,13 @@ namespace Molecules.Core.Factories.Analysis
             
             foreach (var molecule in molecules.Where(m => m.Molecule is not null))
             {
-                allVectors.AddRange(from Atom atom in
-                                        molecule.Molecule!.Atoms
-                                    select 
-                                        _moleculesVectorFactory.CreateMoleculeAtomPopulationVector(atom, molecule.MoleculeName));
+                allVectors.AddRange(from Atom atom in molecule.Molecule!.Atoms
+                                     select _moleculesVectorFactory.CreateMoleculeAtomPopulationVector(atom, molecule.MoleculeName));
             }
 
             foreach (var collection in allVectors.GroupBy(x => x.Values.AtomNumber))
             {
-                MoleculeAtomPopulationVectorCollection newCollections =
-                    new MoleculeAtomPopulationVectorCollection(collection.Key);
+                MoleculeAtomPopulationVectorCollection newCollections = new (collection.Key);
                 newCollections.AddVectors(collection.ToList());
                 retval.Add(newCollections);
             }

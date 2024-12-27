@@ -1,5 +1,6 @@
 ﻿using Molecules.Core.Domain.ValueObjects.Analysis.Population;
 using Molecules.Core.Domain.ValueObjects.AtomData;
+using Molecules.Core.Domain.ValueObjects.KMeansAnalysis;
 using Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Base;
 using Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Population;
 using Molecules.Core.Factories.Analysis;
@@ -26,17 +27,17 @@ namespace Molecules.Core.Services.Analysis
 
         #endregion
 
-        public async Task<MoleculeAtomPopulationAnalysisResult> DoAtomPopulationAnalysisAsync(int numberOfClusters)
+        public async Task<MoleculeAtomPopulationAnalysisResult> DoAtomPopulationAnalysisAsync(MoleculeAtomClusteringInput clusters)
         {
             MoleculeAtomPopulationAnalysisResult result = new MoleculeAtomPopulationAnalysisResult();
             foreach (var vectorsToCluster in _moleculesVectorCollectionFactory.CreateMoleculeAtomPopulationVectorCollection(await _calcMoleculeService.GetAllByNameAsync("%")))
             {
-
-                var categories = _moleculeClusterService.KMeansCluster<MoleculeAtomPopulationVector>(vectorsToCluster, numberOfClusters);
-                foreach (MoleculesCluster<MoleculeAtomPopulationVector> category in categories)
+                var atomKind = AtomPropertiesTable.GetAtomProperties(vectorsToCluster.AtomNumber);
+                if ( atomKind != null)
                 {
-                    var atomKind = AtomPropertiesTable.GetAtomProperties(vectorsToCluster.AtomNumber);
-                    if (atomKind != null)
+                    var numberOfClusters = clusters.Items.Find(x => x.Atom == atomKind.Symbol);
+                    var categories = _moleculeClusterService.KMeansCluster<MoleculeAtomPopulationVector>(vectorsToCluster, numberOfClusters?.NbrOfClusters ?? 3);
+                    foreach (MoleculesCluster<MoleculeAtomPopulationVector> category in categories)
                     {
                         result.Categories.Add(new MoleculeAtomPopulationCategory(atomKind.Symbol, category));
                     }
