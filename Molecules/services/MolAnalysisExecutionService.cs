@@ -30,7 +30,7 @@ namespace Molecules.services
             Console.WriteLine($"Base directory is {_settings.BasePath}");
             Console.WriteLine($"Analysis output directory is {_settings.AnalysisOutputPath}");
             Console.Write("Number of centers : ");
-            var result = await _moleculeAnalysisService.DoAtomPopulationAnalysisAsync(GetUserInput());
+            var result = await _moleculeAnalysisService.DoAtomAnalysisAsync(GetUserInput());
             var resultsFile = Path.Combine(_settings.AnalysisOutputPath, "result.csv");
             File.WriteAllText(resultsFile, result.GetReport());
             Console.WriteLine($"Output written to {resultsFile}");

@@ -7,7 +7,7 @@ namespace Molecules.Core.Services.Analysis
 {
     public interface IMoleculeAnalysisService
     {
-        Task<MoleculeAtomPopulationAnalysisResult> DoAtomPopulationAnalysisAsync(MoleculeAtomClusteringInput clusters);
+        Task<MoleculeAtomPopulationAnalysisResult> DoAtomAnalysisAsync(MoleculeAtomClusteringInput clusters);
 
     }
 }

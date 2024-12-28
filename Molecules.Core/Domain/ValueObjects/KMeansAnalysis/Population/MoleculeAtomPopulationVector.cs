@@ -7,7 +7,7 @@ namespace Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Population
 
         public MoleculeAtomPopulationValues Values { get; set; } = new MoleculeAtomPopulationValues();
 
-        public MoleculeAtomPopulationData Data { get; set; } = new MoleculeAtomPopulationData();
+        public MoleculeAtomPopulationInfo Data { get; set; } = new MoleculeAtomPopulationInfo();
 
 
         public MoleculeAtomPopulationVector(string name) 

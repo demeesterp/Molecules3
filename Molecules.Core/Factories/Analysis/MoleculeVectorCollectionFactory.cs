@@ -22,8 +22,8 @@ namespace Molecules.Core.Factories.Analysis
             
             foreach (var molecule in molecules.Where(m => m.Molecule is not null))
             {
-                allVectors.AddRange(from Atom atom in molecule.Molecule!.Atoms
-                                     select _moleculesVectorFactory.CreateMoleculeAtomPopulationVector(atom, molecule.MoleculeName));
+               allVectors.AddRange(from Atom atom in molecule.Molecule!.Atoms
+                                    select _moleculesVectorFactory.CreateMoleculeAtomPopulationVector(atom, molecule.Molecule));
             }
 
             foreach (var collection in allVectors.GroupBy(x => x.Values.AtomNumber))

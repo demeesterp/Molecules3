@@ -2,6 +2,6 @@
 {
     public enum KMeansVectorTypeEnum
     {
-        AtomPopuylation = 1
+        AtomPopulation = 1
     }
 }

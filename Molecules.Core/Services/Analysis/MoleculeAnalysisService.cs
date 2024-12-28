@@ -27,7 +27,7 @@ namespace Molecules.Core.Services.Analysis
 
         #endregion
 
-        public async Task<MoleculeAtomPopulationAnalysisResult> DoAtomPopulationAnalysisAsync(MoleculeAtomClusteringInput clusters)
+        public async Task<MoleculeAtomPopulationAnalysisResult> DoAtomAnalysisAsync(MoleculeAtomClusteringInput clusters)
         {
             MoleculeAtomPopulationAnalysisResult result = new MoleculeAtomPopulationAnalysisResult();
             foreach (var vectorsToCluster in _moleculesVectorCollectionFactory.CreateMoleculeAtomPopulationVectorCollection(await _calcMoleculeService.GetAllByNameAsync("%")))
