@@ -2,7 +2,8 @@
 using Molecules.Core.Domain.ValueObjects.KMeansAnalysis;
 using Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Base;
 using Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Base.Result;
-using Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Population;
+using Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Orbital.Result;
+using Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Orbital.Vectors;
 using Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Population.Result;
 using Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Population.Vectors;
 using Molecules.Core.Factories.Analysis;
@@ -36,7 +37,7 @@ namespace Molecules.Core.Services.Analysis
                 KMeansVectorTypeEnum.AtomPopulation => await DoAtomPopulationAnalysisAsync(clusters),
                 KMeansVectorTypeEnum.AtomPopulationHomo => await DoAtomHomoPopulationAnalysisAsync(clusters),
                 KMeansVectorTypeEnum.AtomPopulationLumo => await DoAtomLumoPopulationAnalysisAsync(clusters),
-                KMeansVectorTypeEnum.AtomOrbitalPopulation => throw new NotSupportedException($"The cluster type {clusters.Type} is not supported."),
+                KMeansVectorTypeEnum.AtomOrbitalPopulation => await DoAtomOrbitalPopulationAnalysisAsync(clusters),
                 KMeansVectorTypeEnum.AtomOrbitalPopulationLumo => throw new NotSupportedException($"The cluster type {clusters.Type} is not supported."),
                 KMeansVectorTypeEnum.AtomOrbitalPopulationHomo => throw new NotSupportedException($"The cluster type {clusters.Type} is not supported."), 
                 _ => throw new NotSupportedException($"The cluster type {clusters.Type} is not supported.")
@@ -106,6 +107,31 @@ namespace Molecules.Core.Services.Analysis
                     }
                 }
             }
+            return result;
+        }
+
+
+        private async Task<MoleculeAtomOrbitalPopulationAnalysisResult> DoAtomOrbitalPopulationAnalysisAsync(MoleculeAtomClusteringInput clusters)
+        {
+            MoleculeAtomOrbitalPopulationAnalysisResult result = new MoleculeAtomOrbitalPopulationAnalysisResult();
+
+            if (clusters.Type == KMeansVectorTypeEnum.AtomOrbitalPopulation)
+            {
+                foreach (var vectorsToCluster in _moleculesVectorCollectionFactory.CreateMoleculeAtomOrbitalPopulationVectorCollection(await _calcMoleculeService.GetAllByNameAsync("%")))
+                {
+                    var atomKind = AtomPropertiesTable.GetAtomProperties(vectorsToCluster.AtomNumber);
+                    if (atomKind != null)
+                    {
+                        var numberOfClusters = clusters.Items.Find(x => x.Atom == atomKind.Symbol);
+                        var categories = _moleculeClusterService.KMeansCluster<MoleculeAtomOrbitalPopulationVector>(vectorsToCluster, numberOfClusters?.NbrOfClusters ?? 3);
+                        foreach (MoleculesCluster<MoleculeAtomOrbitalPopulationVector> category in categories)
+                        {
+                            result.Categories.Add(new MoleculeAtomCategory<MoleculeAtomOrbitalPopulationVector>(atomKind.Symbol, category));
+                        }
+                    }
+                }
+            }
+
             return result;
         }
 

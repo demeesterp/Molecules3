@@ -67,41 +67,29 @@ namespace Molecules.Core.Factories.Analysis
             return retval;
         }
 
-        public MoleculesAtomOrbitalPopulationVector CreateMoleculesAtomOrbitalPopulationVector(Atom atom, Molecule molecule)
+        public MoleculeAtomOrbitalPopulationVector CreateMoleculesAtomOrbitalPopulationVector(Atom atom, Molecule molecule)
         {
-            var retval = new MoleculesAtomOrbitalPopulationVector($"{molecule.Name}:{atom.Symbol}{atom.Position}");
-
-            retval.Values.LowdinPopulation = atom.LowdinPopulation.GetValueOrDefault();
-
-            retval.Values.LowdinPopulationLumo = atom.LowdinPopulationLUMO.GetValueOrDefault();
-
-            retval.Values.LowdinPopulationHomo = atom.LowdinPopulationHOMO.GetValueOrDefault();
-            
-            retval.Values.MullikenPopulation = atom.MullikenPopulation.GetValueOrDefault();
-
-            retval.Values.MullikenPopulationLumo = atom.MullikenPopulationLUMO.GetValueOrDefault();
-
-            retval.Values.MullikenPopulationHomo = atom.MullikenPopulationHOMO.GetValueOrDefault();
-            
-            retval.Values.AtomNumber = atom.Number;
-            
-            retval.Info.LowdinPopulation = atom.LowdinPopulation.GetValueOrDefault();
-
-            retval.Values.LowdinPopulationLumo = atom.LowdinPopulationLUMO.GetValueOrDefault();
-
-            retval.Values.LowdinPopulationHomo = atom.LowdinPopulationHOMO.GetValueOrDefault();
-
-            retval.Info.MullikenPopulation = atom.MullikenPopulation.GetValueOrDefault();
-
-            retval.Values.MullikenPopulationLumo = atom.MullikenPopulationLUMO.GetValueOrDefault();
-
-            retval.Values.MullikenPopulationHomo = atom.MullikenPopulationHOMO.GetValueOrDefault();
-
+            var retval = new MoleculeAtomOrbitalPopulationVector($"{molecule.Name}:{atom.Symbol}{atom.Position}");
             retval.Info.AtomNumber = atom.Number;
-
             retval.Info.AtomGroup = molecule.AtomGroup(atom);
+            retval.Values.AtomNumber = atom.Number;
+            int count = 0;
+            foreach(var atomOrbital in atom.Orbitals)
+            {
 
+                var item = new MoleculeAtomOrbitalPopulationValueItem()
+                {
+                    VectorPositionLowdin = count++,
+                    VectorPositionMulliken = count++,
+                    LowdinPopulation = atomOrbital.LowdinPopulation.GetValueOrDefault(),
+                    MullikenPopulation = atomOrbital.MullikenPopulation.GetValueOrDefault(),
+                    Symbol = atomOrbital.Symbol,
+                    Shell = atom.OrbitalShell(atomOrbital)
+                };
 
+                retval.Values.AppendItem(item);
+                retval.Info.Items.Add(item);
+            }
             return retval;
         }
     }

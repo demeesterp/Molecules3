@@ -1,4 +1,6 @@
 ﻿using Molecules.Core.Domain.Entities;
+using Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Orbital.VectorCollections;
+using Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Orbital.Vectors;
 using Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Population.VectorCollection;
 using Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Population.Vectors;
 using Molecules.Core.Domain.ValueObjects.Molecules;
@@ -13,6 +15,32 @@ namespace Molecules.Core.Factories.Analysis
         public MoleculeVectorCollectionFactory(IMoleculesVectorFactory moleculesVectorFactory)
         {
             _moleculesVectorFactory = moleculesVectorFactory;
+        }
+
+        public List<MoleculeAtomOrbitalPopulationVectorCollection> CreateMoleculeAtomOrbitalPopulationVectorCollection(List<CalcMolecule> molecules)
+        {
+            List<MoleculeAtomOrbitalPopulationVectorCollection> retval = new List<MoleculeAtomOrbitalPopulationVectorCollection>();
+            List<MoleculeAtomOrbitalPopulationVector> allVectors = new List<MoleculeAtomOrbitalPopulationVector>();
+
+            foreach (var molecule in molecules.Where(m => m.Molecule is not null))
+            {
+                allVectors.AddRange(from Atom atom in molecule.Molecule!.Atoms
+                                                select _moleculesVectorFactory.CreateMoleculesAtomOrbitalPopulationVector(atom, molecule.Molecule));
+            }
+
+            foreach (var collection in allVectors.Where(x => x.Dimensions > 0).GroupBy(x => x.Values.AtomNumber))
+            {
+                MoleculeAtomOrbitalPopulationVectorCollection newCollections = new(collection.Key);
+                newCollections.AddVectors(collection.ToList());
+                retval.Add(newCollections);
+            }
+
+            foreach (var item in retval)
+            {
+                item.Normalize();
+            }
+
+            return retval;
         }
 
         public List<MoleculeAtomPopulationHomoVectorCollection> CreateMoleculeAtomPopulationHomoVectorCollection(List<CalcMolecule> molecules)

@@ -1,4 +1,5 @@
 ﻿using Molecules.Core.Domain.Entities;
+using Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Orbital.VectorCollections;
 using Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Population.VectorCollection;
 
 namespace Molecules.Core.Factories.Analysis
@@ -10,6 +11,8 @@ namespace Molecules.Core.Factories.Analysis
         List<MoleculeAtomPopulationHomoVectorCollection> CreateMoleculeAtomPopulationHomoVectorCollection(List<CalcMolecule> molecules);
 
         List<MoleculeAtomPopulationLumoVectorCollection> CreateMoleculeAtomPopulationLumoVectorCollection(List<CalcMolecule> molecules);
+
+        List<MoleculeAtomOrbitalPopulationVectorCollection> CreateMoleculeAtomOrbitalPopulationVectorCollection(List<CalcMolecule> molecules);
 
     }
 }

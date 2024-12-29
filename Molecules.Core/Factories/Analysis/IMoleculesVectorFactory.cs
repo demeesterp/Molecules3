@@ -12,7 +12,7 @@ namespace Molecules.Core.Factories.Analysis
 
         MoleculeAtomPopulationLumoVector CreateMoleculeAtomPopulationLumoVector(Atom atom, Molecule molecule);
 
-        MoleculesAtomOrbitalPopulationVector CreateMoleculesAtomOrbitalPopulationVector(Atom atom, Molecule molecule);
+        MoleculeAtomOrbitalPopulationVector CreateMoleculesAtomOrbitalPopulationVector(Atom atom, Molecule molecule);
 
     }
 }

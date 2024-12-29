@@ -57,5 +57,13 @@ namespace Molecules.Core.Domain.ValueObjects.Molecules
         public List<AtomOrbital> Orbitals { get; set; } = [];
 
         public List<Bond> Bonds { get; set; } = [];
+
+
+        public int OrbitalShell(AtomOrbital orbital)
+        {
+            var orbitalpos = Orbitals.FindIndex(o => o == orbital);
+            if (orbitalpos < 0) return orbitalpos;
+            return Orbitals.GetRange(0, orbitalpos).Where(o => o.Symbol == orbital.Symbol).Count();
+        }
     }
 }
