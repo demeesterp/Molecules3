@@ -1,6 +1,6 @@
-﻿namespace Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Population
+﻿namespace Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Population.Vectors
 {
-    public record MoleculeAtomPopulationData
+    public record MoleculeAtomPopulationValues
     {
         public double MullikenPopulation { get; set; }
 
@@ -8,5 +8,4 @@
 
         public double AtomNumber { get; set; }
     }
-
 }

@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using Molecules.Shared.Constants;
+using System.Text.Json.Serialization;
 
 namespace Molecules.Core.Domain.ValueObjects.Molecules
 {
@@ -33,5 +34,29 @@ namespace Molecules.Core.Domain.ValueObjects.Molecules
 
         [JsonIgnore]
         public double? OverlapPopulationLUMO => OverlapPopulationPlus1 - OverlapPopulation;
+
+        [JsonIgnore]
+        public string BondSymbol
+        {
+            get
+            {
+                if ( BondOrder > MoleculesConstants.BondOrder3Threshold)
+                {
+                    return MoleculesConstants.TripleBondSymbol.ToString();
+                }
+                else if ( BondOrder > MoleculesConstants.BondOrder2Threshold)
+                {
+                    return MoleculesConstants.DoubleBondSymbol.ToString();
+                }
+                else if ( BondOrder > MoleculesConstants.BondThreshold)
+                {
+                    return MoleculesConstants.BondSymbol.ToString();
+                }
+                else
+                {
+                    return "..";
+                }
+            }
+        }
     }
 }

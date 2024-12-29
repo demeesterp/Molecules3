@@ -1,6 +1,7 @@
 ﻿using Molecules.Core.Domain.ValueObjects.AtomData;
 using Molecules.Core.Domain.ValueObjects.Calc.Order;
 using Molecules.Shared;
+using Molecules.Shared.Constants;
 using System.Text;
 using System.Text.Json.Serialization;
 
@@ -81,6 +82,33 @@ namespace Molecules.Core.Domain.ValueObjects.Molecules
                 }
             }
             return retval.ToString();
+        }
+
+
+        public string AtomGroup(Atom atom)
+        {
+            var retval = $"{atom.Symbol}{atom.Number}({atom.Position})";
+            foreach (var grpItem in Bonds.Where(b => b.OverlapPopulation >= MoleculesConstants.BondThreshold
+                                                            &&
+                                                            (
+                                                                b.Atom1Position == atom.Position
+                                                                ||
+                                                                b.Atom2Position == atom.Position)
+                                                            ))
+            {
+                if (grpItem.Atom1Position == atom.Position)
+                {
+                    var correspondingAtom = Atoms.First(x => x.Position == grpItem.Atom2Position);
+                    retval += $"{grpItem.BondSymbol}{correspondingAtom.Symbol}{correspondingAtom.Position}";
+                }
+
+                if (grpItem.Atom2Position == atom.Position)
+                {
+                    var correspondingAtom = Atoms.First(x => x.Position == grpItem.Atom1Position);
+                    retval += $"{grpItem.BondSymbol}{correspondingAtom.Symbol}{correspondingAtom.Position}";
+                }
+            }
+            return retval;
         }
     }
 }

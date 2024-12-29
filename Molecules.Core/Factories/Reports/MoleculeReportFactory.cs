@@ -1,6 +1,7 @@
 ﻿using Molecules.Core.Domain.ValueObjects.Molecules;
 using Molecules.Core.Domain.ValueObjects.Reports;
 using Molecules.Shared;
+using Molecules.Shared.Constants;
 
 namespace Molecules.Core.Factories.Reports
 {
@@ -134,7 +135,9 @@ namespace Molecules.Core.Factories.Reports
             if (molecule == null) return report;
             foreach (var bond in molecule.Bonds)
             {
-                if (bond.OverlapPopulation >= 0.1 || bond.OverlapPopulationHOMO >= 0.1 || bond.OverlapPopulationLUMO >= 0.1)
+                if (bond.OverlapPopulation >= MoleculesConstants.BondThreshold
+                        || bond.OverlapPopulationHOMO >= MoleculesConstants.BondThreshold
+                        || bond.OverlapPopulationLUMO >= MoleculesConstants.BondThreshold)
                 {
                     Atom? atom1 = molecule.Atoms.Find(a => a.Position == bond.Atom1Position);
                     Atom? atom2 = molecule.Atoms.Find(a => a.Position == bond.Atom2Position);

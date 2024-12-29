@@ -24,7 +24,12 @@
             Dimensions = dimensions;
         }
 
-        public int Dimensions
+        protected MoleculesVector(string name)
+        {
+            Name = name;
+        }
+
+        public virtual int Dimensions
         {
             get;
             set;
