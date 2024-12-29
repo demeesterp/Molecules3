@@ -1,6 +1,6 @@
 ﻿using Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Base;
 
-namespace Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Population
+namespace Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Population.Vectors
 {
     public class MoleculeAtomPopulationVector : MoleculesVector
     {
@@ -10,7 +10,7 @@ namespace Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Population
         public MoleculeAtomPopulationInfo Data { get; set; } = new MoleculeAtomPopulationInfo();
 
 
-        public MoleculeAtomPopulationVector(string name) 
+        public MoleculeAtomPopulationVector(string name)
             : base(name, 3) { }
 
         public override void AddToValue(int dimension, double valueToAdd)

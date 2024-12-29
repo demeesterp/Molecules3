@@ -1,6 +1,7 @@
 ﻿using Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Base;
+using Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Orbital.Vectors;
 
-namespace Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Orbital
+namespace Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Orbital.VectorCollections
 {
     public class MoleculesAtomOrbitalPopulationVectorCollection : MoleculesVectorCollection
     {
@@ -9,10 +10,10 @@ namespace Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Orbital
             return new MoleculesAtomOrbitalPopulationVector(string.Empty);
         }
 
-        public int AtomNumber 
-        { 
-            get; 
-            set; 
+        public int AtomNumber
+        {
+            get;
+            set;
         }
 
         public MoleculesAtomOrbitalPopulationVectorCollection(double atomNumber)
@@ -32,7 +33,7 @@ namespace Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Orbital
 
         public override void Normalize()
         {
-            
+
         }
     }
 }

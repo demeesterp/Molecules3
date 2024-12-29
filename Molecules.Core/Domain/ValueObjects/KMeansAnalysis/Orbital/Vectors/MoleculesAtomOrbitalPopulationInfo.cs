@@ -1,4 +1,4 @@
-﻿namespace Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Orbital
+﻿namespace Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Orbital.Vectors
 {
     public class MoleculesAtomOrbitalPopulationInfo
     {

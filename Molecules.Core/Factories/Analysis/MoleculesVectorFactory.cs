@@ -1,12 +1,52 @@
-﻿using Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Orbital;
-using Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Population;
+﻿using Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Orbital.Vectors;
+using Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Population.Vectors;
 using Molecules.Core.Domain.ValueObjects.Molecules;
 using Molecules.Shared.Constants;
 
 namespace Molecules.Core.Factories.Analysis
 {
     public class MoleculesVectorFactory : IMoleculesVectorFactory
-    {                
+    {
+        public MoleculeAtomPopulationHomoVector CreateMoleculeAtomPopulationHomoVector(Atom atom, Molecule molecule)
+        {
+            var retval = new MoleculeAtomPopulationHomoVector($"{molecule.Name}:{atom.Symbol}{atom.Position}");
+
+            retval.Values.LowdinPopulation = atom.LowdinPopulationHOMO.GetValueOrDefault();
+            retval.Values.MullikenPopulation = atom.MullikenPopulationHOMO.GetValueOrDefault();
+            retval.Values.AtomNumber = atom.Number;
+
+
+
+            retval.Data.LowdinPopulation = atom.LowdinPopulationHOMO.GetValueOrDefault();
+            retval.Data.MullikenPopulation = atom.MullikenPopulationHOMO.GetValueOrDefault();
+            retval.Data.AtomNumber = atom.Number;
+
+
+            retval.Data.AtomGroup = molecule.AtomGroup(atom);
+
+            return retval;
+        }
+
+        public MoleculeAtomPopulationLumoVector CreateMoleculeAtomPopulationLumoVector(Atom atom, Molecule molecule)
+        {
+            var retval = new MoleculeAtomPopulationLumoVector($"{molecule.Name}:{atom.Symbol}{atom.Position}");
+
+            retval.Values.LowdinPopulation = atom.LowdinPopulationLUMO.GetValueOrDefault();
+            retval.Values.MullikenPopulation = atom.MullikenPopulationLUMO.GetValueOrDefault();
+            retval.Values.AtomNumber = atom.Number;
+
+
+
+            retval.Data.LowdinPopulation = atom.LowdinPopulationLUMO.GetValueOrDefault();
+            retval.Data.MullikenPopulation = atom.MullikenPopulationLUMO.GetValueOrDefault();
+            retval.Data.AtomNumber = atom.Number;
+
+
+            retval.Data.AtomGroup = molecule.AtomGroup(atom);
+
+            return retval;
+        }
+
         public MoleculeAtomPopulationVector CreateMoleculeAtomPopulationVector(Atom atom, Molecule molecule)
         {
             var retval = new MoleculeAtomPopulationVector($"{molecule.Name}:{atom.Symbol}{atom.Position}");
@@ -22,28 +62,7 @@ namespace Molecules.Core.Factories.Analysis
             retval.Data.AtomNumber = atom.Number;
 
 
-            retval.Data.AtomGroup = $"{atom.Symbol}{atom.Number}({atom.Position})";
-            foreach(var grpItem in  molecule.Bonds.Where(b => 
-                                                            b.OverlapPopulation >= MoleculesConstants.BondThreshold
-                                                            && 
-                                                            (
-                                                                b.Atom1Position == atom.Position 
-                                                                || 
-                                                                b.Atom2Position == atom.Position)
-                                                            ))
-            {            
-                if ( grpItem.Atom1Position == atom.Position)
-                {
-                    var correspondingAtom = molecule.Atoms.First(x => x.Position == grpItem.Atom2Position);
-                    retval.Data.AtomGroup += $"{grpItem.BondSymbol}{correspondingAtom.Symbol}{correspondingAtom.Position}";
-                }
-                
-                if ( grpItem.Atom2Position == atom.Position)
-                {
-                    var correspondingAtom = molecule.Atoms.First(x => x.Position == grpItem.Atom1Position);
-                    retval.Data.AtomGroup += $"{grpItem.BondSymbol}{correspondingAtom.Symbol}{correspondingAtom.Position}";
-                }
-            }
+            retval.Data.AtomGroup = molecule.AtomGroup(atom);
 
             return retval;
         }
@@ -80,28 +99,7 @@ namespace Molecules.Core.Factories.Analysis
 
             retval.Info.AtomNumber = atom.Number;
 
-            retval.Info.AtomGroup = $"{atom.Symbol}{atom.Number}({atom.Position})";
-            
-            foreach (var grpItem in molecule.Bonds.Where(b => b.OverlapPopulation >= MoleculesConstants.BondThreshold
-                                                                &&
-                                                                (
-                                                                    b.Atom1Position == atom.Position
-                                                                    ||
-                                                                    b.Atom2Position == atom.Position)
-                                                                ))
-            {
-                if (grpItem.Atom1Position == atom.Position)
-                {
-                    var correspondingAtom = molecule.Atoms.First(x => x.Position == grpItem.Atom2Position);
-                    retval.Info.AtomGroup += $"{grpItem.BondSymbol}{correspondingAtom.Symbol}{correspondingAtom.Position}";
-                }
-
-                if (grpItem.Atom2Position == atom.Position)
-                {
-                    var correspondingAtom = molecule.Atoms.First(x => x.Position == grpItem.Atom1Position);
-                    retval.Info.AtomGroup += $"{grpItem.BondSymbol}{correspondingAtom.Symbol}{correspondingAtom.Position}";
-                }
-            }
+            retval.Info.AtomGroup = molecule.AtomGroup(atom);
 
 
             return retval;

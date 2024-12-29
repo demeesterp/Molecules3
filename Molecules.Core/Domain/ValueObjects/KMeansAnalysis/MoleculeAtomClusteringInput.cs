@@ -13,6 +13,9 @@
                 ];
         }
         public KMeansVectorTypeEnum Type { get; set; }
+
+        public bool Active { get; set; }
+
         public List<MoleculeAtomClusteringInputItem> Items { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Base;
+using Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Population.Vectors;
 
-namespace Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Population
+namespace Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Population.VectorCollection
 {
     public class MoleculeAtomPopulationLumoVectorCollection : MoleculesVectorCollection
     {

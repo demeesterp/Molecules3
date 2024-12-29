@@ -1,4 +1,4 @@
-﻿namespace Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Population
+﻿namespace Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Population.Vectors
 {
     public record MoleculeAtomPopulationInfo
     {

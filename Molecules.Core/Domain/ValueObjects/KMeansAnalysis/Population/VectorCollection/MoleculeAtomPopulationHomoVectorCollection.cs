@@ -1,28 +1,29 @@
 ﻿using Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Base;
+using Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Population.Vectors;
 
-namespace Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Population
+namespace Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Population.VectorCollection
 {
-    public class MoleculeAtomPopulationVectorCollection : MoleculesVectorCollection
+    public class MoleculeAtomPopulationHomoVectorCollection : MoleculesVectorCollection
     {
         public override MoleculesVector CreateEmptyCentroid()
         {
-            return new MoleculeAtomPopulationVector(string.Empty);
+            return new MoleculeAtomPopulationHomoVector(string.Empty);
         }
 
         public int AtomNumber { get; set; }
 
 
-        public MoleculeAtomPopulationVectorCollection(double atomNumber)
+        public MoleculeAtomPopulationHomoVectorCollection(double atomNumber)
         {
             AtomNumber = (int)Math.Round(atomNumber);
         }
 
-        public MoleculeAtomPopulationVector AddVector(MoleculeAtomPopulationVector toAdd)
+        public MoleculeAtomPopulationHomoVector AddVector(MoleculeAtomPopulationHomoVector toAdd)
         {
-            return (MoleculeAtomPopulationVector)base.AddVector(toAdd);
+            return (MoleculeAtomPopulationHomoVector)base.AddVector(toAdd);
         }
 
-        public void AddVectors(IList<MoleculeAtomPopulationVector> vectorsToAdd)
+        public void AddVectors(IList<MoleculeAtomPopulationHomoVector> vectorsToAdd)
         {
             AddVectors(vectorsToAdd.Cast<MoleculesVector>().ToList());
         }
@@ -30,7 +31,7 @@ namespace Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Population
         public override void Normalize()
         {
             MoleculeAtomPopulationValues values = new MoleculeAtomPopulationValues();
-            foreach(MoleculeAtomPopulationVector v in Vectors)
+            foreach (MoleculeAtomPopulationVector v in Vectors)
             {
                 values.MullikenPopulation += v.Values.MullikenPopulation;
                 values.LowdinPopulation += v.Values.LowdinPopulation;

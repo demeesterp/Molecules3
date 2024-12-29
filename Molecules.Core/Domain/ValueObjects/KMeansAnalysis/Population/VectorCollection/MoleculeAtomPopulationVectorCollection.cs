@@ -1,28 +1,29 @@
 ﻿using Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Base;
+using Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Population.Vectors;
 
-namespace Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Population
+namespace Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Population.VectorCollection
 {
-    public class MoleculeAtomPopulationHomoVectorCollection : MoleculesVectorCollection
+    public class MoleculeAtomPopulationVectorCollection : MoleculesVectorCollection
     {
         public override MoleculesVector CreateEmptyCentroid()
         {
-            return new MoleculeAtomPopulationHomoVector(string.Empty);
+            return new MoleculeAtomPopulationVector(string.Empty);
         }
 
         public int AtomNumber { get; set; }
 
 
-        public MoleculeAtomPopulationHomoVectorCollection(double atomNumber)
+        public MoleculeAtomPopulationVectorCollection(double atomNumber)
         {
             AtomNumber = (int)Math.Round(atomNumber);
         }
 
-        public MoleculeAtomPopulationHomoVector AddVector(MoleculeAtomPopulationHomoVector toAdd)
+        public MoleculeAtomPopulationVector AddVector(MoleculeAtomPopulationVector toAdd)
         {
-            return (MoleculeAtomPopulationHomoVector)base.AddVector(toAdd);
+            return (MoleculeAtomPopulationVector)base.AddVector(toAdd);
         }
 
-        public void AddVectors(IList<MoleculeAtomPopulationHomoVector> vectorsToAdd)
+        public void AddVectors(IList<MoleculeAtomPopulationVector> vectorsToAdd)
         {
             AddVectors(vectorsToAdd.Cast<MoleculesVector>().ToList());
         }

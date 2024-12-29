@@ -1,8 +1,8 @@
-﻿using Molecules.Core.Domain.ValueObjects.Analysis.Population;
-using Molecules.Core.Domain.ValueObjects.KMeansAnalysis;
+﻿using Molecules.Core.Domain.ValueObjects.KMeansAnalysis;
 using Molecules.Core.Services.Analysis;
 using Molecules.settings;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Molecules.services
 {
@@ -29,52 +29,73 @@ namespace Molecules.services
         {
             Console.WriteLine($"Base directory is {_settings.BasePath}");
             Console.WriteLine($"Analysis output directory is {_settings.AnalysisOutputPath}");
-            Console.Write("Number of centers : ");
-            var result = await _moleculeAnalysisService.DoAtomAnalysisAsync(GetUserInput());
-            var resultsFile = Path.Combine(_settings.AnalysisOutputPath, "result.csv");
-            File.WriteAllText(resultsFile, result.GetReport());
-            Console.WriteLine($"Output written to {resultsFile}");
+            Console.Write("Cluster input : ");
+            var clusterInputCollection = GetUserInput();
+            foreach(var input in clusterInputCollection.ClusterList.Where(x => x.Active))
+            {
+                var result = await _moleculeAnalysisService.DoAtomAnalysisAsync(input);
+                var resultsFile = Path.Combine(_settings.AnalysisOutputPath, $"result{input.Type}.csv");
+                File.WriteAllText(resultsFile, result.GetReport());
+                Console.WriteLine($"Output written to {resultsFile}");
+            }
         }
 
-        private MoleculeAtomClusteringInput GetUserInput()
+        private MoleculeAtomClusteringInputCollection GetUserInput()
         {
-            MoleculeAtomClusteringInput retval = ReadInputFromFile();
-            Console.WriteLine("Get number of centers per atom");
-            foreach(var item in retval.Items)
+            MoleculeAtomClusteringInputCollection retval = ReadInputFromFile();
+            foreach(var input in retval.ClusterList)
             {
-                Console.Write($"{item.Atom}: ({item.NbrOfClusters}) ");
-                var userResponse = Console.ReadLine();
-                if (int.TryParse(userResponse, out int currentNbrOfCenters))
+                Console.WriteLine($"Define centers for type {input.Type}");
+                Console.Write("Continue y/n :");
+                var answer = Console.ReadLine();
+                if (answer != "y") continue;
+
+                input.Active = true;
+                Console.WriteLine("Get number of centers per atom");
+                foreach (var item in input.Items)
                 {
-                    item.NbrOfClusters = currentNbrOfCenters;
+                    Console.Write($"{item.Atom}: ({item.NbrOfClusters}) ");
+                    var userResponse = Console.ReadLine();
+                    if (int.TryParse(userResponse, out int currentNbrOfCenters))
+                    {
+                        item.NbrOfClusters = currentNbrOfCenters;
+                    }
                 }
             }
             WriteInputToFileAsync(retval);
             return retval;
         }
 
-        private void WriteInputToFileAsync(MoleculeAtomClusteringInput input)
+        private void WriteInputToFileAsync(MoleculeAtomClusteringInputCollection input)
         {
             var inputFilePath = Path.Combine(_settings.AnalysisOutputPath, "input.json");
-            var options = new JsonSerializerOptions { WriteIndented = true };
+            var options = new JsonSerializerOptions 
+            { 
+                WriteIndented = true,
+                Converters = { new JsonStringEnumConverter() }
+            };
             var json = JsonSerializer.Serialize(input, options);
             File.WriteAllText(inputFilePath, json);
         }
 
 
-        private MoleculeAtomClusteringInput ReadInputFromFile()
+        private MoleculeAtomClusteringInputCollection ReadInputFromFile()
         {
             var inputFilePath = Path.Combine(_settings.AnalysisOutputPath, "input.json");
             if ( File.Exists(inputFilePath))
             {
                 var content = File.ReadAllText(inputFilePath);
 
-                return JsonSerializer.Deserialize<MoleculeAtomClusteringInput>(content,
-                                                new JsonSerializerOptions { WriteIndented = true })!;
+                return JsonSerializer.Deserialize<MoleculeAtomClusteringInputCollection>(content,
+                                                new JsonSerializerOptions 
+                                                { 
+                                                    WriteIndented = true,
+                                                    Converters = { new JsonStringEnumConverter() }
+                                                })!;
             }
             else
             {
-                return new MoleculeAtomClusteringInput();
+                return MoleculeAtomClusteringInputCollection.Default;
             }
         }
 

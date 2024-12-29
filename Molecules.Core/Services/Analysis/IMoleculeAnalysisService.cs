@@ -1,13 +1,11 @@
-﻿
-
-using Molecules.Core.Domain.ValueObjects.Analysis.Population;
-using Molecules.Core.Domain.ValueObjects.KMeansAnalysis;
+﻿using Molecules.Core.Domain.ValueObjects.KMeansAnalysis;
+using Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Base.Result;
 
 namespace Molecules.Core.Services.Analysis
 {
     public interface IMoleculeAnalysisService
     {
-        Task<MoleculeAtomPopulationAnalysisResult> DoAtomAnalysisAsync(MoleculeAtomClusteringInput clusters);
+        Task<IMoleculeAnalysisResult> DoAtomAnalysisAsync(MoleculeAtomClusteringInput clusters);
 
     }
 }

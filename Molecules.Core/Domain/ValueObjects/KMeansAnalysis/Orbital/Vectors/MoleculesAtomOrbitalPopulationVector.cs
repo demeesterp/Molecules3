@@ -1,6 +1,6 @@
 ﻿using Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Base;
 
-namespace Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Orbital
+namespace Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Orbital.Vectors
 {
     public class MoleculesAtomOrbitalPopulationVector : MoleculesVector
     {
@@ -8,7 +8,7 @@ namespace Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Orbital
 
         public MoleculesAtomOrbitalPopulationValues Values = new MoleculesAtomOrbitalPopulationValues();
 
-        public MoleculesAtomOrbitalPopulationVector(string name):base(name) { }
+        public MoleculesAtomOrbitalPopulationVector(string name) : base(name) { }
 
         public override void AddToValue(int dimension, double valueToAdd) => Values[dimension] += valueToAdd;
 
