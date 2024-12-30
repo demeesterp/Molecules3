@@ -3,29 +3,31 @@ using Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Orbital.Vectors;
 
 namespace Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Orbital.VectorCollections
 {
-    public class MoleculeAtomOrbitalPopulationVectorCollection : MoleculesVectorCollection
+    public class MoleculeAtomOrbitalHomoPopulationVectorCollection : MoleculesVectorCollection
     {
-        public override MoleculesVector CreateEmptyCentroid() => new MoleculeAtomOrbitalPopulationVector(string.Empty, Dimensions);
+        public override MoleculesVector CreateEmptyCentroid() => new MoleculeAtomOrbitalHomoPopulationVector(string.Empty, Dimensions);
+
         public int AtomNumber
         {
             get;
             set;
         }
 
-        public MoleculeAtomOrbitalPopulationVectorCollection(double atomNumber)
+        public MoleculeAtomOrbitalHomoPopulationVectorCollection(double atomNumber)
         {
             AtomNumber = (int)Math.Round(atomNumber);
         }
 
-        public MoleculeAtomOrbitalPopulationVector AddVector(MoleculeAtomOrbitalPopulationVector toAdd)
+        public MoleculeAtomOrbitalHomoPopulationVector AddVector(MoleculeAtomOrbitalHomoPopulationVector toAdd)
         {
-            return (MoleculeAtomOrbitalPopulationVector)base.AddVector(toAdd);
+            return (MoleculeAtomOrbitalHomoPopulationVector)base.AddVector(toAdd);
         }
 
-        public void AddVectors(IList<MoleculeAtomOrbitalPopulationVector> vectorsToAdd)
+        public void AddVectors(IList<MoleculeAtomOrbitalHomoPopulationVector> vectorsToAdd)
         {
             AddVectors(vectorsToAdd.Cast<MoleculesVector>().ToList());
         }
+
 
         public override void Normalize()
         {
@@ -43,7 +45,7 @@ namespace Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Orbital.VectorCollec
 
             for (int dim = 0; dim < Dimensions; ++dim)
             {
-                foreach (MoleculeAtomOrbitalPopulationVector v in Vectors)
+                foreach (MoleculeAtomOrbitalHomoPopulationVector v in Vectors)
                 {
                     var minMaxDiff = maxValues[dim] - minValues[dim];
                     if (minMaxDiff > 0)

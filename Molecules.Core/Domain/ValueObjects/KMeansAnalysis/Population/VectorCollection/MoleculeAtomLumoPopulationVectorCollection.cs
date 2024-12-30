@@ -3,27 +3,27 @@ using Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Population.Vectors;
 
 namespace Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Population.VectorCollection
 {
-    public class MoleculeAtomPopulationLumoVectorCollection : MoleculesVectorCollection
+    public class MoleculeAtomLumoPopulationVectorCollection : MoleculesVectorCollection
     {
         public override MoleculesVector CreateEmptyCentroid()
         {
-            return new MoleculeAtomPopulationLumoVector(string.Empty);
+            return new MoleculeAtomLumoPopulationVector(string.Empty);
         }
 
         public int AtomNumber { get; set; }
 
 
-        public MoleculeAtomPopulationLumoVectorCollection(double atomNumber)
+        public MoleculeAtomLumoPopulationVectorCollection(double atomNumber)
         {
             AtomNumber = (int)Math.Round(atomNumber);
         }
 
-        public MoleculeAtomPopulationLumoVector AddVector(MoleculeAtomPopulationLumoVector toAdd)
+        public MoleculeAtomLumoPopulationVector AddVector(MoleculeAtomLumoPopulationVector toAdd)
         {
-            return (MoleculeAtomPopulationLumoVector)base.AddVector(toAdd);
+            return (MoleculeAtomLumoPopulationVector)base.AddVector(toAdd);
         }
 
-        public void AddVectors(IList<MoleculeAtomPopulationLumoVector> vectorsToAdd)
+        public void AddVectors(IList<MoleculeAtomLumoPopulationVector> vectorsToAdd)
         {
             AddVectors(vectorsToAdd.Cast<MoleculesVector>().ToList());
         }
@@ -44,7 +44,7 @@ namespace Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Population.VectorCol
 
             for (int cnt = 0; cnt < Dimensions; ++cnt)
             {
-                foreach (MoleculeAtomPopulationLumoVector v in Vectors)
+                foreach (MoleculeAtomLumoPopulationVector v in Vectors)
                 {
                     var minMaxDiff = maxValues[cnt] - minValues[cnt];
                     if (minMaxDiff > 0)

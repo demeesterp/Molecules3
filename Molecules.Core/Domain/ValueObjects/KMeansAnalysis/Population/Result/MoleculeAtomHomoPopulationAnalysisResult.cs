@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Population.Result
 {
-    public class MoleculeAtomPopulationHomoAnalysisResult : MoleculeAtomAnalysisResult<MoleculeAtomPopulationHomoVector>, IMoleculeAnalysisResult
+    public class MoleculeAtomHomoPopulationAnalysisResult : MoleculeAtomAnalysisResult<MoleculeAtomHomoPopulationVector>, IMoleculeAnalysisResult
     {
         public string GetReport()
         {
