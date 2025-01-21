@@ -21,14 +21,14 @@ namespace MoleculesWebApp.Client.Data.Model
 
         public override string ToString()
         {
-            return Symbol + "(" + StringConversion.ToString(PopulationFraction, "0.00") + ")";
+            return Symbol + "(" + StringConversion.ToString(Population, "0.00") + ")";
         }
 
         public decimal ColorFraction
         {
             get
             {
-                return Math.Min(0.8m, Math.Abs(PopulationFraction ?? 0));
+                return Math.Min(0.8m, Math.Abs(Population ?? 0));
             }
         }
     }
