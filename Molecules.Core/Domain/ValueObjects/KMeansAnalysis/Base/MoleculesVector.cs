@@ -32,7 +32,6 @@
         public virtual int Dimensions
         {
             get;
-            set;
         }
 
         public string Name

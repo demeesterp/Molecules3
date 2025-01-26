@@ -8,11 +8,15 @@ namespace Molecules.Core.Factories.Analysis
     {
         MoleculeAtomPopulationVector CreateMoleculeAtomPopulationVector(Atom atom, Molecule molecule);
 
-        MoleculeAtomPopulationHomoVector CreateMoleculeAtomPopulationHomoVector(Atom atom, Molecule molecule);
+        MoleculeAtomHomoPopulationVector CreateMoleculeAtomPopulationHomoVector(Atom atom, Molecule molecule);
 
-        MoleculeAtomPopulationLumoVector CreateMoleculeAtomPopulationLumoVector(Atom atom, Molecule molecule);
+        MoleculeAtomLumoPopulationVector CreateMoleculeAtomPopulationLumoVector(Atom atom, Molecule molecule);
 
-        MoleculesAtomOrbitalPopulationVector CreateMoleculesAtomOrbitalPopulationVector(Atom atom, Molecule molecule);
+        MoleculeAtomOrbitalPopulationVector CreateMoleculesAtomOrbitalPopulationVector(Atom atom, Molecule molecule);
+
+        MoleculeAtomOrbitalHomoPopulationVector CreateMoleculesAtomOrbitalHomoPopulationVector(Atom atom, Molecule molecule);
+
+        MoleculeAtomOrbitalLumoPopulationVector CreateMoleculesAtomOrbitalLumoPopulationVector(Atom atom, Molecule molecule);
 
     }
 }

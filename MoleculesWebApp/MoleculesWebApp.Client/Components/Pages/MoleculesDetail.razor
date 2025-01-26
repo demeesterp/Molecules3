@@ -104,10 +104,8 @@
                                     </div>
                                     @foreach (var configItem in @atomItem.ConfigurationItems)
                                     {
-                                        <div style="--fraction:@configItem.ColorFraction"
-                                             data-bs-toggle="tooltip"
-                                             title="@configItem.ToString()"
-                                             class="@(configItem.PopulationFraction < 0 ? "fw-config-blue" : "fw-config-red")">
+                                        <div data-bs-toggle="tooltip"
+                                             title="@configItem.ToString()" >
                                             @configItem.ToString()
                                         </div>
 
@@ -122,7 +120,7 @@
                                         <div style="--fraction:@configItem.ColorFraction"
                                              data-bs-toggle="tooltip"
                                              title="@configItem.ToString()"
-                                             class="@(configItem.PopulationFraction < 0 ? "fw-config-blue" : "fw-config-red")">
+                                             class="@(configItem.Population < 0 ? "fw-config-blue" : "fw-config-red")">
                                             @configItem.ToString()
                                         </div>
 
@@ -137,7 +135,7 @@
                                         <div style="--fraction:@configItem.ColorFraction"
                                              data-bs-toggle="tooltip"
                                              title="@configItem.ToString()"
-                                             class="@(configItem.PopulationFraction < 0 ? "fw-config-blue" : "fw-config-red")">
+                                             class="@(configItem.Population < 0 ? "fw-config-blue" : "fw-config-red")">
                                             @configItem.ToString()
                                         </div>
 

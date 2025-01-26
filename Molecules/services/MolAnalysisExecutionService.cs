@@ -48,7 +48,11 @@ namespace Molecules.services
                 Console.WriteLine($"Define centers for type {input.Type}");
                 Console.Write("Continue y/n :");
                 var answer = Console.ReadLine();
-                if (answer != "y") continue;
+                if (answer?.ToLower().Trim() != "y")
+                {
+                    input.Active = false;
+                    continue;
+                }
 
                 input.Active = true;
                 Console.WriteLine("Get number of centers per atom");

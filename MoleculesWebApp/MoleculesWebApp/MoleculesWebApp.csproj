@@ -8,22 +8,38 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Remove="wwwroot\javascript\MoleculeViewer.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\Molecules.Core.Data\Molecules.Core.Data.csproj" />
     <ProjectReference Include="..\..\Molecules.Core.Validation\Molecules.Core.Validation.csproj" />
     <ProjectReference Include="..\..\Molecules.Core\Molecules.Core.csproj" />
     <ProjectReference Include="..\..\Molecules.Logger\Molecules.Logger.csproj" />
     <ProjectReference Include="..\..\Molecules.Shared\Molecules.Shared.csproj" />
     <ProjectReference Include="..\MoleculesWebApp.Client\MoleculesWebApp.Client.csproj" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="9.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.11">
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="9.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="9.0.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="9.0.1" />
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="5.7.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="wwwroot\javascript\MoleculeViewer.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\typescript\" />
   </ItemGroup>
 
 </Project>
