@@ -9,12 +9,12 @@ namespace Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Population.Result
         public string GetReport()
         {
             StringBuilder result = new StringBuilder();
-            result.AppendLine($"ClusterLabel;AtomGroup;Atom;Name;LowdinHomoPopulation;MullikenHomoPopulation;");
+            result.AppendLine($"ClusterLabel;Atom;AtomPosition;MoleculeName;AtomGroup;LowdinHomoPopulation;MullikenHomoPopulation;");
             foreach (var category in Categories)
             {
                 foreach (var v in category)
                 {
-                    result.AppendLine($"{category.Label};{v.Data.AtomGroup};{category.Atom}{v.Data.AtomNumber};{v.Name};{v.Data.LowdinPopulation};{v.Data.MullikenPopulation};");
+                    result.AppendLine($"{category.Label};{category.Atom};{v.Info.AtomPosition};{v.Name};{v.Info.AtomGroup};{v.Info.LowdinPopulation};{v.Info.MullikenPopulation};");
                 }
             }
             return result.ToString();

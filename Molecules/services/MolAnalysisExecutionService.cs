@@ -17,7 +17,6 @@ namespace Molecules.services
 
         #endregion
 
-
         public MolAnalysisExecutionService(IMoleculeAnalysisService moleculeAnalysisService,
                                                 IMoleculesSettings settings)
         {
@@ -82,7 +81,6 @@ namespace Molecules.services
             File.WriteAllText(inputFilePath, json);
         }
 
-
         private MoleculeAtomClusteringInputCollection ReadInputFromFile()
         {
             var inputFilePath = Path.Combine(_settings.AnalysisOutputPath, "input.json");
@@ -102,8 +100,5 @@ namespace Molecules.services
                 return MoleculeAtomClusteringInputCollection.Default;
             }
         }
-
-
-
     }
 }

@@ -8,6 +8,8 @@
 
         public double AtomNumber { get; set; }
 
+        public int AtomPosition { get; set; }
+
         public string AtomGroup { get; set; } = string.Empty;
     }
 

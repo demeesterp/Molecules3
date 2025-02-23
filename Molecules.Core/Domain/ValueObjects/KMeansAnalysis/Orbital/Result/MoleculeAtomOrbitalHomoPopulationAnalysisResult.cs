@@ -10,12 +10,12 @@ namespace Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Orbital.Result
         public string GetReport()
         {
             StringBuilder result = new StringBuilder();
-            result.AppendLine($"ClusterLabel;AtomGroup;Atom;Name;");
+            result.AppendLine($"ClusterLabel;Atom;AtomPosition;MoleculeName;AtomGroup");
             foreach (var category in Categories)
             {
-                foreach (var v in category)
+                foreach (var vector in category)
                 {
-                    result.AppendLine($"{category.Label};{v.Info.AtomGroup};{category.Atom}{v.Values.AtomNumber};{v.Name};");
+                    result.AppendLine($"{category.Label};{category.Atom};{vector.Info.AtomPosition};{vector.Name};{vector.Info.AtomGroup}");
                 }
             }
             return result.ToString();

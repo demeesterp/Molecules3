@@ -1,5 +1,4 @@
 ﻿using Molecules.Core.Domain.ValueObjects.AtomData;
-using Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Base;
 
 namespace Molecules.Core.Domain.ValueObjects.KMeansAnalysis.Base.Result
 {

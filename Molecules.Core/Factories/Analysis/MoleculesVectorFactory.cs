@@ -17,12 +17,13 @@ namespace Molecules.Core.Factories.Analysis
 
 
 
-            retval.Data.LowdinPopulation = atom.LowdinPopulationHOMO.GetValueOrDefault();
-            retval.Data.MullikenPopulation = atom.MullikenPopulationHOMO.GetValueOrDefault();
-            retval.Data.AtomNumber = atom.Number;
+            retval.Info.LowdinPopulation = atom.LowdinPopulationHOMO.GetValueOrDefault();
+            retval.Info.MullikenPopulation = atom.MullikenPopulationHOMO.GetValueOrDefault();
+            retval.Info.AtomNumber = atom.Number;
+            retval.Info.AtomPosition = atom.Position;
 
 
-            retval.Data.AtomGroup = molecule.AtomGroup(atom);
+            retval.Info.AtomGroup = molecule.AtomGroup(atom);
 
             return retval;
         }
@@ -37,12 +38,13 @@ namespace Molecules.Core.Factories.Analysis
 
 
 
-            retval.Data.LowdinPopulation = atom.LowdinPopulationLUMO.GetValueOrDefault();
-            retval.Data.MullikenPopulation = atom.MullikenPopulationLUMO.GetValueOrDefault();
-            retval.Data.AtomNumber = atom.Number;
+            retval.Info.LowdinPopulation = atom.LowdinPopulationLUMO.GetValueOrDefault();
+            retval.Info.MullikenPopulation = atom.MullikenPopulationLUMO.GetValueOrDefault();
+            retval.Info.AtomNumber = atom.Number;
+            retval.Info.AtomPosition = atom.Position;
 
 
-            retval.Data.AtomGroup = molecule.AtomGroup(atom);
+            retval.Info.AtomGroup = molecule.AtomGroup(atom);
 
             return retval;
         }
@@ -57,12 +59,13 @@ namespace Molecules.Core.Factories.Analysis
 
             
             
-            retval.Data.LowdinPopulation = atom.LowdinPopulation.GetValueOrDefault();
-            retval.Data.MullikenPopulation = atom.MullikenPopulation.GetValueOrDefault();
-            retval.Data.AtomNumber = atom.Number;
+            retval.Info.LowdinPopulation = atom.LowdinPopulation.GetValueOrDefault();
+            retval.Info.MullikenPopulation = atom.MullikenPopulation.GetValueOrDefault();
+            retval.Info.AtomNumber = atom.Number;
+            retval.Info.AtomPosition = atom.Position;
 
 
-            retval.Data.AtomGroup = molecule.AtomGroup(atom);
+            retval.Info.AtomGroup = molecule.AtomGroup(atom);
 
             return retval;
         }
@@ -71,6 +74,7 @@ namespace Molecules.Core.Factories.Analysis
         {
             var retval = new MoleculeAtomOrbitalPopulationVector($"{molecule.Name}:{atom.Symbol}{atom.Position}");
             retval.Info.AtomNumber = atom.Number;
+            retval.Info.AtomPosition = atom.Position;
             retval.Info.AtomGroup = molecule.AtomGroup(atom);
             retval.Values.AtomNumber = atom.Number;
             int count = 0;
@@ -97,6 +101,7 @@ namespace Molecules.Core.Factories.Analysis
         {
             var retval = new MoleculeAtomOrbitalHomoPopulationVector($"{molecule.Name}:{atom.Symbol}{atom.Position}");
             retval.Info.AtomNumber = atom.Number;
+            retval.Info.AtomPosition = atom.Position;
             retval.Info.AtomGroup = molecule.AtomGroup(atom);
             retval.Values.AtomNumber = atom.Number;
             int count = 0;
@@ -123,6 +128,7 @@ namespace Molecules.Core.Factories.Analysis
         {
             var retval = new MoleculeAtomOrbitalLumoPopulationVector($"{molecule.Name}:{atom.Symbol}{atom.Position}");
             retval.Info.AtomNumber = atom.Number;
+            retval.Info.AtomPosition = atom.Position;
             retval.Info.AtomGroup = molecule.AtomGroup(atom);
             retval.Values.AtomNumber = atom.Number;
             int count = 0;
