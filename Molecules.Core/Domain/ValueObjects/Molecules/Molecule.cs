@@ -85,9 +85,9 @@ namespace Molecules.Core.Domain.ValueObjects.Molecules
         }
 
 
-        public string AtomGroup(Atom atom)
+        public string AtomGroup(Atom atom, bool includePosition = true)
         {
-            var retval = $"{atom.Symbol}{atom.Number}({atom.Position})";
+            var retval = includePosition ? $"{atom.Symbol}({atom.Position})" : $"{atom.Symbol}";
             foreach (var grpItem in Bonds.Where(b => b.OverlapPopulation >= MoleculesConstants.BondThreshold
                                                             &&
                                                             (
@@ -99,13 +99,17 @@ namespace Molecules.Core.Domain.ValueObjects.Molecules
                 if (grpItem.Atom1Position == atom.Position)
                 {
                     var correspondingAtom = Atoms.First(x => x.Position == grpItem.Atom2Position);
-                    retval += $"{grpItem.BondSymbol}{correspondingAtom.Symbol}{correspondingAtom.Position}";
+                    retval += includePosition ? 
+                                $"{grpItem.BondSymbol}{correspondingAtom.Symbol}{correspondingAtom.Position}"
+                                : $"{grpItem.BondSymbol}{correspondingAtom.Symbol}";
                 }
 
                 if (grpItem.Atom2Position == atom.Position)
                 {
                     var correspondingAtom = Atoms.First(x => x.Position == grpItem.Atom1Position);
-                    retval += $"{grpItem.BondSymbol}{correspondingAtom.Symbol}{correspondingAtom.Position}";
+                    retval += includePosition ?
+                                $"{grpItem.BondSymbol}{correspondingAtom.Symbol}{correspondingAtom.Position}"
+                                  : $"{grpItem.BondSymbol}{correspondingAtom.Symbol}";
                 }
             }
             return retval;

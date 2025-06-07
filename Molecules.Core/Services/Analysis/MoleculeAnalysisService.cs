@@ -110,7 +110,6 @@ namespace Molecules.Core.Services.Analysis
             return result;
         }
 
-
         private async Task<MoleculeAtomOrbitalPopulationAnalysisResult> DoAtomOrbitalPopulationAnalysisAsync(MoleculeAtomClusteringInput clusters)
         {
             MoleculeAtomOrbitalPopulationAnalysisResult result = new MoleculeAtomOrbitalPopulationAnalysisResult();

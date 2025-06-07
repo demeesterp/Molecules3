@@ -23,7 +23,7 @@ namespace Molecules.Core.Factories.Analysis
             retval.Info.AtomPosition = atom.Position;
 
 
-            retval.Info.AtomGroup = molecule.AtomGroup(atom);
+            retval.Info.AtomGroup = molecule.AtomGroup(atom, false);
 
             return retval;
         }
@@ -44,7 +44,7 @@ namespace Molecules.Core.Factories.Analysis
             retval.Info.AtomPosition = atom.Position;
 
 
-            retval.Info.AtomGroup = molecule.AtomGroup(atom);
+            retval.Info.AtomGroup = molecule.AtomGroup(atom, false);
 
             return retval;
         }
@@ -65,7 +65,7 @@ namespace Molecules.Core.Factories.Analysis
             retval.Info.AtomPosition = atom.Position;
 
 
-            retval.Info.AtomGroup = molecule.AtomGroup(atom);
+            retval.Info.AtomGroup = molecule.AtomGroup(atom, false);
 
             return retval;
         }
@@ -75,7 +75,7 @@ namespace Molecules.Core.Factories.Analysis
             var retval = new MoleculeAtomOrbitalPopulationVector($"{molecule.Name}:{atom.Symbol}{atom.Position}");
             retval.Info.AtomNumber = atom.Number;
             retval.Info.AtomPosition = atom.Position;
-            retval.Info.AtomGroup = molecule.AtomGroup(atom);
+            retval.Info.AtomGroup = molecule.AtomGroup(atom, false);
             retval.Values.AtomNumber = atom.Number;
             int count = 0;
             foreach(var atomOrbital in atom.Orbitals)
@@ -102,7 +102,7 @@ namespace Molecules.Core.Factories.Analysis
             var retval = new MoleculeAtomOrbitalHomoPopulationVector($"{molecule.Name}:{atom.Symbol}{atom.Position}");
             retval.Info.AtomNumber = atom.Number;
             retval.Info.AtomPosition = atom.Position;
-            retval.Info.AtomGroup = molecule.AtomGroup(atom);
+            retval.Info.AtomGroup = molecule.AtomGroup(atom, false);
             retval.Values.AtomNumber = atom.Number;
             int count = 0;
             foreach (var atomOrbital in atom.Orbitals)
@@ -129,7 +129,7 @@ namespace Molecules.Core.Factories.Analysis
             var retval = new MoleculeAtomOrbitalLumoPopulationVector($"{molecule.Name}:{atom.Symbol}{atom.Position}");
             retval.Info.AtomNumber = atom.Number;
             retval.Info.AtomPosition = atom.Position;
-            retval.Info.AtomGroup = molecule.AtomGroup(atom);
+            retval.Info.AtomGroup = molecule.AtomGroup(atom, false);
             retval.Values.AtomNumber = atom.Number;
             int count = 0;
             foreach (var atomOrbital in atom.Orbitals)
